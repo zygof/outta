@@ -63,11 +63,11 @@ const List = (props:any) => {
               alignItems: "flex-end",
             }}
           >
-            {moods.map((item:any) => (
+            {moods.map((item:any, index:number) => (
                 <Mood
                     mood={item.mood}
                     title={item.title}
-                    key={item.id.toString()}
+                    key={index}
                 />
             ))}
         </ScrollView>

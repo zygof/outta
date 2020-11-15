@@ -27,6 +27,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "Outta",
+            "project": "Outta project",
+            "authToken": "bb831ae6ba57447b8e7994145b614d3cdef0bd1423c2494d9bb7ca24b87c7f33"
+          }
+        }
+      ]
     }
   }
 }

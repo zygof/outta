@@ -1,7 +1,7 @@
 import userActions from "./constants";
 
 const initialState = {
-  name: "Jordan",
+  name: "Zygof",
   loggedIn: false,
 };
 

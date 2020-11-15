@@ -1,19 +1,41 @@
 import React from "react";
-import { StatusBar, Image, Text, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  StatusBar,
+  Image,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import List from "../screens/List";
 import Infos from "../screens/Infos";
 import Profile from "../screens/Profile";
+import {
+  insertUser,
+  getUserByEmail,
+} from "../config/realm/actions/userActions";
 
 const Stack = createStackNavigator();
 const StackProfile = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
+
+insertUser({
+  id: 1,
+  name: "zygof",
+  address: "dafdz ",
+  email: "n.marry90@gmail",
+  phone: "",
+  deleted: false,
+});
+
+console.log(getUserByEmail("n.marry90@gmail"))
 
 const TabsNavigation = () => (
   <Tabs.Navigator
@@ -51,9 +73,9 @@ const TabsNavigation = () => (
   </Tabs.Navigator>
 );
 
-const StackNavigation = (props:any) => {
+const StackNavigation = (props: any) => {
   const { user } = props;
-  const colorStatus = user.loggedIn ? 'green' : 'red';
+  const colorStatus = user.loggedIn ? "green" : "red";
 
   return (
     <Stack.Navigator initialRouteName="Main">
@@ -68,32 +90,34 @@ const StackNavigation = (props:any) => {
               style={styles.userHeader}
             >
               <Image
-                source={{ uri: "https://cdn.onlinewebfonts.com/svg/img_243887.png" }}
+                source={{
+                  uri: "https://cdn.onlinewebfonts.com/svg/img_243887.png",
+                }}
                 style={styles.logo}
               />
               <Text style={styles.userName}>{user.name}</Text>
-              <View style={[styles.userStatus, { 'backgroundColor': colorStatus }]} />
+              <View
+                style={[styles.userStatus, { backgroundColor: colorStatus }]}
+              />
             </TouchableOpacity>
           ),
-          headerRight: () => (
-            <Text style={styles.title}>MrMood.</Text>
-          ),
+          headerRight: () => <Text style={styles.title}>hg</Text>,
           headerStyle: {
-            backgroundColor: '#fff',
+            backgroundColor: "#fff",
           },
-          headerTintColor: '#000',
+          headerTintColor: "#000",
           headerTitleStyle: {
-            fontWeight: 'bold',
+            fontWeight: "bold",
           },
         })}
       />
     </Stack.Navigator>
   );
-}
+};
 
-const StackProfileNavigation = (props:any) => {
+const StackProfileNavigation = (props: any) => {
   const { user } = props;
-  const colorStatus = user.loggedIn ? 'green' : 'red';
+  const colorStatus = user.loggedIn ? "green" : "red";
 
   return (
     <StackProfile.Navigator initialRouteName="Profile">
@@ -108,30 +132,32 @@ const StackProfileNavigation = (props:any) => {
               style={styles.userHeader}
             >
               <Image
-                source={{ uri: "https://cdn.onlinewebfonts.com/svg/img_243887.png" }}
+                source={{
+                  uri: "https://cdn.onlinewebfonts.com/svg/img_243887.png",
+                }}
                 style={styles.logo}
               />
               <Text style={styles.userName}>{user.name}</Text>
-              <View style={[styles.userStatus, { 'backgroundColor': colorStatus }]} />
+              <View
+                style={[styles.userStatus, { backgroundColor: colorStatus }]}
+              />
             </TouchableOpacity>
           ),
-          headerRight: () => (
-            <Text style={styles.title}>MrMood.</Text>
-          ),
+          headerRight: () => <Text style={styles.title}>MrMood.</Text>,
           headerStyle: {
-            backgroundColor: '#fff',
+            backgroundColor: "#fff",
           },
-          headerTintColor: '#000',
+          headerTintColor: "#000",
           headerTitleStyle: {
-            fontWeight: 'bold',
+            fontWeight: "bold",
           },
         })}
       />
     </StackProfile.Navigator>
   );
-}
+};
 
-const MainNavigation = (props:any) => {
+const MainNavigation = (props: any) => {
   const { user } = props;
 
   return (
@@ -143,15 +169,15 @@ const MainNavigation = (props:any) => {
       />
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home">
-          {props => <StackNavigation {...props} user={user} />}
+          {(props) => <StackNavigation {...props} user={user} />}
         </Drawer.Screen>
         <Stack.Screen name="Profile">
-          {props => <StackProfileNavigation {...props} user={user} />}
+          {(props) => <StackProfileNavigation {...props} user={user} />}
         </Stack.Screen>
       </Drawer.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   title: {
@@ -178,10 +204,10 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginLeft: 4,
     marginTop: -14,
-  }
+  },
 });
 
-const mapStateToProps = (state:any) => ({
+const mapStateToProps = (state: any) => ({
   user: state.user,
 });
 
