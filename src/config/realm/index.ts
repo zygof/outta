@@ -5,10 +5,10 @@ const schema = [
   userSchema,
 ] as ObjectSchema[];
 
-const realmConfig: Realm.Configuration = {
-  path: "outtaApp.realm",
-  schema,
-  schemaVersion: 1
-};
+export const realmApp =
+  Realm.open({
+    path: "outtaApp.realm",
+    schema: schema,
+    schemaVersion: 1
+  });
 
-export default new Realm(realmConfig);
