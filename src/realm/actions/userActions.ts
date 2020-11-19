@@ -1,4 +1,4 @@
-import { realmApp } from "../";
+import { realmApp } from "..";
 import { userSchema } from "../schema";
 import { User } from "../entities/user";
 

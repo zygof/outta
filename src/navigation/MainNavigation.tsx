@@ -19,7 +19,7 @@ import Profile from "../screens/Profile";
 import {
   insertUser,
   getUserByEmail,
-} from "../config/realm/actions/userActions";
+} from "../realm/actions/userActions";
 
 const Stack = createStackNavigator();
 const StackProfile = createStackNavigator();
