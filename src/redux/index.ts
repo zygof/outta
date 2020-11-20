@@ -8,7 +8,7 @@ import user from "./user/reducer";
 
 const reducers = {
   moods,
-  user,
+  user : user
 };
 
 export default createStore(

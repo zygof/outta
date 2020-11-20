@@ -76,11 +76,12 @@ const List = (props:any) => {
           {displayAdd && (
               <View>
                   {smileys.map((item) => (
-                      <View style={styles.buttonOverlay}>
+                      <View style={styles.buttonOverlay} key= {item.id}>
                           <Button
                               style={styles.button}
                               title={item.label}
                               onPress={() => _addMood(item)}
+                              key={"btnSmiley_" + item.id}
                           />
                       </View>
                   ))}
@@ -111,6 +112,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "center",
+  },
+  button:{
+
   },
   buttonWrapper: {
     position: "absolute",

@@ -12,30 +12,16 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import List from "../screens/List";
-import Infos from "../screens/Infos";
-import Profile from "../screens/Profile";
-import {
-  insertUser,
-  getUserByEmail,
-} from "../realm/actions/userActions";
+import List from "../views/List";
+import Infos from "../views/Infos";
+import Profile from "../views/Profile";
 
 const Stack = createStackNavigator();
 const StackProfile = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
-insertUser({
-  id: 1,
-  name: "zygof",
-  address: "dafdz ",
-  email: "n.marry90@gmail",
-  phone: "",
-  deleted: false,
-});
-
-console.log(getUserByEmail("n.marry90@gmail"))
+interface Props {}
 
 const TabsNavigation = () => (
   <Tabs.Navigator
@@ -73,7 +59,7 @@ const TabsNavigation = () => (
   </Tabs.Navigator>
 );
 
-const StackNavigation = (props: any) => {
+const StackNavigation = (props: Props) => {
   const { user } = props;
   const colorStatus = user.loggedIn ? "green" : "red";
 
@@ -115,7 +101,7 @@ const StackNavigation = (props: any) => {
   );
 };
 
-const StackProfileNavigation = (props: any) => {
+const StackProfileNavigation = (props: Props) => {
   const { user } = props;
   const colorStatus = user.loggedIn ? "green" : "red";
 
@@ -157,7 +143,7 @@ const StackProfileNavigation = (props: any) => {
   );
 };
 
-const MainNavigation = (props: any) => {
+const MainNavigation = (props: Props) => {
   const { user } = props;
 
   return (
@@ -169,10 +155,10 @@ const MainNavigation = (props: any) => {
       />
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home">
-          {(props) => <StackNavigation {...props} user={user} />}
+          {(getProps) => <StackNavigation {...props} user={user} />}
         </Drawer.Screen>
         <Stack.Screen name="Profile">
-          {(props) => <StackProfileNavigation {...props} user={user} />}
+          {(getProps) => <StackProfileNavigation {...props} user={user} />}
         </Stack.Screen>
       </Drawer.Navigator>
     </NavigationContainer>
