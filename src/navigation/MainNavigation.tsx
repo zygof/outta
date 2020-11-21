@@ -90,14 +90,15 @@ const MainNavigation = (props: Props) => {
       </View>
     );
   }
+
   return (
     <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={theme}>
-          {user.userToken !== null ? (
+          {user.userToken == null ? (
           //{user.userToken !== null ? (
             <Drawer.Navigator
-              drawerContent={(getProps) => <DrawerContent {...props} />}
+              drawerContent={(props) => <DrawerContent {...props} />}
             >
               <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
               <Drawer.Screen name="SupportScreen" component={SupportScreen} />
