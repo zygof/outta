@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Provider } from "react-redux";
-import Store from "./src/redux";
+import Store, { getItems } from "./src/redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/es/integration/react";
 import MainNavigation from "./src/navigation/MainNavigation";
@@ -9,7 +9,6 @@ import * as Sentry from "sentry-expo";
 
 export default function App() {
   let persistor = persistStore(Store);
-
   return (
     <Provider store={Store}>
       <PersistGate persistor={persistor}>

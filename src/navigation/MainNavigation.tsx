@@ -1,200 +1,119 @@
-import React from "react";
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ */
+import React, { useEffect } from "react";
+import { View, Text, ActivityIndicator } from "react-native";
 import {
-  StatusBar,
-  Image,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+  NavigationContainer,
+  DefaultTheme as NavigationDefaultTheme,
+  DarkTheme as NavigationDarkTheme,
+} from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { connect } from "react-redux";
-import List from "../views/List";
-import Infos from "../views/Infos";
-import Profile from "../views/Profile";
 
-const Stack = createStackNavigator();
-const StackProfile = createStackNavigator();
-const Tabs = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
+import { createStackNavigator } from "@react-navigation/stack";
+
+import {
+  Provider as PaperProvider,
+  DefaultTheme as PaperDefaultTheme,
+  DarkTheme as PaperDarkTheme,
+} from "react-native-paper";
+
+import { DrawerContent } from "../screens/DrawerContent";
+
+import MainTabScreen from "../screens/MainTabScreen";
+import SupportScreen from "../screens/SupportScreen";
+import SettingsScreen from "../screens/SettingsScreen";
+import BookmarkScreen from "../screens/BookmarkScreen";
+import { AuthContext } from "../components/Context";
+import RootStackScreen from "../screens/RootStackScreen";
+
+import { connect } from "react-redux";
+import { userMethod } from "../redux/user/actions";
 
 interface Props {}
 
-const TabsNavigation = () => (
-  <Tabs.Navigator
-    initialRouteName="Main"
-    tabBarOptions={{
-      activeBackgroundColor: "#fff",
-      inactiveBackgroundColor: "#fff",
-      showLabel: true,
-      showIcon: true,
-      activeTintColor: "green",
-      inactiveTintColor: "#828282",
-    }}
-    tabStyle={{
-      flexDirection: "row",
-    }}
-  >
-    <Tabs.Screen
-      name="Main"
-      component={List}
-      listeners={({ navigation }) => ({
-        tabPress: () => {
-          navigation.navigate("Main");
-        },
-      })}
-    />
-    <Tabs.Screen
-      name="Infos"
-      component={Infos}
-      listeners={({ navigation }) => ({
-        tabPress: () => {
-          navigation.navigate("Infos");
-        },
-      })}
-    />
-  </Tabs.Navigator>
-);
-
-const StackNavigation = (props: Props) => {
-  const { user } = props;
-  const colorStatus = user.loggedIn ? "green" : "red";
-
-  return (
-    <Stack.Navigator initialRouteName="Main">
-      <Stack.Screen
-        name="Main"
-        component={TabsNavigation}
-        options={({ navigation }) => ({
-          headerTitle: null,
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.toggleDrawer()}
-              style={styles.userHeader}
-            >
-              <Image
-                source={{
-                  uri: "https://cdn.onlinewebfonts.com/svg/img_243887.png",
-                }}
-                style={styles.logo}
-              />
-              <Text style={styles.userName}>{user.name}</Text>
-              <View
-                style={[styles.userStatus, { backgroundColor: colorStatus }]}
-              />
-            </TouchableOpacity>
-          ),
-          headerRight: () => <Text style={styles.title}>hg</Text>,
-          headerStyle: {
-            backgroundColor: "#fff",
-          },
-          headerTintColor: "#000",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        })}
-      />
-    </Stack.Navigator>
-  );
-};
-
-const StackProfileNavigation = (props: Props) => {
-  const { user } = props;
-  const colorStatus = user.loggedIn ? "green" : "red";
-
-  return (
-    <StackProfile.Navigator initialRouteName="Profile">
-      <StackProfile.Screen
-        name="Profile"
-        component={Profile}
-        options={({ navigation }) => ({
-          headerTitle: null,
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.toggleDrawer()}
-              style={styles.userHeader}
-            >
-              <Image
-                source={{
-                  uri: "https://cdn.onlinewebfonts.com/svg/img_243887.png",
-                }}
-                style={styles.logo}
-              />
-              <Text style={styles.userName}>{user.name}</Text>
-              <View
-                style={[styles.userStatus, { backgroundColor: colorStatus }]}
-              />
-            </TouchableOpacity>
-          ),
-          headerRight: () => <Text style={styles.title}>MrMood.</Text>,
-          headerStyle: {
-            backgroundColor: "#fff",
-          },
-          headerTintColor: "#000",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        })}
-      />
-    </StackProfile.Navigator>
-  );
-};
+const Drawer = createDrawerNavigator();
 
 const MainNavigation = (props: Props) => {
-  const { user } = props;
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
+  const CustomDefaultTheme = {
+    ...NavigationDefaultTheme,
+    ...PaperDefaultTheme,
+    colors: {
+      ...NavigationDefaultTheme.colors,
+      ...PaperDefaultTheme.colors,
+      background: "#ffffff",
+      text: "#333333",
+    },
+  };
+
+  const CustomDarkTheme = {
+    ...NavigationDarkTheme,
+    ...PaperDarkTheme,
+    colors: {
+      ...NavigationDarkTheme.colors,
+      ...PaperDarkTheme.colors,
+      background: "#333333",
+      text: "#ffffff",
+    },
+  };
+
+  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+
+  const authContext = React.useMemo(
+    () => ({
+      userMethod,
+      toggleTheme: () => {
+        setIsDarkTheme((isDarkTheme) => !isDarkTheme);
+      },
+    }),
+    []
+  );
+
+  const { user, userToken, isLoading } = props;
+  useEffect(() => {
+    setTimeout(async () => {
+      userMethod.getUserToken();
+    }, 1000);
+  }, []);
+
+  if (user.isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
   return (
-    <NavigationContainer>
-      <StatusBar
-        hidden={false}
-        backgroundColor="transparent"
-        barStyle="dark-content"
-      />
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home">
-          {(getProps) => <StackNavigation {...props} user={user} />}
-        </Drawer.Screen>
-        <Stack.Screen name="Profile">
-          {(getProps) => <StackProfileNavigation {...props} user={user} />}
-        </Stack.Screen>
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <PaperProvider theme={theme}>
+      <AuthContext.Provider value={authContext}>
+        <NavigationContainer theme={theme}>
+          {user.userToken !== null ? (
+            <Drawer.Navigator
+              drawerContent={(getProps) => <DrawerContent {...props} />}
+            >
+              <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+              <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+              <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+              <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+            </Drawer.Navigator>
+          ) : (
+            <RootStackScreen {...props} navigation={navigator} />
+          )}
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </PaperProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 18,
-    fontWeight: "700",
-    marginRight: 20,
-  },
-  logo: {
-    marginLeft: 20,
-    width: 28,
-    height: 28,
-  },
-  userHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  userName: {
-    fontWeight: "600",
-    marginLeft: 12,
-  },
-  userStatus: {
-    width: 8,
-    height: 8,
-    borderRadius: 50,
-    marginLeft: 4,
-    marginTop: -14,
-  },
-});
-
 const mapStateToProps = (state: any) => ({
   user: state.user,
+  userToken: state.userToken,
+  isLoading: state.isLoading,
 });
 
 export default connect(mapStateToProps)(MainNavigation);

@@ -6,6 +6,7 @@ const userActions = {
     SIGN_OUT: "SIGN_OUT",
     USER_CREATE: "USER_CREATE",
     USER_UPDATE: "USER_UPDATE",
+    RETRIEVE_TOKEN: "RETRIEVE_TOKEN"
   };
   
   export default userActions;

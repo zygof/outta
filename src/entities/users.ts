@@ -4,5 +4,6 @@ export interface User {
     email?: string | null,
     password: string,
     age: number,
-    createdAt: string
+    createdAt: string,
+    token?:string | null
 }

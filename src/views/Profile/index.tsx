@@ -14,7 +14,6 @@ import { MethodAuth } from "../../utils/auth-method";
 
 const Profile = (props: any) => {
   const { signIn, signInAuth, signOut, createUser, updateUser, user } = props;
-
   const _toggleStatus = () => {
     if (!user.loggedIn) {
       //signInAuth(MethodAuth.GOOGLE);
@@ -30,7 +29,7 @@ const Profile = (props: any) => {
       };
       //updateUser(userUpdate);
       //createUser(userUpdate);
-      signIn(userUpdate);
+      //signIn(userUpdate);
     } else {
       signOut();
     }

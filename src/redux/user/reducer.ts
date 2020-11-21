@@ -3,15 +3,14 @@ import { Auth } from "../../utils/auth"
 import { User } from "../../entities/users"
 interface Actions {
   type: string;
-  auth: Auth,
-  user:any
+  user: User,
+  token: string
 }
 const initialState = {
-  name: "User",
   loggedIn: false,
-  userCreate: false,
-  userUpdate: false,
-  user: {}
+  isLoading: true,
+  currentUser: null,
+  userToken: null,
 };
 
 export default function userReducer(state = initialState, action: Actions) {
@@ -20,22 +19,24 @@ export default function userReducer(state = initialState, action: Actions) {
       return {
         ...state,
         loggedIn: true,
-        user: action.user
+        isLoading: false,
+        currentUser: action.user,
+        token: action.token,
+
       };
     case userActions.SIGN_OUT:
       return {
         ...state,
         loggedIn: false,
+        isLoading: false,
+        userToken: null,
+        currentUser: null
       };
-    case userActions.USER_CREATE:
+    case userActions.RETRIEVE_TOKEN:
       return {
         ...state,
-        userCreate: true,
-      };
-    case userActions.USER_UPDATE:
-      return {
-        ...state,
-        userUpdate: true,
+        isLoading: false,
+        userToken: action.token,
       };
     default:
       return state;
