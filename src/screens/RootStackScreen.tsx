@@ -12,8 +12,7 @@ const RootStack = createStackNavigator();
 
 interface Props {}
 
-const RootStackScreen = ({ navigation }) => {
-
+const RootStackScreen = (props:Props) => {
   return (
     <RootStack.Navigator headerMode="none">
       <RootStack.Screen name="SplashScreen" component={SplashScreen} />

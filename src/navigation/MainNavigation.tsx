@@ -11,6 +11,7 @@ import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
   DarkTheme as NavigationDarkTheme,
+  NavigationContext,
 } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
@@ -22,7 +23,7 @@ import {
   DarkTheme as PaperDarkTheme,
 } from "react-native-paper";
 
-import { DrawerContent } from "../screens/DrawerContent";
+import DrawerContent from "../screens/DrawerContent";
 
 import MainTabScreen from "../screens/MainTabScreen";
 import SupportScreen from "../screens/SupportScreen";
@@ -94,6 +95,7 @@ const MainNavigation = (props: Props) => {
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={theme}>
           {user.userToken !== null ? (
+          //{user.userToken !== null ? (
             <Drawer.Navigator
               drawerContent={(getProps) => <DrawerContent {...props} />}
             >
@@ -103,7 +105,7 @@ const MainNavigation = (props: Props) => {
               <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
             </Drawer.Navigator>
           ) : (
-            <RootStackScreen {...props} navigation={navigator} />
+            <RootStackScreen {...props}/>
           )}
         </NavigationContainer>
       </AuthContext.Provider>

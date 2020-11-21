@@ -16,14 +16,17 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { AuthContext } from "../components/Context";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 interface Props {}
-export function DrawerContent(props: Props, navigation: any) {
+const DrawerContentPrincipal = (props: Props) => {
+
+  const { navigation } = props;
+
   const paperTheme = useTheme();
 
   const { userMethod, toggleTheme } = React.useContext(AuthContext);
-
-  console.log(props);
 
   return (
     <View style={{ flex: 1 }}>
@@ -38,23 +41,8 @@ export function DrawerContent(props: Props, navigation: any) {
                 size={50}
               />
               <View style={{ marginLeft: 15, flexDirection: "column" }}>
-                <Title style={styles.title}>John Doe</Title>
-                <Caption style={styles.caption}>@j_doe</Caption>
-              </View>
-            </View>
-
-            <View style={styles.row}>
-              <View style={styles.section}>
-                <Paragraph style={[styles.paragraph, styles.caption]}>
-                  80
-                </Paragraph>
-                <Caption style={styles.caption}>Following</Caption>
-              </View>
-              <View style={styles.section}>
-                <Paragraph style={[styles.paragraph, styles.caption]}>
-                  100
-                </Paragraph>
-                <Caption style={styles.caption}>Followers</Caption>
+                <Title style={styles.title}>Nicolas MARRY</Title>
+                <Caption style={styles.caption}>@zygof</Caption>
               </View>
             </View>
           </View>
@@ -64,7 +52,7 @@ export function DrawerContent(props: Props, navigation: any) {
               icon={({ color, size }) => (
                 <Icon name="home-outline" color={color} size={size} />
               )}
-              label="Home"
+              label="Accueil"
               onPress={() => {
                 navigation.navigate("HomeDrawer");
               }}
@@ -73,7 +61,7 @@ export function DrawerContent(props: Props, navigation: any) {
               icon={({ color, size }) => (
                 <Icon name="account-outline" color={color} size={size} />
               )}
-              label="Profile"
+              label="mon compte"
               onPress={() => {
                 navigation.navigate("Profile");
               }}
@@ -82,7 +70,7 @@ export function DrawerContent(props: Props, navigation: any) {
               icon={({ color, size }) => (
                 <Icon name="bookmark-outline" color={color} size={size} />
               )}
-              label="Bookmarks"
+              label="les réductions"
               onPress={() => {
                 navigation.navigate("BookmarkScreen");
               }}
@@ -91,7 +79,7 @@ export function DrawerContent(props: Props, navigation: any) {
               icon={({ color, size }) => (
                 <Icon name="settings-outline" color={color} size={size} />
               )}
-              label="Settings"
+              label="paramètres"
               onPress={() => {
                 navigation.navigate("SettingsScreen");
               }}
@@ -106,7 +94,7 @@ export function DrawerContent(props: Props, navigation: any) {
               }}
             />
           </Drawer.Section>
-          <Drawer.Section title="Preferences">
+          <Drawer.Section title="Préférences">
             <TouchableRipple
               onPress={() => {
                 toggleTheme();
@@ -136,7 +124,21 @@ export function DrawerContent(props: Props, navigation: any) {
       </Drawer.Section>
     </View>
   );
-}
+};
+
+const mapStateToProps = (state: any) => ({
+  user: state.user,
+  userToken: state.userToken,
+  isLoading: state.isLoading,
+});
+
+const mapDispatchToProps = (dispatch: any) => bindActionCreators({}, dispatch);
+
+const DrawerContent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DrawerContentPrincipal);
+export default DrawerContent;
 
 const styles = StyleSheet.create({
   drawerContent: {
