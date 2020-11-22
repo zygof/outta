@@ -6,7 +6,13 @@
  * @flow
  */
 import React, { useEffect } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native";
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
@@ -16,6 +22,9 @@ import {
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { createStackNavigator } from "@react-navigation/stack";
+import { DrawerItem } from "@react-navigation/drawer";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { Drawer } from "react-native-paper";
 
 import {
   Provider as PaperProvider,
@@ -37,7 +46,7 @@ import { userMethod } from "../redux/user/actions";
 
 interface Props {}
 
-const Drawer = createDrawerNavigator();
+const MainDrawer = createDrawerNavigator();
 
 const MainNavigation = (props: Props) => {
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
@@ -83,6 +92,7 @@ const MainNavigation = (props: Props) => {
     }, 1000);
   }, []);
 
+  console.log(props);
   if (user.isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -96,23 +106,56 @@ const MainNavigation = (props: Props) => {
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={theme}>
           {user.userToken == null ? (
-          //{user.userToken !== null ? (
-            <Drawer.Navigator
-              drawerContent={(props) => <DrawerContent {...props} />}
+            //{user.userToken !== null ? (
+            <MainDrawer.Navigator
+              drawerContent={(props) => (
+                <View style={{ flex: 1 }}>
+                  <DrawerContent {...props} />
+                  <SignOutButton {...props} />
+                </View>
+              )}
             >
-              <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-              <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-              <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-              <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-            </Drawer.Navigator>
+              <MainDrawer.Screen name="HomeDrawer" component={MainTabScreen} />
+              <MainDrawer.Screen
+                name="SupportScreen"
+                component={SupportScreen}
+              />
+              <MainDrawer.Screen
+                name="SettingsScreen"
+                component={SettingsScreen}
+              />
+              <MainDrawer.Screen
+                name="BookmarkScreen"
+                component={BookmarkScreen}
+              />
+            </MainDrawer.Navigator>
           ) : (
-            <RootStackScreen {...props}/>
+            <RootStackScreen {...props} />
           )}
         </NavigationContainer>
       </AuthContext.Provider>
     </PaperProvider>
   );
 };
+
+const SignOutButton = (props: Props) => {
+  const { navigation } = props;
+  return (
+    <Drawer.Section style={styles.bottomDrawerSection}>
+      <DrawerItem
+        icon={({ color, size }) => (
+          <Icon name="exit-to-app" color={color} size={size} />
+        )}
+        label="Sign Out"
+        onPress={() => {
+          userMethod.signOut();
+          //user.userToken = "zefe"
+        }}
+      />
+    </Drawer.Section>
+  );
+};
+
 const mapStateToProps = (state: any) => ({
   user: state.user,
   userToken: state.userToken,
@@ -120,3 +163,11 @@ const mapStateToProps = (state: any) => ({
 });
 
 export default connect(mapStateToProps)(MainNavigation);
+
+const styles = StyleSheet.create({
+  bottomDrawerSection: {
+    marginBottom: 15,
+    borderTopColor: "#f4f4f4",
+    borderTopWidth: 1,
+  },
+});

@@ -18,10 +18,10 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { AuthContext } from "../components/Context";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import MainNavigation from "../navigation/MainNavigation";
 
 interface Props {}
 const DrawerContentPrincipal = (props: Props) => {
-
   const { navigation } = props;
 
   const paperTheme = useTheme();
@@ -110,18 +110,6 @@ const DrawerContentPrincipal = (props: Props) => {
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
-      <Drawer.Section style={styles.bottomDrawerSection}>
-        <DrawerItem
-          icon={({ color, size }) => (
-            <Icon name="exit-to-app" color={color} size={size} />
-          )}
-          label="Sign Out"
-          onPress={() => {
-            userMethod.signOut();
-            navigation.navigate("LoginScreen");
-          }}
-        />
-      </Drawer.Section>
     </View>
   );
 };

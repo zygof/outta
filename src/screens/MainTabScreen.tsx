@@ -22,18 +22,18 @@ const MainTabScreen = () => (
     >
       <Tab.Screen
         name="Home"
-        component={HomeStackScreen}
+        component={HomeScreen}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'offres',
           tabBarColor: '#009387',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-home" color={color} size={26} />
+            <Icon name="ios-flash" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
         name="Notifications"
-        component={DetailsStackScreen}
+        component={DetailsScreen}
         options={{
           tabBarLabel: 'Updates',
           tabBarColor: '#1f65ff',
