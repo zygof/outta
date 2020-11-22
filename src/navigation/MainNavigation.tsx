@@ -115,7 +115,7 @@ const MainNavigation = (props: Props) => {
                 </View>
               )}
             >
-              <MainDrawer.Screen name="HomeDrawer" component={MainTabScreen} />
+              <MainDrawer.Screen name="Offres" component={MainTabScreen} />
               <MainDrawer.Screen
                 name="SupportScreen"
                 component={SupportScreen}

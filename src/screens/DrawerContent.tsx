@@ -54,7 +54,7 @@ const DrawerContentPrincipal = (props: Props) => {
               )}
               label="Accueil"
               onPress={() => {
-                navigation.navigate("HomeDrawer");
+                navigation.navigate("Offres");
               }}
             />
             <DrawerItem
