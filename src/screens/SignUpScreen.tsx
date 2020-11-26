@@ -78,16 +78,16 @@ const SignUpScreen = (props:Props) => {
 
     return (
       <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+          <StatusBar backgroundColor='#7349BD' barStyle="light-content"/>
         <View style={styles.header}>
-            <Text style={styles.text_header}>Register Now!</Text>
+            <Text style={styles.text_header}>Créer un compte !</Text>
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
             style={styles.footer}
         >
             <ScrollView>
-            <Text style={styles.text_footer}>Username</Text>
+            <Text style={styles.text_footer}>Email</Text>
             <View style={styles.action}>
                 <FontAwesome 
                     name="user-o"
@@ -95,7 +95,7 @@ const SignUpScreen = (props:Props) => {
                     size={20}
                 />
                 <TextInput 
-                    placeholder="Your Username"
+                    placeholder="Votre adresse email"
                     style={styles.textInput}
                     autoCapitalize="none"
                     onChangeText={(val) => textInputChange(val)}
@@ -115,7 +115,7 @@ const SignUpScreen = (props:Props) => {
 
             <Text style={[styles.text_footer, {
                 marginTop: 35
-            }]}>Password</Text>
+            }]}>Mot de passe</Text>
             <View style={styles.action}>
                 <Feather 
                     name="lock"
@@ -123,7 +123,7 @@ const SignUpScreen = (props:Props) => {
                     size={20}
                 />
                 <TextInput 
-                    placeholder="Your Password"
+                    placeholder="Votre mot de passe"
                     secureTextEntry={data.secureTextEntry ? true : false}
                     style={styles.textInput}
                     autoCapitalize="none"
@@ -150,7 +150,7 @@ const SignUpScreen = (props:Props) => {
 
             <Text style={[styles.text_footer, {
                 marginTop: 35
-            }]}>Confirm Password</Text>
+            }]}>Confirmation mot de passe</Text>
             <View style={styles.action}>
                 <Feather 
                     name="lock"
@@ -158,7 +158,7 @@ const SignUpScreen = (props:Props) => {
                     size={20}
                 />
                 <TextInput 
-                    placeholder="Confirm Your Password"
+                    placeholder="Confirmation mot de passe"
                     secureTextEntry={data.confirm_secureTextEntry ? true : false}
                     style={styles.textInput}
                     autoCapitalize="none"
@@ -184,11 +184,11 @@ const SignUpScreen = (props:Props) => {
             </View>
             <View style={styles.textPrivate}>
                 <Text style={styles.color_textPrivate}>
-                    By signing up you agree to our
+                   En vous inscrivant, vous acceptez notre
                 </Text>
-                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Terms of service</Text>
-                <Text style={styles.color_textPrivate}>{" "}and</Text>
-                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Privacy policy</Text>
+                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Conditions d'utilisation</Text>
+                <Text style={styles.color_textPrivate}>{" "}et</Text>
+                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Politique de confidentialité</Text>
             </View>
             <View style={styles.button}>
                 <TouchableOpacity
@@ -200,14 +200,14 @@ const SignUpScreen = (props:Props) => {
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                     style={[styles.signIn, {
-                        borderColor: '#009387',
+                        borderColor: '#7349BD',
                         borderWidth: 1,
                         marginTop: 15
                     }]}
                 >
                     <Text style={[styles.textSign, {
-                        color: '#009387'
-                    }]}>Sign In</Text>
+                        color: '#7349BD'
+                    }]}>Créer mon compte</Text>
                 </TouchableOpacity>
             </View>
             </ScrollView>
@@ -229,7 +229,7 @@ const mapStateToProps = (state: any) => ({
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#009387'
+      backgroundColor: '#7349BD'
     },
     header: {
         flex: 1,

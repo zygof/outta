@@ -101,11 +101,13 @@ const MainNavigation = (props: Props) => {
     );
   }
 
+  console.log("je suis la : ", userToken)
+
   return (
     <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={theme}>
-          {user.userToken == null ? (
+          {user.userToken !== null ? (
             //{user.userToken !== null ? (
             <MainDrawer.Navigator
               drawerContent={(props) => (

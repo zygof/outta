@@ -116,9 +116,9 @@ const SignInScreen = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
+      <StatusBar backgroundColor="#7349BD" barStyle="light-content" />
       <View style={styles.header}>
-        <Text style={styles.text_header}>Welcome!</Text>
+        <Text style={styles.text_header}>Bienvenue !</Text>
       </View>
       <Animatable.View
         animation="fadeInUpBig"
@@ -137,12 +137,12 @@ const SignInScreen = (props: Props) => {
             },
           ]}
         >
-          Username
+          Email
         </Text>
         <View style={styles.action}>
           <FontAwesome name="user-o" color={colors.text} size={20} />
           <TextInput
-            placeholder="Your Username"
+            placeholder="Adresse email"
             placeholderTextColor="#666666"
             style={[
               styles.textInput,
@@ -162,9 +162,7 @@ const SignInScreen = (props: Props) => {
         </View>
         {data.isValidUser ? null : (
           <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>
-              Username must be 4 characters long.
-            </Text>
+            <Text style={styles.errorMsg}>Email doit avoir 4 caractères.</Text>
           </Animatable.View>
         )}
 
@@ -177,12 +175,12 @@ const SignInScreen = (props: Props) => {
             },
           ]}
         >
-          Password
+          Mot de passe
         </Text>
         <View style={styles.action}>
           <Feather name="lock" color={colors.text} size={20} />
           <TextInput
-            placeholder="Your Password"
+            placeholder="*******"
             placeholderTextColor="#666666"
             secureTextEntry={data.secureTextEntry ? true : false}
             style={[
@@ -205,35 +203,45 @@ const SignInScreen = (props: Props) => {
         {data.isValidPassword ? null : (
           <Animatable.View animation="fadeInLeft" duration={500}>
             <Text style={styles.errorMsg}>
-              Password must be 8 characters long.
+              Le mot de passe doit contenir 8 caractères.
             </Text>
           </Animatable.View>
         )}
 
         <TouchableOpacity>
-          <Text style={{ color: "#009387", marginTop: 15 }}>
-            Forgot password?
+          <Text style={{ color: "#7349BD", marginTop: 15 }}>
+            Mot de passe oublié?
           </Text>
         </TouchableOpacity>
-        <Button
-          title="login"
-          style={styles.signIn}
-          onPress={() => loginHandle(data.username, data.password)}
-        />
-        <View style={styles.button}>
-          <TouchableOpacity
-            style={styles.signIn}
-            onPress={() => {
-              loginHandle(data.username, data.password);
-            }}
-          ></TouchableOpacity>
+
+        <TouchableOpacity
+            onPress={() => loginHandle(data.username, data.password)}
+            style={[
+              styles.signIn,
+              {
+                backgroundColor: "#7349BD",
+                marginTop: 45
+              },
+            ]}
+          >
+            <Text
+              style={[
+                styles.textSign,
+                {
+                  color: "white",
+                },
+              ]}
+            >
+              Se connecter
+            </Text>
+          </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => navigation.navigate("SignUpScreen")}
             style={[
               styles.signIn,
               {
-                borderColor: "#009387",
+                borderColor: "#7349BD",
                 borderWidth: 1,
                 marginTop: 15,
               },
@@ -243,14 +251,14 @@ const SignInScreen = (props: Props) => {
               style={[
                 styles.textSign,
                 {
-                  color: "#009387",
+                  color: "#7349BD",
                 },
               ]}
             >
-              Sign Up
+              Créer un compte
             </Text>
           </TouchableOpacity>
-        </View>
+
       </Animatable.View>
     </View>
   );
@@ -269,7 +277,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#009387",
+    backgroundColor: "#7349BD",
   },
   header: {
     flex: 1,

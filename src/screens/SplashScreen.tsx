@@ -24,7 +24,7 @@ const SplashScreen = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
+      <StatusBar backgroundColor="#7349BD" barStyle="light-content" />
       <View style={styles.header}>
         <Animatable.Image
           animation="bounceIn"
@@ -53,11 +53,31 @@ const SplashScreen = (props: Props) => {
         >
           Bienvenue sur outta
         </Text>
-        <Text style={styles.text}>Sign in with account</Text>
-        <Button
-          title="login"
+        <Text style={styles.text}>Se connecter avec un compte</Text>
+
+        <TouchableOpacity
           onPress={() => navigation.navigate("SignInScreen")}
-        />
+          style={[
+            styles.signIn,
+            {
+              borderColor: "#7349BD",
+              borderWidth: 1,
+              marginTop: 15,
+              justifyContent: "center"
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.textSign,
+              {
+                color: "#7349BD",
+              },
+            ]}
+          >
+            Connexion
+          </Text>
+        </TouchableOpacity>
       </Animatable.View>
     </View>
   );
@@ -79,7 +99,7 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#009387",
+    backgroundColor: "#7349BD",
   },
   header: {
     flex: 2,

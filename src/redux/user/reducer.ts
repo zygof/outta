@@ -21,7 +21,7 @@ export default function userReducer(state = initialState, action: Actions) {
         loggedIn: true,
         isLoading: false,
         currentUser: action.user,
-        token: action.token,
+        userToken: action.token,
 
       };
     case userActions.SIGN_OUT:
