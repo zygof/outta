@@ -1,7 +1,13 @@
 import userActions from "./constants";
-
+//import { Auth } from "../../utils/auth"
+import { User } from "@models"
+interface Actions {
+  type: string;
+  user: User,
+  token: string
+}
 const initialState = {
-  name: "Jordan",
+  name: "Zygof",
   loggedIn: false,
 };
 

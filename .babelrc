@@ -1,0 +1,31 @@
+{
+  "presets": ["module:metro-react-native-babel-preset"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": [
+          { "@components": "./src/components" },
+          { "@config": "./src/config" },
+          { "@navigation": "./src/navigation" },
+          { "@redux": "./src/redux" },
+          { "@main-constants": "./src/services/constants" },
+          { "@shared-theme": "./src/theme" },
+          { "@font-size": "./src/theme/font-size" },
+          { "@api": "./src/services/api/index" },
+          { "@fonts": "./src/theme/fonts/index" },
+          { "@colors": "./src/theme/colors" },
+          { "@theme": "./src/theme/index" },
+          { "@models": "./src/models" },
+          { "@services": "./src/services" },
+          { "@screens": "./src/screens" },
+          { "@utils": "./src/utils/" },
+          { "@assets": "./assets/" },
+          { "@event-emitter": "./src/services/event-emitter" }
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ]
+  ]
+}

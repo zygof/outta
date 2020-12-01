@@ -1,12 +1,51 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext"],
+    "allowJs": true,
     "jsx": "react-native",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
     "noEmit": true,
+    "isolatedModules": false,
+    "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    // ? Custom ones
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": true
-  }
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true
+    // ? Babel Plugin Module Resolver
+    // "baseUrl": "./src",
+    // "paths": {
+    //   "@components": ["./shared/components"],
+    //   "@main-constants": ["./shared/constants"],
+    //   "@shared-theme": ["./shared/theme"],
+    //   "@font-size": ["./shared/theme/font-size"],
+    //   "@api": ["./services/api/index"],
+    //   "@fonts": ["./shared/theme/fonts/index"],
+    //   "@colors": ["./shared/theme/colors"],
+    //   "@theme": ["./shared/theme/index"],
+    //   "@services": ["./services"],
+    //   "@screens": ["./screens"],
+    //   "@utils": ["./utils/"],
+    //   "@assets": ["./assets/"]
+    // }
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }
