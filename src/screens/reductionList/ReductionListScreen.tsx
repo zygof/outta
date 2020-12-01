@@ -11,10 +11,6 @@ import {
   ScrollView, ActivityIndicator
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-//import { LineChart } from "react-native-svg-charts";
-//import { GradientCard } from "react-native-gradient-card-view";
-//import { Card, SimpleCard } from "@paraboly/react-native-card";
-import { Card } from "react-native-elements";
 import { ScreenWidth } from "@freakycoder/react-native-helpers";
 /**
  *
@@ -30,6 +26,7 @@ import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import RNAnimated from "react-native-animated-component";
 import { reductionMethod } from "../../redux/reduction/actions";
+import { restaurantMethod } from "../../redux/restaurant/actions";
 import { Reduction } from "../../models";
 
 interface Props { }
@@ -72,11 +69,9 @@ const listFiltre = [
 export default function ReductionListScreen(props: Props) {
   //const [isLoading, setLoading] = useState(true);
   //const [data, setData] = useState<any>([]);
-  const [query, setQuery] = React.useState("");
   const [dataBackup, setDataBackup] = React.useState<Reduction[]>([]);
   const [dataSource, setDataSource] = React.useState<Reduction[]>([]);
   const [isLoading, setLoading] = React.useState<boolean>(true);
-  const [refreshing, setRefreshing] = React.useState<boolean>(false);
   const [spinnerVisibility, setSpinnerVisibility] = React.useState<boolean>(false);
   const [selectedReduction, setSelectedReduction] = React.useState([]);
 
@@ -85,9 +80,20 @@ export default function ReductionListScreen(props: Props) {
   useEffect(() => {
     (async function anyNameFunction() {
       let result = await reductionMethod.getAll();
-      result = (!Array.isArray(result)) ? [result] : result
+      result = (!Array.isArray(result)) ? [result] : result;
       setDataSource(result);
       setDataBackup(result);
+
+      await restaurantMethod.insert({
+        id: 1,
+        franchise: null,
+        adresse: "fef",
+        codePostal: 97490,
+        rue: "Bordeaux",
+        reviews: 50,
+        ratings: 12,
+        nbReductionEncours: 10
+      })
     })().finally(() => setLoading(false));
   }, []);
 
@@ -110,7 +116,6 @@ export default function ReductionListScreen(props: Props) {
       });
     }
     setDataSource(newData);
-    setQuery(text);
   };
 
   const renderItem = (reduction: Reduction) => {

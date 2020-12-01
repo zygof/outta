@@ -6,6 +6,6 @@ export interface Franchise {
     libelle: string,
     categorie: FranchiseCategorie,
     image: string,
-    Restaurants?: Array<Restaurant> | null,
+    restaurants?: Array<Restaurant> | null,
     createdDate: Date
 }
