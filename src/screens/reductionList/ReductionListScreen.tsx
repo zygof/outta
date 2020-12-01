@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   View,
   Button,
@@ -8,7 +8,7 @@ import {
   UIManager,
   Text,
   Image,
-  ScrollView,
+  ScrollView, ActivityIndicator
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 //import { LineChart } from "react-native-svg-charts";
@@ -25,126 +25,71 @@ import styles, { centerSubtitleStyle } from "./styles";
 // Static Data
 import { reductionDATA } from "../../data/reductionDATA";
 import { ReductionComponent } from "@components/Reduction";
-import { MaterialIcons } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import RNAnimated from "react-native-animated-component";
 import { reductionMethod } from "../../redux/reduction/actions";
 import { Reduction } from "../../models";
 
-interface Props {
-  item: any;
-}
+interface Props { }
 
-interface State {
-  query: string;
-  dataBackup: any;
-  dataSource: any;
-  isLoading: boolean;
-  refreshing: boolean;
-  spinnerVisibility: boolean;
-  selectedItems: any;
-}
-
-const items = [
+const listFiltre = [
   // this is the parent or 'item'
   {
-    name: "Catégorie",
+    name: "Filtre",
     id: 1,
     // these are the children or 'sub items'
     children: [
       {
-        name: "Apple",
-        id: 10,
+        name: "prix croissant",
+        id: 1,
       },
       {
-        name: "Strawberry",
-        id: 17,
+        name: "prix decroissant",
+        id: 2,
       },
       {
-        name: "Pineapple",
-        id: 13,
+        name: "Nom croissant",
+        id: 3,
       },
       {
-        name: "Banana",
-        id: 14,
+        name: "Nom décroissant",
+        id: 4,
       },
       {
-        name: "Watermelon",
-        id: 15,
+        name: "% réduction croissant",
+        id: 5,
       },
       {
-        name: "Kiwi fruit",
-        id: 16,
+        name: "% réduction décroissant",
+        id: 6,
       },
     ],
-  },
-  {
-    name: "Fruits",
-    id: 0,
-    // these are the children or 'sub items'
-    children: [
-      {
-        name: "Apple",
-        id: 10,
-      },
-      {
-        name: "Strawberry",
-        id: 17,
-      },
-      {
-        name: "Pineapple",
-        id: 13,
-      },
-      {
-        name: "Banana",
-        id: 14,
-      },
-      {
-        name: "Watermelon",
-        id: 15,
-      },
-      {
-        name: "Kiwi fruit",
-        id: 16,
-      },
-    ],
-  },
+  }
 ];
 
-async function getListeReduction() {
-
-  await reductionMethod.getAll().then((listeReduction) => {
-    return listeReduction;
-  });
-}
-
-const ReductionListScreen = (props: Props) => {
-
+export default function ReductionListScreen(props: Props) {
+  //const [isLoading, setLoading] = useState(true);
+  //const [data, setData] = useState<any>([]);
   const [query, setQuery] = React.useState("");
-  const [dataBackup, setDataBackup] = React.useState([]);
-  const [dataSource, setDataSource] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [refreshing, setRefreshing] = React.useState(false);
-  const [spinnerVisibility, setSpinnerVisibility] = React.useState(false);
-  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [dataBackup, setDataBackup] = React.useState<Reduction[]>([]);
+  const [dataSource, setDataSource] = React.useState<Reduction[]>([]);
+  const [isLoading, setLoading] = React.useState<boolean>(true);
+  const [refreshing, setRefreshing] = React.useState<boolean>(false);
+  const [spinnerVisibility, setSpinnerVisibility] = React.useState<boolean>(false);
+  const [selectedReduction, setSelectedReduction] = React.useState([]);
 
-  console.log("aoolloo")
 
-  let initData;
-
-  React.useEffect(() => {
-    // Using an IIFE
+  // Get our data
+  useEffect(() => {
     (async function anyNameFunction() {
-      await getListeReduction().then((value) => {
-        console.log(value);
-        return value;
-        // expected output: "foo"
-      });
-    })();
+      let result = await reductionMethod.getAll();
+      result = (!Array.isArray(result)) ? [result] : result
+      setDataSource(result);
+      setDataBackup(result);
+    })().finally(() => setLoading(false));
   }, []);
-
-  console.log("finishim", initData)
 
   if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental &&
@@ -152,7 +97,7 @@ const ReductionListScreen = (props: Props) => {
   }
 
   const onSelectedItemsChange = (selectedItems: any) => {
-    setSelectedItems(selectedItems)
+    setSelectedReduction(selectedItems)
   };
 
   const filterList = (text: string) => {
@@ -168,18 +113,22 @@ const ReductionListScreen = (props: Props) => {
     setQuery(text);
   };
 
-  const renderItem = (item: any) => {
+  const renderItem = (reduction: Reduction) => {
     return (
       <RNAnimated appearFrom="left" animationDuration={200} style={{ flex: 1 }}>
-        <View key={item.article.libelle}>
-          <ReductionComponent {...props} item={item} />
+        <View key={reduction.article.libelle}>
+          <ReductionComponent {...props} reduction={reduction} />
         </View>
       </RNAnimated>
     );
   }
 
+  // After loading is done "isLoading", we render a FlatList with the data that
+  // was set on the success axios callback above "setData(...)"
+  //
+  // Then we render each of our images inside FlatList's renderImage prop
   return (
-    <ScrollView style={styles.mainViewStyle}>
+    <View style={styles.mainViewStyle}>
       <StatusBar barStyle={"dark-content"} />
       <View style={styles.container}>
         <SearchBar
@@ -202,8 +151,8 @@ const ReductionListScreen = (props: Props) => {
 
         <View>
           <SectionedMultiSelect
-            items={items}
-            IconRenderer={MaterialIcons}
+            items={listFiltre}
+            IconRenderer={Icon}
             uniqueKey="id"
             subKey="children"
             selectText="Trier par..."
@@ -239,7 +188,7 @@ const ReductionListScreen = (props: Props) => {
                   }}
                 >
                   <Image
-                    source={require("../../../assets/splash/lucas-benjamin-unsplash.jpg")}
+                    source={require("@assets/splash/lucas-benjamin-unsplash.jpg")}
                     style={{ height: "85%", width: "85%", borderRadius: 5 }}
                   />
                 </TouchableHighlight>
@@ -266,52 +215,22 @@ const ReductionListScreen = (props: Props) => {
               itemBackground: "#5931FF",
             }}
             onSelectedItemsChange={(item) => onSelectedItemsChange(item)}
-            selectedItems={selectedItems}
+            selectedItems={selectedReduction}
             chipsWrapper={() => <Text>opté</Text>}
           />
         </View>
-
-        <View style={styles.flatListStyle}>
-          <FlatList
-            data={dataSource}
-            renderItem={({ item }) => renderItem(item)}
-          ></FlatList>
-        </View>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+            <View style={styles.flatListStyle}>
+              <FlatList
+                data={dataSource}
+                keyExtractor={(reduction: Reduction, index) => reduction.id}
+                renderItem={({ item }) => renderItem(item)}
+              ></FlatList>
+            </View>
+          )}
       </View>
-    </ScrollView>
+    </View>
   );
-
 }
-
-
-export default ReductionListScreen;
-/*
-export default class ReductionListScreen extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-
-    let initData;
-    setTimeout(() => {
-      initData = getListeReduction();
-    }, 1000000); // resolves after 100,000ms
-
-    console.log("ffffff", initData);
-
-    state = {
-      query: "",
-      isLoading: true,
-      refreshing: false,
-      dataBackup: initData,
-      dataSource: initData,
-      spinnerVisibility: false,
-      selectedItems: [],
-    };
-
-    if (Platform.OS === "android") {
-      UIManager.setLayoutAnimationEnabledExperimental &&
-        UIManager.setLayoutAnimationEnabledExperimental(true);
-    }
-  }
-
-}
-*/

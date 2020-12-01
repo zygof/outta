@@ -22,22 +22,22 @@ export const reductionMethod = {
 
   getAll: async () => {
     //return async function (dispatch: any) {
-    let result:any;
-    collectionReduction.get().then(function (querySnapshot) {
+    let result: any;
+    await collectionReduction.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
         result = doc.data();
       });
-      return result;
+      console.log("dans actions", " => ", result);
+
     })
       .catch(function (error) {
         console.log("Error getting documents: ", error);
       });
     //}
+    return result;
   },
 
-  getByFilter: async (libelleArticle) => {
+  getByFilter: async (libelleArticle: string) => {
     //return async function (dispatch: any) {
     return collectionReduction.where("article.libelle", "==", libelleArticle)
     //}

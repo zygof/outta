@@ -9,7 +9,7 @@ export const reductionDATA = [
       libelle: 'Coca',
       categorie: 'boisson',
       prix: 9.99,
-      image: require("../../assets/BitConnect.png")
+      image: require("@assets/BitConnect.png")
     },
     restaurant: {
       franchise: { id: 2, nom: 'Burger king', categorie: 'FAST FOOD' },
@@ -27,7 +27,7 @@ export const reductionDATA = [
       libelle: 'Pokka',
       categorie: 'boisson',
       prix: 10.60,
-      image: require("../../assets/Ethereum.png")
+      image: require("@assets/Ethereum.png")
     },
     restaurant: {
       franchise: { id: 1, nom: 'Mc donald', categorie: 'FAST FOOD' },
@@ -45,7 +45,7 @@ export const reductionDATA = [
       libelle: 'Pepsi',
       categorie: 'boisson',
       prix: 18.50,
-      image: require("../../assets/Litecoin.png")
+      image: require("@assets/Litecoin.png")
     },
     restaurant: {
       franchise: { id: 1, nom: 'Mc donald', categorie: 'FAST FOOD' },
@@ -63,7 +63,7 @@ export const reductionDATA = [
       libelle: 'Orangina',
       categorie: 'boisson',
       prix: 9.99,
-      image: require("../../assets/Ripple.png")
+      image: require("@assets/Ripple.png")
     },
     restaurant: {
       franchise: { id: 1, nom: 'Mc donald', categorie: 'FAST FOOD' },
@@ -81,7 +81,7 @@ export const reductionDATA = [
       libelle: 'Fanta',
       categorie: 'boisson',
       prix: 9.99,
-      image: require("../../assets/Dash.png")
+      image: require("@assets/Dash.png")
     },
     restaurant: {
       franchise: { id: 1, nom: 'Mc donald', categorie: 'FAST FOOD' },
@@ -99,7 +99,7 @@ export const reductionDATA = [
       libelle: 'Orangina',
       categorie: 'boisson',
       prix: 9.99,
-      image: require("../../assets/IOTA.png")
+      image: require("@assets/IOTA.png")
     },
     restaurant: {
       franchise: { id: 3, nom: 'Quick', categorie: 'FAST FOOD' },
@@ -117,7 +117,7 @@ export const reductionDATA = [
       libelle: 'Pokka',
       categorie: 'boisson',
       prix: 9.99,
-      image: require("../../assets/EOS.png")
+      image: require("@assets/EOS.png")
     },
     restaurant: {
       franchise: { id: 3, nom: 'Quick', categorie: 'FAST FOOD' },
@@ -135,7 +135,7 @@ export const reductionDATA = [
       libelle: 'Oasis',
       categorie: 'boisson',
       prix: 9.99,
-      image: require("../../assets/Netko-coin.png")
+      image: require("@assets/Netko-coin.png")
     },
     restaurant: {
       franchise: { id: 2, nom: 'Burger king', categorie: 'FAST FOOD' },

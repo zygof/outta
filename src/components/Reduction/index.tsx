@@ -14,14 +14,18 @@ import styles, { centerSubtitleStyle } from "./ReductionStyles";
 import { SCREENS } from "@main-constants";
 //import HomeScreen from "../../../screens/home/HomeScreen";
 import * as NavigationService from "react-navigation-helpers";
+import { Reduction } from "../../models"
+import { capitalizeFirstLetter } from "@utils";
+
 interface Props {
-  items: any;
+  reduction: Reduction;
+  navigation: any
 }
 
-interface IState {}
+interface IState { }
 
 export const ReductionComponent = (props: Props) => {
-  const { item, navigation } = props;
+  const { reduction, navigation } = props;
 
   const colorJourRestant = (jourRestant: number) => {
     if (jourRestant <= 3) {
@@ -51,7 +55,7 @@ export const ReductionComponent = (props: Props) => {
           }}
         >
           <TouchableHighlight style={[stylesHere.profileImgContainer]}>
-            <Image source={item.article.image} style={stylesHere.profileImg} />
+            <Image source={reduction.article.image} style={stylesHere.profileImg} />
           </TouchableHighlight>
 
           <View
@@ -61,16 +65,17 @@ export const ReductionComponent = (props: Props) => {
           >
             <View>
               <Text style={{ fontWeight: "bold" }}>
-                {item.article.libelle.toUpperCase()}
+                {reduction.article.libelle.toUpperCase()}
               </Text>
               <Text style={{ fontWeight: "bold", color: "gray" }}>
-                {item.restaurant.franchise.nom.toUpperCase()}
+                {capitalizeFirstLetter(reduction.article.categorie.libelle)}
               </Text>
-              {/*<Text style={{ fontWeight: "bold", color: "gray" }}>
-                {item.restaurant.franchise.categorie.toUpperCase()}
-              </Text>*/}
+              <Text style={{ fontWeight: "bold", color: "gray" }}>
+                {reduction.franchise.libelle.toUpperCase()}
+              </Text>
+
               <Text>
-                {item.restaurant.adresse} - {item.restaurant.codePostal}
+                {/*reduction.franchise.Restaurants[0].adresse*/} {/*reduction.restaurant.codePostal*/}
               </Text>
             </View>
 
@@ -93,9 +98,9 @@ export const ReductionComponent = (props: Props) => {
                   color: "#da3b36",
                 }}
               >
-                {item.article.prix}€
+                {reduction.article.prix}€
               </Text>
-              <Text style={{ fontWeight: "bold", fontSize: 25 }}>{item.prixReduction}€</Text>
+              <Text style={{ fontWeight: "bold", fontSize: 25 }}>{reduction.prixAvecReduction}€</Text>
             </View>
           </View>
 
@@ -108,10 +113,10 @@ export const ReductionComponent = (props: Props) => {
               <Text
                 style={{
                   fontWeight: "bold",
-                  color: colorJourRestant(item.jourRestant),
+                  color: colorJourRestant(reduction.jourRestant),
                 }}
               >
-                {item.jourRestant} jour{item.jourRestant > 1 ? "s" : ""} restant
+                {reduction.jourRestant} jour{reduction.jourRestant > 1 ? "s" : ""} restant
               </Text>
             </View>
 
@@ -126,7 +131,7 @@ export const ReductionComponent = (props: Props) => {
               <Text
                 style={{ fontWeight: "bold", fontSize: 30, color: "#5931FF" }}
               >
-                -{item.pourcentageReduction}%
+                -{reduction.pourcentageReduction}%
               </Text>
             </View>
           </View>

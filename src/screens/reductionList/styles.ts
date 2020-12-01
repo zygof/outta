@@ -1,4 +1,5 @@
 import { Platform } from "react-native";
+import Background from "../../components/Background";
 
 export const centerSubtitleStyle = (item) => ({
   fontSize: 12,
@@ -16,7 +17,8 @@ export default {
     flexGrow: 0,
     minHeight: '84.5%',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    BackgroundColor: "red"
   },
   cardShadowStyle: {
     ...Platform.select({
