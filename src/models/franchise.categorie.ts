@@ -1,4 +1,4 @@
 export interface FranchiseCategorie {
-    id: string,
+    id: string
     libelle: string
 }

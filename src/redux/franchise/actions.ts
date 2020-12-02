@@ -23,12 +23,12 @@ export const franchiseMethod = {
 
   getAll: async () => {
     //return async function (dispatch: any) {
-    let result: any;
+    let result: any = [];
     await collectionFranchise.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        result = doc.data();
+        result.push(doc.data());
       });
-      console.log("dans actions", " => ", result);
+      console.log("getAll", " => ", result);
     })
       .catch(function (error) {
         console.log("Error getting documents: ", error);
@@ -36,6 +36,24 @@ export const franchiseMethod = {
     //}
     return result;
   },
+
+  getByUID: async (uid: string) => {
+    //return async function (dispatch: any) {
+    let result: any = [];
+    await collectionFranchise.where("proprietaire", "==", uid).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        result.push(doc.data());
+      });
+      console.log("getByUID", " => ", result);
+    })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+    //}
+    return result;
+  },
+
+
 
   update: async (franchise: Franchise) => {
     return async function (dispatch: any) {

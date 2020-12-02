@@ -28,7 +28,6 @@ export const restaurantMethod = {
   getAll: async () => {
     //return async function (dispatch: any) {
     let restaurants: Array<any> = [];
-    console.log("je suis dans actions restaurant")
     await collectionRestaurant.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         restaurants.push(doc.data());
@@ -55,6 +54,22 @@ export const restaurantMethod = {
       });
     //}
     return null;
+  },
+
+  getByFranchiseID: async (idFranchise: string) => {
+    //return async function (dispatch: any) {
+    let restaurants: Array<any> = [];
+    await collectionRestaurant.where("franchiseID", "==", idFranchise).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        restaurants.push(doc.data());
+      });
+      console.log("getByFranchiseID", " => ", restaurants);
+    })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+    //}
+    return restaurants;
   },
 
   getByFilter: async (filter: Filter) => {

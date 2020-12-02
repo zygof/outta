@@ -22,11 +22,6 @@ interface Props {
   navigation: any;
 }
 
-const yosemite =
-  "https://images.unsplash.com/photo-1548625361-1adcab316530?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
-const islandBali =
-  "https://images.unsplash.com/photo-1445262102387-5fbb30a5e59d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80";
-
 export const RestaurantComponent = (props: Props) => {
   const { restaurant, navigation } = props;
   return (
@@ -40,7 +35,7 @@ export const RestaurantComponent = (props: Props) => {
         rightSideValue={0 + " km"}
         subtitle={restaurant.franchise?.categorie.libelle}
         leftSideTitle="Offres en cours"
-        leftSideValue={restaurant.nbReductionEncours}
+        leftSideValue={restaurant.nbReductionEncours.toString()}
         backgroundColor="#7349BD"
         source={{
           uri: restaurant.franchise?.logo,

@@ -1,12 +1,8 @@
-import { Franchise } from "./franchise"
+import Localisation from "./localisation"
 
-export interface Restaurant {
+export default interface Restaurant {
     id: string,
-    franchise?: Franchise | null,
-    adresse: string,
-    codePostal: number,
-    rue: string,
-    reviews: number,
-    ratings: number,
-    nbReductionEncours: number
+    franchiseID: string,
+    localisation: Localisation,
+    images: Array<{ uri: string }> | null,
 }

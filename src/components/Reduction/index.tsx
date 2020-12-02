@@ -14,18 +14,19 @@ import styles, { centerSubtitleStyle } from "./ReductionStyles";
 import { SCREENS } from "@main-constants";
 //import HomeScreen from "../../../screens/home/HomeScreen";
 import * as NavigationService from "react-navigation-helpers";
-import { Reduction } from "../../models"
+import { Reduction, Restaurant } from "../../models"
 import { capitalizeFirstLetter } from "@utils";
 
 interface Props {
   reduction: Reduction;
-  navigation: any
+  navigation: any;
+  restaurant: Restaurant;
 }
 
 interface IState { }
 
 export const ReductionComponent = (props: Props) => {
-  const { reduction, navigation } = props;
+  const { reduction, navigation, restaurant } = props;
 
   const colorJourRestant = (jourRestant: number) => {
     if (jourRestant <= 3) {
@@ -41,7 +42,8 @@ export const ReductionComponent = (props: Props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate(SCREENS.RESTAURANT);
+        //Prochainement, au lieu de choisir le premier element des restaurants => restaurant le plus proche selectionnées autaumatiquement
+        navigation.navigate(SCREENS.RESTAURANT, props);
       }}
     >
       <Card containerStyle={styles.cardStyle}>

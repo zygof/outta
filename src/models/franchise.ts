@@ -6,7 +6,7 @@ export interface Franchise {
     libelle: string,
     categorie: FranchiseCategorie,
     logo: string,
-    images: Array<string>,
-    restaurants?: Array<Restaurant> | null,
+    images: Array<{ uri: string }>,
+    proprietaire: string,
     createdDate: Date
 }

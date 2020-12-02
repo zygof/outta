@@ -13,8 +13,9 @@ import styles from "./styles";
 import { reductionDATA } from "../../data/reductionDATA";
 import RNAnimated from "react-native-animated-component";
 import { ReductionComponent } from "@components/Reduction";
-import { Restaurant, Filter } from "../../models";
+import { Restaurant, Filter, Reduction } from "../../models";
 import { restaurantMethod } from "../../redux/restaurant/actions";
+import { reductionMethod } from "../../redux/reduction/actions";
 
 interface Props {
   route: any,
@@ -23,36 +24,36 @@ interface Props {
 
 export default function RestaurantScreen(props: Props) {
   const { route, navigation } = props;
-  const restaurant: Restaurant = route.params.restaurant;
+  //const franchiseId: string = route.params.franchiseId;
+  let restaurant: Restaurant = route.params.restaurant!;
+  /*
+  if (route.params.restaurant) {
+    restaurant = route.params.restaurant!;
+  } else if (route.params.reduction) {
+    console.log(route.params.reduction)
+      }
+    */
 
   const [isLoading, setLoading] = useState<boolean>(true);
-  const [dataReductionByRestaurant, setDataReductionByRestaurant] = useState([]);
-
-  const filterByJourRestantAndRestaurant = () => {
-    const filter: Filter = { fieldPath: "", opStr: "==", value: restaurant.id }
-    var stock: any = [];
-    reductionDATA.forEach((item) => {
-      item.jourRestant > 0 && item.restaurant.franchise.id == 1
-        ? stock.push(item)
-        : console.log("nop");
-    });
-    return stock;
-  }
+  const [dataReductionByRestaurant, setDataReductionByRestaurant] = useState<Reduction[]>([]);
 
   // Get our data
   useEffect(() => {
-    (async function getRestaurantById() {
+    (async function getListReductionByIdRestaurant() {
+      const filter: Filter = { fieldPath: "franchise.id", opStr: "==", value: restaurant.franchise?.id }
+      let listReduction = await reductionMethod.getByFranchiseId(restaurant.franchise?.id!)
+      setDataReductionByRestaurant(listReduction);
       //setDataReductionByRestaurant(await restaurantMethod.getOneById(restaurant.id));
     })().finally(() => setLoading(false));
   }, []);
 
 
 
-  const renderItem = (item: any) => {
+  const renderItem = (reduction: Reduction) => {
     return (
       <RNAnimated appearFrom="left" animationDuration={200} style={{ flex: 1 }}>
-        <View key={item.article.libelle}>
-          <ReductionComponent {...props} item={item} />
+        <View key={reduction.article.libelle}>
+          <ReductionComponent {...props} reduction={reduction} />
         </View>
       </RNAnimated>
     );
@@ -62,28 +63,15 @@ export default function RestaurantScreen(props: Props) {
     <ScrollView>
       <ImageSwiper
         imageHeight={200}
-        images={[
-          {
-            uri:
-              "https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=958&q=80",
-          },
-          {
-            uri:
-              "https://images.unsplash.com/photo-1555149385-c50f336e28b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
-          },
-          {
-            uri:
-              "https://images.unsplash.com/photo-1532517891316-72a08e5c03a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80",
-          },
-        ]}
+        images={restaurant.images}
       />
       <View style={{ flex: 1, paddingTop: 10 }}>
         <Text style={{ fontSize: 28, marginBottom: 15, marginLeft: 15 }}>
           {restaurant.franchise?.libelle}
-          </Text>
+        </Text>
         <Text style={{ fontSize: 18, marginBottom: 15, marginLeft: 15 }}>
-        {restaurant.franchise?.categorie.libelle}
-          </Text>
+          {restaurant.franchise?.categorie.libelle}
+        </Text>
 
         <View
           style={{
@@ -105,8 +93,8 @@ export default function RestaurantScreen(props: Props) {
           </Text>
         <View style={{ marginBottom: 15, marginLeft: 15 }}>
           <Text style={{ color: "#7349BD" }}>
-          {restaurant.adresse} - {restaurant.codePostal}
-            </Text>
+            {restaurant.adresse} - {restaurant.codePostal}
+          </Text>
         </View>
 
         <View

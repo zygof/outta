@@ -1,13 +1,13 @@
-import { Article } from "./article"
-import { Franchise } from "./franchise"
-
-export interface Reduction {
+export default interface Reduction {
     id: string,
-    article: Article,
-    franchise: Franchise,
+    articleID: string,
+    franchiseID: string,
+    tousLesRestaurants: boolean,
+    listeRestaurantID: Array<string> | null,
     pourcentageReduction: number,
-    prixAvecReduction: number,
-    jourRestant: number,
+    prixAvantReduction: number,
+    prixApresReduction: number  | null,
+    jourRestant: number | null,
     startDate: Date,
     endDate: Date,
     createdDate: Date

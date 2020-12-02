@@ -22,7 +22,7 @@ export const reductionMethod = {
 
   getAll: async () => {
     //return async function (dispatch: any) {
-    let reductions:Array<any> = [];
+    let reductions: Array<any> = [];
     await collectionReduction.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         reductions.push(doc.data());
@@ -37,10 +37,21 @@ export const reductionMethod = {
     return reductions;
   },
 
-  getByFilter: async (libelleArticle: string) => {
+  getByFranchiseId: async (franchiseId: string) => {
     //return async function (dispatch: any) {
-    return collectionReduction.where("article.libelle", "==", libelleArticle)
+    let reductions: Array<any> = [];
+    console.log('franchiseId', franchiseId)
+    await collectionReduction.where("franchise.id", "==", franchiseId).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        reductions.push(doc.data());
+      });
+      console.log("get reduction by franchise", " => ", reductions);
+    })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
     //}
+    return reductions;
   },
 
   update: async (reduction: Reduction) => {
