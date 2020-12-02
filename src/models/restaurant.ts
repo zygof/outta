@@ -1,7 +1,7 @@
 import { Franchise } from "./franchise"
 
 export interface Restaurant {
-    id: number,
+    id: string,
     franchise?: Franchise | null,
     adresse: string,
     codePostal: number,

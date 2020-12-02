@@ -1,4 +1,4 @@
 export interface ArticleCategorie {
-    id: number,
+    id: string,
     libelle: string
 }

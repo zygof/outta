@@ -1,7 +1,7 @@
 import { ArticleCategorie } from "./article.categorie"
 
 export interface Article {
-    id: number,
+    id: string,
     libelle: string,
     categorie: ArticleCategorie,
     prix: number,

@@ -2,7 +2,7 @@ import { Article } from "./article"
 import { Franchise } from "./franchise"
 
 export interface Reduction {
-    id: number,
+    id: string,
     article: Article,
     franchise: Franchise,
     pourcentageReduction: number,

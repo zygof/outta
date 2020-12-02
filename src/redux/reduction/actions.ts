@@ -22,19 +22,19 @@ export const reductionMethod = {
 
   getAll: async () => {
     //return async function (dispatch: any) {
-    let result: any;
+    let reductions:Array<any> = [];
     await collectionReduction.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        result = doc.data();
+        reductions.push(doc.data());
       });
-      console.log("dans actions", " => ", result);
+      console.log("dans actions", " => ", reductions);
 
     })
       .catch(function (error) {
         console.log("Error getting documents: ", error);
       });
     //}
-    return result;
+    return reductions;
   },
 
   getByFilter: async (libelleArticle: string) => {

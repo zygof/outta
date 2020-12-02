@@ -26,8 +26,10 @@ import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import RNAnimated from "react-native-animated-component";
 import { reductionMethod } from "../../redux/reduction/actions";
-import { restaurantMethod } from "../../redux/restaurant/actions";
-import { Reduction } from "../../models";
+import { franchiseMethod } from "../../redux/franchise/actions";
+import { articleMethod } from "../../redux/article/actions";
+
+import { Reduction, Article } from "../../models";
 
 interface Props { }
 
@@ -69,33 +71,39 @@ const listFiltre = [
 export default function ReductionListScreen(props: Props) {
   //const [isLoading, setLoading] = useState(true);
   //const [data, setData] = useState<any>([]);
-  const [dataBackup, setDataBackup] = React.useState<Reduction[]>([]);
-  const [dataSource, setDataSource] = React.useState<Reduction[]>([]);
-  const [isLoading, setLoading] = React.useState<boolean>(true);
-  const [spinnerVisibility, setSpinnerVisibility] = React.useState<boolean>(false);
-  const [selectedReduction, setSelectedReduction] = React.useState([]);
+  const [dataBackup, setDataBackup] = useState<Reduction[]>([]);
+  const [dataSource, setDataSource] = useState<Reduction[]>([]);
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [spinnerVisibility, setSpinnerVisibility] = useState<boolean>(false);
+  const [selectedReduction, setSelectedReduction] = useState([]);
 
 
   // Get our data
   useEffect(() => {
-    (async function anyNameFunction() {
-      let result = await reductionMethod.getAll();
-      result = (!Array.isArray(result)) ? [result] : result;
-      setDataSource(result);
-      setDataBackup(result);
-
-      await restaurantMethod.insert({
-        id: 1,
-        franchise: null,
-        adresse: "fef",
-        codePostal: 97490,
-        rue: "Bordeaux",
-        reviews: 50,
-        ratings: 12,
-        nbReductionEncours: 10
-      })
+    (async function getListReduction() {
+      let listReduction = await reductionMethod.getAll();
+      setDataSource(listReduction);
+      setDataBackup(listReduction);
     })().finally(() => setLoading(false));
   }, []);
+
+  /*
+  useEffect(() => {
+    (async function insertReduction() {
+      await reductionMethod.insert({
+        id: 2,
+        article: { id: 1, categorie: { id: 2, libelle: "opé" }, prix: 17, createdDate: new Date(), image: "image.jpg", libelle: "Chicken wings" },
+        franchise: { id: 1, categorie: { id: 1, libelle: "fef" }, createdDate: new Date(), image: "image.png", libelle: "Mc Do", restaurants: null },
+        pourcentageReduction: 17,
+        prixAvecReduction: 19,
+        jourRestant: 59,
+        startDate: new Date(),
+        endDate: new Date(),
+        createdDate: new Date()
+      })
+    })().finally(() => null);
+  }, []);
+  */
 
   if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental &&
@@ -109,7 +117,7 @@ export default function ReductionListScreen(props: Props) {
   const filterList = (text: string) => {
     var newData = dataBackup;
     if (dataBackup) {
-      newData = dataBackup.filter((item: any) => {
+      newData = dataBackup.filter((item: Reduction) => {
         const itemData = item.article.libelle.toLowerCase();
         const textData = text.toLowerCase();
         return itemData.indexOf(textData) > -1;
@@ -120,7 +128,7 @@ export default function ReductionListScreen(props: Props) {
 
   const renderItem = (reduction: Reduction) => {
     return (
-      <RNAnimated appearFrom="left" animationDuration={200} style={{ flex: 1 }}>
+      <RNAnimated appearFrom="left" animationDuration={200}>
         <View key={reduction.article.libelle}>
           <ReductionComponent {...props} reduction={reduction} />
         </View>
@@ -128,10 +136,6 @@ export default function ReductionListScreen(props: Props) {
     );
   }
 
-  // After loading is done "isLoading", we render a FlatList with the data that
-  // was set on the success axios callback above "setData(...)"
-  //
-  // Then we render each of our images inside FlatList's renderImage prop
   return (
     <View style={styles.mainViewStyle}>
       <StatusBar barStyle={"dark-content"} />
@@ -227,8 +231,15 @@ export default function ReductionListScreen(props: Props) {
         {isLoading ? (
           <ActivityIndicator />
         ) : (
-            <View style={styles.flatListStyle}>
+            <View style={{
+              flex: 1,
+              flexGrow: 0,
+              minHeight: '84.5%',
+              flexDirection: 'row',
+              alignItems: 'flex-start'
+            }}>
               <FlatList
+              style={{paddingBottom:1}}
                 data={dataSource}
                 keyExtractor={(reduction: Reduction, index) => reduction.id}
                 renderItem={({ item }) => renderItem(item)}

@@ -5,6 +5,7 @@ import { Franchise } from "./franchise"
 import { Restaurant } from "./restaurant"
 import { FranchiseCategorie } from "./franchise.categorie"
 import { ArticleCategorie } from "./article.categorie"
+import Filter from "./filter"
 
 
 interface ISource {
@@ -22,4 +23,4 @@ type AuthDetails = {
 };
 
 
-export { ISource, Navigation, AuthDetails, User, Reduction, Restaurant, Article, Franchise, FranchiseCategorie, ArticleCategorie };
+export { Filter, AuthDetails, User, Reduction, Restaurant, Article, Franchise, FranchiseCategorie, ArticleCategorie };

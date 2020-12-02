@@ -1,8 +1,9 @@
 import firebase from "../../config/firebase"
-import { Restaurant, Franchise } from "../../models"
+import { Restaurant, Filter } from "../../models"
 import restaurantActions from "./constants";
 
 import store from "@config/store";
+import { Consumer } from "react-native-paper/lib/typescript/src/core/settings";
 
 const collectionFranchise = firebase.firestore().collection("franchises");
 const collectionRestaurant = firebase.firestore().collection("restaurants");
@@ -15,6 +16,7 @@ export const restaurantMethod = {
     await collectionRestaurant.add(restaurant)
       .then(function (restaurantRef) {
         console.log("Restaurant ajouter avec succès !", restaurantRef.id);
+        collectionRestaurant.doc(restaurantRef.id).update({ id: restaurantRef.id })
         //dispatch({ type: restaurantActions.INSERT_REDUCTION, isInsert: true });
       })
       .catch(function (error) {
@@ -25,25 +27,50 @@ export const restaurantMethod = {
 
   getAll: async () => {
     //return async function (dispatch: any) {
-    let result: any;
+    let restaurants: Array<any> = [];
+    console.log("je suis dans actions restaurant")
     await collectionRestaurant.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        result = doc.data();
+        restaurants.push(doc.data());
       });
-      console.log("dans actions", " => ", result);
+      console.log("dans actionsresto ", " => ", restaurants);
 
     })
       .catch(function (error) {
         console.log("Error getting documents: ", error);
       });
     //}
-    return result;
+    return restaurants;
   },
 
-  getByFilter: async (libelleArticle: string) => {
+  getOneById: async (idRestaurant: string) => {
     //return async function (dispatch: any) {
-    return collectionRestaurant.where("article.libelle", "==", libelleArticle)
+    console.log("je suis dans actions getone by id restaurant")
+    await collectionRestaurant.doc(idRestaurant).get().then(function (querySnapshot) {
+      console.log("restaurant : ", querySnapshot.data())
+      return querySnapshot.data();
+    })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
     //}
+    return null;
+  },
+
+  getByFilter: async (filter: Filter) => {
+    //return async function (dispatch: any) {
+    let restaurants: Array<any> = [];
+    collectionRestaurant.where(filter.fieldPath, filter.opStr, filter.value).get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        restaurants.push(doc.data());
+      });
+      console.log("dans actionsresto ", " => ", restaurants);
+    })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+    //}
+    return restaurants;
   },
 
   update: async (restaurant: Restaurant) => {
