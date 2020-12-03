@@ -1,38 +1,28 @@
-import React, { memo } from "react";
-import { StyleSheet } from "react-native";
-import { Button as PaperButton } from "react-native-paper";
-import { theme } from "@config/core/theme";
+import React from 'react';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
-type Props = React.ComponentProps<typeof PaperButton>;
-
-const Button = ({ mode, style, children, ...props }: Props) => (
-  <PaperButton
-    style={[
-      styles.button,
-      mode === "outlined" && { backgroundColor: theme.colors.surface },
-      style
-    ]}
-    labelStyle={[
-      styles.text,
-      mode === "contained" && { color: theme.colors.surface }
-    ]}
-    mode={mode}
-    {...props}
-  >
-    {children}
-  </PaperButton>
-);
+export default function FlatButton({ text, onPress }) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.button}>
+        <Text style={styles.buttonText}>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
 
 const styles = StyleSheet.create({
   button: {
-    width: "100%",
-    marginVertical: 10
+    borderRadius: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+    backgroundColor: '#7349BD',
   },
-  text: {
-    fontWeight: "bold",
-    fontSize: 15,
-    lineHeight: 26
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: 16,
+    textAlign: 'center',
   }
 });
-
-export default memo(Button);

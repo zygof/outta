@@ -1,7 +1,8 @@
 import React, { Component, useEffect, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { ListItem, Icon, Avatar } from "react-native-elements";
 import { SCREENS } from "@main-constants";
+import { MaterialIcons } from "@expo/vector-icons";
 /**
  * ? Local Imports
  */
@@ -11,6 +12,7 @@ import { franchiseDATA } from "../../data/franchiseDATA";
 import { ScrollView } from "react-native-gesture-handler";
 import { Franchise } from '../../models'
 import { franchiseMethod } from '../../redux/franchise/actions'
+import ReviewFormFranchise from "../../components/ReviewFormFranchise";
 
 interface Props {
   navigation: any;
@@ -21,6 +23,7 @@ const FranchiseScreen = (props: Props) => {
   const { navigation } = props;
 
   const [isLoading, setLoading] = useState<boolean>(true);
+  const [modalOpen, setModalOpen] = useState<boolean>(true);
   const [dataFranchises, setDataFranchises] = useState<Franchise[]>([]);
 
   useEffect(() => {
@@ -49,7 +52,7 @@ const FranchiseScreen = (props: Props) => {
               Mes franchises
               </ListItem.Subtitle>
             <View style={{ flex: 1, alignItems: "flex-end" }}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => setModalOpen(true)}>
                 <Text
                   style={{
                     color: "#7349BD",
@@ -58,9 +61,30 @@ const FranchiseScreen = (props: Props) => {
                   }}
                 >
                   +
-                  </Text>
+              </Text>
               </TouchableOpacity>
             </View>
+
+
+            <Modal visible={modalOpen} animationType='slide'>
+              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.modalContent}>
+                  <View style={{ marginTop: 50, flexDirection: "row" }}>
+                    <Text style={{ marginLeft: 20, fontSize: 18, flex: 1, alignSelf: "flex-start", justifyContent: "center", fontFamily: "suezone-regular" }}>Créer une franchise</Text>
+                    <MaterialIcons
+                      name='close'
+                      size={24}
+                      color="#7349BD"
+                      style={{ alignItems: "flex-end", marginRight: 20 }}
+                      onPress={() => setModalOpen(false)}
+                    />
+                  </View>
+
+
+                  <ReviewFormFranchise {...props} />
+                </View>
+              </TouchableWithoutFeedback>
+            </Modal>
           </View>
         </ListItem.Content>
       </ListItem>

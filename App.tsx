@@ -4,6 +4,8 @@ import { AppRegistry, StatusBar, StyleSheet, View } from "react-native";
 import { isAndroid } from "@freakycoder/react-native-helpers";
 import AnimatedSplash from "react-native-animated-splash-screen";
 import MainNavigation from "./src/navigation/MainNavigation";
+import { AppLoading } from "expo"
+import * as Font from 'expo-font';
 
 import { Provider } from "react-redux";
 import store from "./src/redux";
@@ -15,7 +17,14 @@ import Navigation, { counter } from "./src/components/testComponent";
 
 console.disableYellowBox = true;
 
+const getFonts = () => Font.loadAsync({
+  'suezone-regular': require('./assets/fonts/SuezOne-Regular.ttf')
+});
+
+
 const App = () => {
+
+  const [fontsLoaded, setFontsLoaded] = React.useState(false);
   const [isLoaded, setIsLoaded] = React.useState(false);
   React.useEffect(() => {
     StatusBar.setBarStyle("dark-content");
@@ -30,7 +39,8 @@ const App = () => {
 
   //let persistor = persistStore(Store);
 
-  return (
+  if (fontsLoaded) {
+    return (
       <>
         <AnimatedSplash
           logoWidth={300}
@@ -46,7 +56,15 @@ const App = () => {
           </View>
         </AnimatedSplash>
       </>
-  );
+    );
+  } else {
+    return (
+      <AppLoading
+        startAsync={getFonts}
+        onFinish={() => setFontsLoaded(true)}
+      />
+    )
+  }
 };
 
 AppRegistry.registerComponent("main", () => App);

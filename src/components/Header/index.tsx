@@ -1,22 +1,48 @@
-import React, { memo } from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { theme } from '@config/core/theme';
+import React from 'react';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
-type Props = {
-  children: React.ReactNode;
-};
+export default function Header({ title, navigation }) {
 
-const Header = ({ children }: Props) => (
-  <Text style={styles.header}>{children}</Text>
-);
+  const openMenu = () => {
+    navigation.openDrawer();
+  }
+
+  return (
+    <ImageBackground source={require('../../../assets/splash/lucas-benjamin-unsplash.jpg')} style={styles.header}>
+      <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.icon} />
+      <View style={styles.headerTitle}>
+        <Image source={require('../../../assets/splash/lucas-benjamin-unsplash.jpg')} style={styles.headerImage} />
+        <Text style={styles.headerText}>{title}</Text>
+      </View>
+    </ImageBackground>
+  );
+}
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 26,
-    color: theme.colors.primary,
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerText: {
     fontWeight: 'bold',
-    paddingVertical: 14,
+    fontSize: 20,
+    color: '#333',
+    letterSpacing: 1,
+  },
+  icon: {
+    position: 'absolute',
+    left: 16,
+  },
+  headerTitle: {
+    flexDirection: 'row'
+  },
+  headerImage: {
+    width: 26,
+    height: 26,
+    marginHorizontal: 10
   },
 });
-
-export default memo(Header);

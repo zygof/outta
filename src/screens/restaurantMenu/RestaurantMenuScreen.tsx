@@ -1,7 +1,8 @@
 import React, { Component, useEffect, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { ListItem, Icon, Avatar } from "react-native-elements";
 import { SCREENS } from "@main-constants";
+import { MaterialIcons } from "@expo/vector-icons";
 /**
  * ? Local Imports
  */
@@ -12,6 +13,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Franchise } from '../../models'
 import Restaurant from "../../models/restaurant";
 import { restaurantMethod } from "../../redux/restaurant/actions";
+import ReviewFormRestaurant from "../../components/ReviewFormRestaurant";
 
 interface Props {
   navigation: any;
@@ -22,9 +24,8 @@ export const RestaurantMenuScreen = (props: Props) => {
   const { route } = props;
   const franchise: Franchise = route.params.franchise;
 
-  console.log("props", props)
-
   const [isLoading, setLoading] = useState<boolean>(true);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [dataListRestaurant, setDataListRestaurant] = useState<Restaurant[]>([]);
 
   // Get our data
@@ -53,7 +54,7 @@ export const RestaurantMenuScreen = (props: Props) => {
               }}
             >
               {franchise.libelle}
-              </ListItem.Subtitle>
+            </ListItem.Subtitle>
           </View>
         </ListItem.Content>
       </ListItem>
@@ -109,7 +110,7 @@ export const RestaurantMenuScreen = (props: Props) => {
           Mes restaurants
           </ListItem.Subtitle>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setModalOpen(true)}>
             <Text
               style={{
                 color: "#7349BD",
@@ -122,6 +123,26 @@ export const RestaurantMenuScreen = (props: Props) => {
           </TouchableOpacity>
         </View>
       </View>
+
+      <Modal visible={modalOpen} animationType='slide'>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.modalContent}>
+            <View style={{ marginTop: 50, flexDirection: "row" }}>
+              <Text style={{ marginLeft:20,fontSize:18, flex:1, alignSelf: "flex-start", justifyContent:"center", fontFamily:"suezone-regular" }}>Créer un restaurant</Text>
+              <MaterialIcons
+                name='close'
+                size={24}
+                color="#7349BD"
+                style={{ alignItems: "flex-end", marginRight:20 }}
+                onPress={() => setModalOpen(false)}
+              />
+            </View>
+
+
+            <ReviewFormRestaurant {...props} />
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
 
       {dataListRestaurant.map((restaurant, i) => (
         <ListItem
