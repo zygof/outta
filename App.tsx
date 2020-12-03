@@ -7,15 +7,14 @@ import MainNavigation from "./src/navigation/MainNavigation";
 import { AppLoading } from "expo"
 import * as Font from 'expo-font';
 
-import { Provider } from "react-redux";
-import store from "./src/redux";
+//import { Provider } from "react-redux";
+//import store from "./src/redux";
 
 console.disableYellowBox = true;
 
 const getFonts = () => Font.loadAsync({
   'suezone-regular': require('./assets/fonts/SuezOne-Regular.ttf')
 });
-
 
 const App = () => {
   const [fontsLoaded, setFontsLoaded] = React.useState(false);
@@ -35,23 +34,21 @@ const App = () => {
 
   if (fontsLoaded) {
     return (
-      <Provider store={store}>
-        <>
-          <AnimatedSplash
-            logoWidth={300}
-            logoHeight={300}
-            logoImage={null}
-            isLoaded={isLoaded}
-            backgroundColor={null}
-            imageBackgroundResizeMode="cover"
-            imageBackgroundSource={require("./assets/splash/lucas-benjamin-unsplash.jpg")}
-          >
-            <View style={styles.container}>
-              <MainNavigation />
-            </View>
-          </AnimatedSplash>
-        </>
-      </Provider>
+      <>
+        <AnimatedSplash
+          logoWidth={300}
+          logoHeight={300}
+          logoImage={null}
+          isLoaded={isLoaded}
+          backgroundColor={null}
+          imageBackgroundResizeMode="cover"
+          imageBackgroundSource={require("./assets/anime.jpg")}
+        >
+          <View style={styles.container}>
+            <MainNavigation />
+          </View>
+        </AnimatedSplash>
+      </>
     );
   } else {
     return (

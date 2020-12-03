@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -9,7 +9,6 @@ import {
 } from "react-native";
 //import { Card } from "react-native-shadow-cards";
 import { Card } from "react-native-elements";
-import { colors } from "@theme";
 import styles, { centerSubtitleStyle } from "./ReductionStyles";
 import { SCREENS } from "@main-constants";
 //import HomeScreen from "../../../screens/home/HomeScreen";

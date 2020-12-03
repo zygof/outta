@@ -60,7 +60,6 @@ const MenuNavigation = (props: any) => {
               iconName = focused ? "planet-outline" : "home-outline";
             }
 
-            // You can return any component that you like here!
             return (
               <Icon name={iconName} type="Ionicons" size={size} color={color} />
             );

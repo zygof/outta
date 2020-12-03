@@ -1,5 +1,5 @@
 import firebase from "@config/firebase"
-import { User, Auth } from "@models"
+import { User, Auth } from "../../screens/authRootStack-test/home/node_modules/@models"
 import userActions from "./constants";
 import { MethodAuth } from '../../services/auth-method'
 //import { MethodAuth } from "../../utils/auth-method"
@@ -11,7 +11,7 @@ const collectionUsers = firebase.firestore().collection("users");
 
 export const userMethod = {
   signIn: async (email: string, password: string) => {
-    console.log(email + " " + password);
+
     email = "n.marry90@gmail.com";
     password = "test974";
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -141,7 +141,7 @@ export const userMethod = {
         default:
           break;
       }
-      console.log("ok");
+
       if (provider) {
         auth = authFirebase(provider);
         console.log("oulala");

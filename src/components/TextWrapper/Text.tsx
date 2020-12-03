@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Text from "@freakycoder/react-native-custom-text";
-/**
- * ? Local Imports
- */
+
 import fonts from "@fonts";
 import colors from "@colors";
 

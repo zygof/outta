@@ -3,12 +3,8 @@ import { View, Text, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard
 import { ListItem, Icon, Avatar } from "react-native-elements";
 import { SCREENS } from "@main-constants";
 import { MaterialIcons } from "@expo/vector-icons";
-/**
- * ? Local Imports
- */
+
 import styles from "./styles";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { restaurantDATA } from "../../data/restaurantDATA";
 import { ScrollView } from "react-native-gesture-handler";
 import { Franchise } from '../../models'
 import Restaurant from "../../models/restaurant";
@@ -28,7 +24,6 @@ export const RestaurantMenuScreen = (props: Props) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [dataListRestaurant, setDataListRestaurant] = useState<Restaurant[]>([]);
 
-  // Get our data
   useEffect(() => {
     (async function getListRestaurant() {
       setDataListRestaurant(await restaurantMethod.getByFranchiseID(franchise.id));

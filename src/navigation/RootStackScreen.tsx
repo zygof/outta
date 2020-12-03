@@ -1,13 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
-import SplashScreen from "../screens/autRootStack2/SplashScreen";
-import SignInScreen from "../screens/autRootStack2/SignInScreen";
-import SignUpScreen from "../screens/autRootStack2/SignUpScreen";
-import MenuNavigation from "../navigation/MenuNavigation";
+import SplashScreen from "../screens/autRootStack/SplashScreen";
+import SignInScreen from "../screens/autRootStack/SignInScreen";
+import SignUpScreen from "../screens/autRootStack/SignUpScreen";
 import { NavigationContainer } from "@react-navigation/native";
 
 const RootStack = createStackNavigator();
@@ -25,6 +22,7 @@ const RootStackScreen = (props: Props) => {
         </NavigationContainer>
     );
 };
+
 /*
 const mapStateToProps = (state: any) => ({
   user: state.user,

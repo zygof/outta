@@ -9,6 +9,9 @@ import { connect } from "react-redux";
 import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
+
+/*                       A CAUSE DU BEUG REDUX:       ACCEDER A LA PAGE LOGIN : return <RootStackScreen {...props} />    */
+
 /*
 const MyNavigator = (props) => createSwitchNavigator({
   routeNameOne: (props) => <RootStackNavigation {...props} />,
@@ -36,17 +39,20 @@ const MainNavigation = (props: any) => {
   }, []);
 */
   return (
+    /*                       A CAUSE DU BEUG REDUX:       ACCEDER A LA PAGE LOGIN : return <RootStackScreen {...props} />    */
     <MenuNavigation {...props} />
+   // <RootStackScreen {...props} /> 
   );
 }
 
 const mapStateToProps = (state: any) => ({
-  /*user: state.user,
+  /*
+  user: state.user,
   userToken: state.userToken,
   isLoading: state.isLoading,
   */
 });
 
-export default connect(mapStateToProps)(MainNavigation);
+//export default connect(mapStateToProps)(MainNavigation);
 
-//export default MainNavigation;
+export default MainNavigation;

@@ -1,3 +1,5 @@
+import { Article, Franchise } from ".";
+
 export default interface Reduction {
     id: string,
     articleID: string,
@@ -6,9 +8,11 @@ export default interface Reduction {
     listeRestaurantID: Array<string> | null,
     pourcentageReduction: number,
     prixAvantReduction: number,
-    prixApresReduction: number  | null,
+    prixApresReduction: number | null,
     jourRestant: number | null,
     startDate: Date,
     endDate: Date,
-    createdDate: Date
+    createdDate: Date,
+    article: Article,
+    franchise: Franchise
 }

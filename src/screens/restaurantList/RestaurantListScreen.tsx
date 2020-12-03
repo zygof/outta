@@ -12,14 +12,10 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScreenWidth } from "@freakycoder/react-native-helpers";
-/**
- *
- * ? Local Imports
- */
+
 import SearchBar from "react-native-dynamic-search-bar";
 import styles, { centerSubtitleStyle } from "./styles";
-// Static Data
-import { restaurantDATA } from "../../data/restaurantDATA";
+
 import { RestaurantComponent } from "@components/Restaurant";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
@@ -34,11 +30,10 @@ import { Restaurant, Article } from "../../models";
 interface Props { }
 
 const listFiltre = [
-  // this is the parent or 'item'
+
   {
     name: "Filtre",
     id: 1,
-    // these are the children or 'sub items'
     children: [
       {
         name: "prix croissant",
@@ -77,8 +72,6 @@ export default function RestaurantListScreen(props: Props) {
   const [spinnerVisibility, setSpinnerVisibility] = useState<boolean>(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState([]);
 
-
-  // Get our data
   useEffect(() => {
     (async function getListRestaurant() {
       console.log('salut');
@@ -87,24 +80,6 @@ export default function RestaurantListScreen(props: Props) {
       setDataRestaurantBackup(listRestaurant);
     })().finally(() => setLoading(false));
   }, []);
-
-  /*
-  useEffect(() => {
-    (async function createRestaurant() {
-      await restaurantMethod.insert({
-        id: 2,
-        article: { id: 1, categorie: { id: 2, libelle: "opé" }, prix: 17, createdDate: new Date(), image: "image.jpg", libelle: "Chicken wings" },
-        franchise: { id: 1, categorie: { id: 1, libelle: "fef" }, createdDate: new Date(), image: "image.png", libelle: "Mc Do", restaurants: null },
-        pourcentageRestaurant: 17,
-        prixAvecRestaurant: 19,
-        jourRestant: 59,
-        startDate: new Date(),
-        endDate: new Date(),
-        createdDate: new Date()
-      })
-    })().finally(() => null);
-  }, []);
-  */
 
   if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental &&
@@ -198,7 +173,7 @@ export default function RestaurantListScreen(props: Props) {
                   }}
                 >
                   <Image
-                    source={require("@assets/splash/lucas-benjamin-unsplash.jpg")}
+                    source={require("@assets/anime.jpg")}
                     style={{ height: "85%", width: "85%", borderRadius: 5 }}
                   />
                 </TouchableHighlight>

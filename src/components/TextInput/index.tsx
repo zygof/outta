@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { TextInput as Input } from 'react-native-paper';
-import { theme } from '@config/core/theme';
+import { theme } from '../../screens/authRootStack-test/login/node_modules/@config/core/theme';
 
 type Props = React.ComponentProps<typeof Input> & { errorText?: string };
 

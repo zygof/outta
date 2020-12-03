@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Snackbar } from "react-native-paper";
 import { StyleSheet, View, Text } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
-import { theme } from "@config/core/theme";
+import { theme } from "../../screens/authRootStack-test/login/node_modules/@config/core/theme";
 
 type Props = {
   message: string | boolean;

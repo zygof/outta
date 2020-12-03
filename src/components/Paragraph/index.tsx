@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { theme } from '@config/core/theme';
+import { theme } from '../../screens/authRootStack-test/login/node_modules/@config/core/theme';
 
 type Props = {
   children: React.ReactNode;

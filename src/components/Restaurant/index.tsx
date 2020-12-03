@@ -3,13 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
   TouchableOpacity,
   Image,
 } from "react-native";
 //import { Card } from "react-native-shadow-cards";
-import { Card } from "react-native-elements";
-import { colors } from " @theme";
 import styles, { centerSubtitleStyle } from "./styles";
 import { SCREENS } from "@main-constants";
 

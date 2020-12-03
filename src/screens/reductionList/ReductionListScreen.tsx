@@ -69,16 +69,12 @@ const listFiltre = [
 ];
 
 export default function ReductionListScreen(props: Props) {
-  //const [isLoading, setLoading] = useState(true);
-  //const [data, setData] = useState<any>([]);
   const [dataBackup, setDataBackup] = useState<Reduction[]>([]);
   const [dataSource, setDataSource] = useState<Reduction[]>([]);
   const [isLoading, setLoading] = useState<boolean>(true);
   const [spinnerVisibility, setSpinnerVisibility] = useState<boolean>(false);
   const [selectedReduction, setSelectedReduction] = useState([]);
 
-
-  // Get our data
   useEffect(() => {
     (async function getListReduction() {
       let listReduction = await reductionMethod.getAll();
@@ -86,24 +82,6 @@ export default function ReductionListScreen(props: Props) {
       setDataBackup(listReduction);
     })().finally(() => setLoading(false));
   }, []);
-
-  /*
-  useEffect(() => {
-    (async function insertReduction() {
-      await reductionMethod.insert({
-        id: 2,
-        article: { id: 1, categorie: { id: 2, libelle: "opé" }, prix: 17, createdDate: new Date(), image: "image.jpg", libelle: "Chicken wings" },
-        franchise: { id: 1, categorie: { id: 1, libelle: "fef" }, createdDate: new Date(), image: "image.png", libelle: "Mc Do", restaurants: null },
-        pourcentageReduction: 17,
-        prixAvecReduction: 19,
-        jourRestant: 59,
-        startDate: new Date(),
-        endDate: new Date(),
-        createdDate: new Date()
-      })
-    })().finally(() => null);
-  }, []);
-  */
 
   if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental &&
@@ -197,7 +175,7 @@ export default function ReductionListScreen(props: Props) {
                   }}
                 >
                   <Image
-                    source={require("@assets/splash/lucas-benjamin-unsplash.jpg")}
+                    source={require("@assets/anime.jpg")}
                     style={{ height: "85%", width: "85%", borderRadius: 5 }}
                   />
                 </TouchableHighlight>

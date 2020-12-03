@@ -4,7 +4,7 @@ import { DrawerItem } from "@react-navigation/drawer";
 import { Drawer } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import { AuthContext } from "../Context";
+import { AuthContext } from "../../services/context/auth";
 
 interface Props {}
 

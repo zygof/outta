@@ -23,12 +23,12 @@ const FranchiseScreen = (props: Props) => {
   const { navigation } = props;
 
   const [isLoading, setLoading] = useState<boolean>(true);
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [dataFranchises, setDataFranchises] = useState<Franchise[]>([]);
 
   useEffect(() => {
     (async function getListFranchise() {
-      setDataFranchises(await franchiseMethod.getByUID("ok"));
+      setDataFranchises(await franchiseMethod.getByUID("n.marry90@gmail.com"));
     })().finally(() => setLoading(false));
   }, []);
 
