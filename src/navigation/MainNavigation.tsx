@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { createSwitchNavigator } from "react-navigation";
 import AuthNavigation from "./AuthNavigation";
 import MenuNavigation from "./MenuNavigation";
+import RootStackScreen from "./RootStackScreen"
 
 //import { userMethod } from "../../redux/user/actions";
 import { connect } from "react-redux";
 import { View, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
 /*
 const MyNavigator = (props) => createSwitchNavigator({
@@ -34,7 +36,6 @@ const MainNavigation = (props: any) => {
   }, []);
 */
   return (
-    
     <MenuNavigation {...props} />
   );
 }
@@ -46,6 +47,6 @@ const mapStateToProps = (state: any) => ({
   */
 });
 
-//export default connect(mapStateToProps)(MainNavigation);
+export default connect(mapStateToProps)(MainNavigation);
 
-export default MainNavigation;
+//export default MainNavigation;

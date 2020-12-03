@@ -9,11 +9,6 @@ import * as Font from 'expo-font';
 
 import { Provider } from "react-redux";
 import store from "./src/redux";
-import { persistStore } from "redux-persist";
-import { PersistGate } from "redux-persist/es/integration/react";
-
-import { createStore, combineReducers } from "redux";
-import Navigation, { counter } from "./src/components/testComponent";
 
 console.disableYellowBox = true;
 
@@ -23,7 +18,6 @@ const getFonts = () => Font.loadAsync({
 
 
 const App = () => {
-
   const [fontsLoaded, setFontsLoaded] = React.useState(false);
   const [isLoaded, setIsLoaded] = React.useState(false);
   React.useEffect(() => {
@@ -41,21 +35,23 @@ const App = () => {
 
   if (fontsLoaded) {
     return (
-      <>
-        <AnimatedSplash
-          logoWidth={300}
-          logoHeight={300}
-          logoImage={null}
-          isLoaded={isLoaded}
-          backgroundColor={null}
-          imageBackgroundResizeMode="cover"
-          imageBackgroundSource={require("./assets/splash/lucas-benjamin-unsplash.jpg")}
-        >
-          <View style={styles.container}>
-            <MainNavigation />
-          </View>
-        </AnimatedSplash>
-      </>
+      <Provider store={store}>
+        <>
+          <AnimatedSplash
+            logoWidth={300}
+            logoHeight={300}
+            logoImage={null}
+            isLoaded={isLoaded}
+            backgroundColor={null}
+            imageBackgroundResizeMode="cover"
+            imageBackgroundSource={require("./assets/splash/lucas-benjamin-unsplash.jpg")}
+          >
+            <View style={styles.container}>
+              <MainNavigation />
+            </View>
+          </AnimatedSplash>
+        </>
+      </Provider>
     );
   } else {
     return (

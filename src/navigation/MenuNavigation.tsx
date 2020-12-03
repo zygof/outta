@@ -196,4 +196,13 @@ const MenuNavigation = (props: any) => {
   );
 };
 
+/*
+const mapStateToProps = (state: any) => ({
+  user: state.user,
+  userToken: state.userToken,
+  isLoading: state.isLoading,
+});
+
+export default connect(mapStateToProps)(MainNavigation);
+*/
 export default MenuNavigation;

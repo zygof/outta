@@ -1,11 +1,11 @@
 export interface User {
-    uid:string,
+    uid: string,
     name: string,
     lastName: string,
     email?: string | null,
-    password: string,
-    age: number,
+    age: number | null,
+    phone: string | null,
     isCompteRestaurant: boolean;
     createdAt: string,
-    token?:string | null
+    token?: string | null
 }

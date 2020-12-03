@@ -1,5 +1,5 @@
 import firebase from "../config/firebase"
-import { Auth } from "../utils/auth"
+import { Auth } from "../models"
 
 export default function authFirebase(provider: any): Auth {
   let auth: Auth = {isConnect:false};

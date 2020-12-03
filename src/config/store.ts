@@ -25,3 +25,13 @@ export const getItems = (key: string) =>
       reject(null);
     }
   });
+
+  export const removeItems = (key: string) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const value = await AsyncStorage.removeItem(key);
+      resolve(true);
+    } catch (e) {
+      reject(null);
+    }
+  });
