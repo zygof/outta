@@ -1,8 +1,11 @@
 {
+  "name": "outta-3",
+  "displayName": "outta-3",
   "expo": {
-    "name": "outta",
-    "slug": "outta",
+    "name": "outta-3",
+    "slug": "outta-3",
     "version": "1.0.0",
+<<<<<<< Updated upstream
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -40,5 +43,10 @@
         }
       ]
     }
+=======
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+>>>>>>> Stashed changes
   }
 }
