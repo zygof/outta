@@ -44,7 +44,7 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
                         width: 50,
                         height: 50,
                         borderRadius: 25,
-                        backgroundColor: COLORS.white
+                        backgroundColor: COLORS.primary
                     }}
                     onPress={onPress}
                 >
@@ -130,7 +130,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                                tintColor: focused ? COLORS.white : COLORS.secondary
                             }}
                         />
                     ),
@@ -153,7 +153,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                                tintColor: focused ? COLORS.white : COLORS.secondary
                             }}
                         />
                     ),
@@ -176,7 +176,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                                tintColor: focused ? COLORS.white : COLORS.secondary
                             }}
                         />
                     ),
@@ -199,7 +199,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                                tintColor: focused ? COLORS.white : COLORS.secondary
                             }}
                         />
                     ),

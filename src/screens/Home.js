@@ -9,17 +9,25 @@ import {
     FlatList
 } from "react-native";
 
+import SearchBar from "react-native-dynamic-search-bar";
+import SelectBox from 'react-native-multi-selectbox';
+import { xorBy } from 'lodash';
+
 import { icons, images, SIZES, COLORS, FONTS } from '../constants'
 
 const Home = ({ navigation }) => {
 
+    updateSearch = (search) => {
+        this.setState({ search });
+      };
+      
     // Dummy Datas
 
     const initialCurrentLocation = {
-        streetName: "Kuching",
+        streetName: "Zygof",
         gps: {
-            latitude: 1.5496614931250685,
-            longitude: 110.36381866919922
+            longitude: -0.5734212589261247,
+            latitude: 44.84356383042417
         }
     }
 
@@ -85,15 +93,15 @@ const Home = ({ navigation }) => {
     const restaurantData = [
         {
             id: 1,
-            name: "ByProgrammers Burger",
+            name: "Mac donald",
             rating: 4.8,
             categories: [5, 7],
             priceRating: affordable,
             photo: images.burger_restaurant_1,
             duration: "30 - 45 min",
             location: {
-                latitude: 1.5347282806345879,
-                longitude: 110.35632207358996,
+                longitude: -0.5662939878139062,
+            latitude: 44.85427259817056
             },
             courier: {
                 avatar: images.avatar_1,
@@ -128,15 +136,15 @@ const Home = ({ navigation }) => {
         },
         {
             id: 2,
-            name: "ByProgrammers Pizza",
+            name: "Haru Haru",
             rating: 4.8,
             categories: [2, 4, 6],
             priceRating: expensive,
             photo: images.pizza_restaurant,
             duration: "15 - 20 min",
             location: {
-                latitude: 1.556306570595712,
-                longitude: 110.35504616746915,
+                longitude: -0.5662939878139062,
+            latitude: 44.85427259817056
             },
             courier: {
                 avatar: images.avatar_2,
@@ -179,15 +187,15 @@ const Home = ({ navigation }) => {
         },
         {
             id: 3,
-            name: "ByProgrammers Hotdogs",
+            name: "Mexico Hot dogs",
             rating: 4.8,
             categories: [3],
             priceRating: expensive,
             photo: images.hot_dog_restaurant,
             duration: "20 - 25 min",
             location: {
-                latitude: 1.5238753474714375,
-                longitude: 110.34261833833622,
+                longitude: -0.5662939878139062,
+            latitude: 44.85427259817056
             },
             courier: {
                 avatar: images.avatar_3,
@@ -206,15 +214,15 @@ const Home = ({ navigation }) => {
         },
         {
             id: 4,
-            name: "ByProgrammers Sushi",
+            name: "Sushi world",
             rating: 4.8,
             categories: [8],
             priceRating: expensive,
             photo: images.japanese_restaurant,
             duration: "10 - 15 min",
             location: {
-                latitude: 1.5578068150528928,
-                longitude: 110.35482523764315,
+                longitude: -0.5662939878139062,
+            latitude: 44.85427259817056
             },
             courier: {
                 avatar: images.avatar_4,
@@ -233,15 +241,15 @@ const Home = ({ navigation }) => {
         },
         {
             id: 5,
-            name: "ByProgrammers Cuisine",
+            name: "Fufu",
             rating: 4.8,
             categories: [1, 2],
             priceRating: affordable,
             photo: images.noodle_shop,
             duration: "15 - 20 min",
             location: {
-                latitude: 1.558050496260768,
-                longitude: 110.34743759630511,
+                longitude: -0.5662939878139062,
+            latitude: 44.85427259817056
             },
             courier: {
                 avatar: images.avatar_4,
@@ -286,15 +294,15 @@ const Home = ({ navigation }) => {
         {
 
             id: 6,
-            name: "ByProgrammers Dessets",
+            name: "Iglou",
             rating: 4.9,
             categories: [9, 10],
             priceRating: affordable,
             photo: images.kek_lapis_shop,
             duration: "35 - 40 min",
             location: {
-                latitude: 1.5573478487252896,
-                longitude: 110.35568783282145,
+                longitude: -0.5662939878139062,
+            latitude: 44.85427259817056
             },
             courier: {
                 avatar: images.avatar_1,
@@ -332,11 +340,40 @@ const Home = ({ navigation }) => {
 
     ]
 
+    const K_OPTIONS = [
+        {
+            item: 'favoris',
+            id: 'f',
+        },
+        {
+            item: 'prix croissant',
+            id: 'p_cr',
+        },
+        {
+            item: 'prix decroissant',
+            id: 'p_decr',
+        },
+        {
+            item: 'distance croissant',
+            id: 'd_cr',
+        },
+        {
+          item: '% remise croissant',
+          id: 'p_remise_cr',
+        },
+        {
+          item: '% remise décroissant',
+          id: 'p_remise_decr',
+        },
+      ]
+
     const [categories, setCategories] = React.useState(categoryData)
     const [selectedCategory, setSelectedCategory] = React.useState(null)
     const [restaurants, setRestaurants] = React.useState(restaurantData)
     const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation)
-
+    const [searchText, setSearchText ] = React.useState("")
+    const [selectedMultiFilter, setSelectedMultiFilter] = React.useState([]);
+    const [selectedFilter, setSelectedFilter] = React.useState({});
 
     function onSelectCategory(category) {
         //filter restaurant
@@ -356,57 +393,17 @@ const Home = ({ navigation }) => {
         return ""
     }
 
+    
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', height: 50 }}>
-                <TouchableOpacity
-                    style={{
-                        width: 50,
-                        paddingLeft: SIZES.padding * 2,
-                        justifyContent: 'center'
-                    }}
-                >
-                    <Image
-                        source={icons.nearby}
-                        resizeMode="contain"
-                        style={{
-                            width: 30,
-                            height: 30
-                        }}
+            <View style={{ padding: SIZES.padding}}>
+                <View>
+                    <SearchBar
+                    style={{width:'100%'}}
+                        placeholder="Rechercher..."
+                        onChangeText={(text) => console.log(text)}
                     />
-                </TouchableOpacity>
-
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <View
-                        style={{
-                            width: '70%',
-                            height: "100%",
-                            backgroundColor: COLORS.lightGray3,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            borderRadius: SIZES.radius
-                        }}
-                    >
-                        <Text style={{ ...FONTS.h3 }}>{currentLocation.streetName}</Text>
-                    </View>
                 </View>
-
-                <TouchableOpacity
-                    style={{
-                        width: 50,
-                        paddingRight: SIZES.padding * 2,
-                        justifyContent: 'center'
-                    }}
-                >
-                    <Image
-                        source={icons.basket}
-                        resizeMode="contain"
-                        style={{
-                            width: 30,
-                            height: 30
-                        }}
-                    />
-                </TouchableOpacity>
             </View>
         )
     }
@@ -417,12 +414,12 @@ const Home = ({ navigation }) => {
                 <TouchableOpacity
                     style={{
                         padding: SIZES.padding,
-                        paddingBottom: SIZES.padding * 2,
                         backgroundColor: (selectedCategory?.id == item.id) ? COLORS.primary : COLORS.white,
                         borderRadius: SIZES.radius,
                         alignItems: "center",
                         justifyContent: "center",
-                        marginRight: SIZES.padding,
+                        marginLeft: SIZES.padding * 0.5,
+                        marginRight: SIZES.padding * 0.5,
                         ...styles.shadow
                     }}
                     onPress={() => onSelectCategory(item)}
@@ -431,7 +428,7 @@ const Home = ({ navigation }) => {
                         style={{
                             width: 50,
                             height: 50,
-                            borderRadius: 25,
+                            borderRadius: SIZES.radius,
                             alignItems: "center",
                             justifyContent: "center",
                             backgroundColor: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.lightGray
@@ -449,7 +446,6 @@ const Home = ({ navigation }) => {
 
                     <Text
                         style={{
-                            marginTop: SIZES.padding,
                             color: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.black,
                             ...FONTS.body5
                         }}
@@ -461,26 +457,47 @@ const Home = ({ navigation }) => {
         }
 
         return (
-            <View style={{ padding: SIZES.padding * 2 }}>
-                <Text style={{ ...FONTS.h1 }}>Main</Text>
-                <Text style={{ ...FONTS.h1 }}>Categories</Text>
-
+            <View>
                 <FlatList
                     data={categories}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={item => `${item.id}`}
                     renderItem={renderItem}
-                    contentContainerStyle={{ paddingVertical: SIZES.padding * 2 }}
+                    contentContainerStyle={{ paddingVertical: SIZES.padding2 }}
                 />
             </View>
+        )
+    }
+
+    function renderFilter(){
+        //const onMultiChange = (item) => setSelectedMultiFilter(xorBy(selectedMultiFilter, [item], 'id'));
+        const onChange = (val) => setSelectedFilter(val);
+        return(
+            <View style={{ padding: SIZES.padding, paddingTop: 0}}>
+                <SelectBox
+                    label="Filtrer par"
+                    hideInputFilter
+                    inputPlaceholder="Filtrer par..."
+                    multiOptionContainerStyle={{backgroundColor: COLORS.primary}}
+                    arrowIconColor={COLORS.primary}
+                    toggleIconColor={COLORS.primary}
+                    options={K_OPTIONS}
+                    value={selectedFilter}
+                    onChange={onChange}
+                />
+                </View>
         )
     }
 
     function renderRestaurantList() {
         const renderItem = ({ item }) => (
             <TouchableOpacity
-                style={{ marginBottom: SIZES.padding * 2 }}
+                style={{ marginBottom: SIZES.padding * 2,
+                        padding: SIZES.padding,
+                        borderRadius: SIZES.radius *0.5,
+                        backgroundColor:COLORS.white,
+                        ...styles.shadow }}
                 onPress={() => navigation.navigate("Restaurant", {
                     item,
                     currentLocation
@@ -497,8 +514,8 @@ const Home = ({ navigation }) => {
                         resizeMode="cover"
                         style={{
                             width: "100%",
-                            height: 200,
-                            borderRadius: SIZES.radius
+                            height: 150,
+                            borderRadius: SIZES.radius * 0.5
                         }}
                     />
 
@@ -510,7 +527,7 @@ const Home = ({ navigation }) => {
                             width: SIZES.width * 0.3,
                             backgroundColor: COLORS.white,
                             borderTopRightRadius: SIZES.radius,
-                            borderBottomLeftRadius: SIZES.radius,
+                            borderBottomLeftRadius: SIZES.radius *0.5,
                             alignItems: 'center',
                             justifyContent: 'center',
                             ...styles.shadow
@@ -585,7 +602,7 @@ const Home = ({ navigation }) => {
                 keyExtractor={item => `${item.id}`}
                 renderItem={renderItem}
                 contentContainerStyle={{
-                    paddingHorizontal: SIZES.padding * 2,
+                    paddingHorizontal: SIZES.padding,
                     paddingBottom: 30
                 }}
             />
@@ -596,6 +613,7 @@ const Home = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             {renderHeader()}
             {renderMainCategories()}
+            {renderFilter()}
             {renderRestaurantList()}
         </SafeAreaView>
     )

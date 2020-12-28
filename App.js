@@ -8,6 +8,7 @@ import Store from "./src/redux";
 import MenuNavigation from "./src/navigation/MenuNavigation"
 import { AppLoading } from "expo"
 import * as Font from 'expo-font';
+//import { ThemeProvider } from 'react-native-elements';
 
 const getFonts = () => Font.loadAsync({
   'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
@@ -22,7 +23,7 @@ const App = (props) => {
     return (
       <Provider store={Store}>
         <PersistGate persistor={persistor}>
-          <MenuNavigation />
+            <MenuNavigation />
         </PersistGate>
       </Provider>
     );
