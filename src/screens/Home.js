@@ -34,12 +34,12 @@ const Home = ({ navigation }) => {
     const categoryData = [
         {
             id: 1,
-            name: "Rice",
+            name: "Riz",
             icon: icons.rice_bowl,
         },
         {
             id: 2,
-            name: "Noodles",
+            name: "Nouille",
             icon: icons.noodle,
         },
         {
@@ -49,7 +49,7 @@ const Home = ({ navigation }) => {
         },
         {
             id: 4,
-            name: "Salads",
+            name: "Salades",
             icon: icons.salad,
         },
         {
@@ -94,6 +94,7 @@ const Home = ({ navigation }) => {
         {
             id: 1,
             name: "Mac donald",
+            telephone:"0556123456",
             rating: 4.8,
             categories: [5, 7],
             priceRating: affordable,
@@ -137,6 +138,7 @@ const Home = ({ navigation }) => {
         {
             id: 2,
             name: "Haru Haru",
+            telephone:"0556123456",
             rating: 4.8,
             categories: [2, 4, 6],
             priceRating: expensive,
@@ -161,15 +163,15 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 5,
-                    name: "Tomato & Basil Pizza",
+                    name: "Pizza basilic",
                     photo: images.pizza,
-                    description: "Fresh tomatoes, aromatic basil pesto and melted bocconcini",
+                    description: "Pizza française à la basilic",
                     calories: 250,
                     price: 20
                 },
                 {
                     menuId: 6,
-                    name: "Tomato Pasta",
+                    name: "Pâte à la tomate",
                     photo: images.tomato_pasta,
                     description: "Pasta with fresh tomatoes",
                     calories: 100,
@@ -188,6 +190,7 @@ const Home = ({ navigation }) => {
         {
             id: 3,
             name: "Mexico Hot dogs",
+            telephone:"0556123456",
             rating: 4.8,
             categories: [3],
             priceRating: expensive,
@@ -215,6 +218,7 @@ const Home = ({ navigation }) => {
         {
             id: 4,
             name: "Sushi world",
+            telephone:"0556123456",
             rating: 4.8,
             categories: [8],
             priceRating: expensive,
@@ -242,6 +246,7 @@ const Home = ({ navigation }) => {
         {
             id: 5,
             name: "Fufu",
+            telephone:"0556123456",
             rating: 4.8,
             categories: [1, 2],
             priceRating: affordable,
@@ -295,6 +300,7 @@ const Home = ({ navigation }) => {
 
             id: 6,
             name: "Iglou",
+            telephone:"0556123456",
             rating: 4.9,
             categories: [9, 10],
             priceRating: affordable,

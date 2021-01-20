@@ -341,7 +341,7 @@ const Restaurant = ({ route, navigation }) => {
                             borderBottomWidth: 1
                         }}
                     >
-                        <Text style={{ ...FONTS.h3 }}>{getBasketItemCount()} items in Cart</Text>
+                        <Text style={{ ...FONTS.h3 }}>{getBasketItemCount()} Article</Text>
                         <Text style={{ ...FONTS.h3 }}>${sumOrder()}</Text>
                     </View>
 
@@ -376,7 +376,7 @@ const Restaurant = ({ route, navigation }) => {
                                     tintColor: COLORS.darkgray
                                 }}
                             />
-                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>8888</Text>
+                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}></Text>
                         </View>
                     </View>
 
@@ -401,7 +401,7 @@ const Restaurant = ({ route, navigation }) => {
                                 currentLocation: currentLocation
                             })}
                         >
-                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>
+                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Commander</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -127,10 +127,10 @@ const OrderDelivery = ({ route, navigation }) => {
                 rotation={angle}
             >
                 <Image
-                    source={icons.car}
+                    source={icons.point}
                     style={{
-                        width: 40,
-                        height: 40
+                        width: 20,
+                        height: 20
                     }}
                 />
             </Marker>
@@ -266,7 +266,7 @@ const OrderDelivery = ({ route, navigation }) => {
                         <View style={{ flex: 1, marginLeft: SIZES.padding }}>
                             {/* Name & Rating */}
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <Text style={{ ...FONTS.h4 }}>{restaurant?.courier.name}</Text>
+                                <Text style={{ ...FONTS.h4 }}>{restaurant?.name}</Text>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image
                                         source={icons.star}
@@ -277,7 +277,7 @@ const OrderDelivery = ({ route, navigation }) => {
                             </View>
 
                             {/* Restaurant */}
-                            <Text style={{ color: COLORS.darkgray, ...FONTS.body4 }}>{restaurant?.name}</Text>
+                            <Text style={{ color: COLORS.darkgray, ...FONTS.body4 }}>{restaurant?.telephone}</Text>
                         </View>
                     </View>
 
@@ -301,7 +301,7 @@ const OrderDelivery = ({ route, navigation }) => {
                             }}
                             onPress={() => navigation.navigate("Home")}
                         >
-                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Call</Text>
+                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Appeller</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -315,7 +315,7 @@ const OrderDelivery = ({ route, navigation }) => {
                             }}
                             onPress={() => navigation.goBack()}
                         >
-                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Cancel</Text>
+                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Annuler</Text>
                         </TouchableOpacity>
                     </View>
 
