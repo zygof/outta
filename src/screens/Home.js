@@ -74,12 +74,12 @@ const Home = ({ navigation }) => {
         },
         {
             id: 9,
-            name: "Desserts",
+            name: "Dessert",
             icon: icons.donut,
         },
         {
             id: 10,
-            name: "Drinks",
+            name: "Boisson",
             icon: icons.drink,
         },
 
@@ -93,7 +93,7 @@ const Home = ({ navigation }) => {
     const restaurantData = [
         {
             id: 1,
-            name: "Mac donald",
+            name: "Mc Donald",
             telephone:"0556123456",
             rating: 4.8,
             categories: [5, 7],
@@ -111,26 +111,29 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 1,
-                    name: "Crispy Chicken Burger",
+                    name: "Mc first",
                     photo: images.crispy_chicken_burger,
-                    description: "Burger with crispy chicken, cheese and lettuce",
+                    description: "Burger avec poulet croustillant, fromage et laitue",
                     calories: 200,
+                    reduction: -10,
                     price: 10
                 },
                 {
                     menuId: 2,
-                    name: "Crispy Chicken Burger with Honey Mustard",
+                    name: "Menu CBO",
                     photo: images.honey_mustard_chicken_burger,
-                    description: "Crispy Chicken Burger with Honey Mustard Coleslaw",
+                    description: "Burger de poulet croustillant avec salade de chou au miel et à la moutarde",
                     calories: 250,
+                    reduction: -25,
                     price: 15
                 },
                 {
                     menuId: 3,
-                    name: "Crispy Baked French Fries",
+                    name: "Frites croustillantes au four",
                     photo: images.baked_fries,
-                    description: "Crispy Baked French Fries",
+                    description: "Frites française",
                     calories: 194,
+                    reduction: -15,
                     price: 8
                 }
             ]
@@ -155,10 +158,11 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 4,
-                    name: "Hawaiian Pizza",
+                    name: "Pizza Hawaïenne",
                     photo: images.hawaiian_pizza,
-                    description: "Canadian bacon, homemade pizza crust, pizza sauce",
+                    description: "Bacon canadien, croûte de pizza maison, sauce à pizza",
                     calories: 250,
+                    reduction: -10,
                     price: 15
                 },
                 {
@@ -167,29 +171,32 @@ const Home = ({ navigation }) => {
                     photo: images.pizza,
                     description: "Pizza française à la basilic",
                     calories: 250,
+                    reduction: -20,
                     price: 20
                 },
                 {
                     menuId: 6,
                     name: "Pâte à la tomate",
                     photo: images.tomato_pasta,
-                    description: "Pasta with fresh tomatoes",
+                    description: "Pâtes aux tomates fraîches",
                     calories: 100,
+                    reduction: -35,
                     price: 10
                 },
                 {
                     menuId: 7,
-                    name: "Mediterranean Chopped Salad ",
+                    name: "Salade hachée méditerranéenne",
                     photo: images.salad,
-                    description: "Finely chopped lettuce, tomatoes, cucumbers",
+                    description: "Laitue finement hachée, tomates, concombres",
                     calories: 100,
+                    reduction: -40,
                     price: 10
                 }
             ]
         },
         {
             id: 3,
-            name: "Mexico Hot dogs",
+            name: "Hot dogs Mexicain",
             telephone:"0556123456",
             rating: 4.8,
             categories: [3],
@@ -209,8 +216,9 @@ const Home = ({ navigation }) => {
                     menuId: 8,
                     name: "Chicago Style Hot Dog",
                     photo: images.chicago_hot_dog,
-                    description: "Fresh tomatoes, all beef hot dogs",
+                    description: "Tomates fraîches, tous les hot dogs au bœuf",
                     calories: 100,
+                    reduction: -10,
                     price: 20
                 }
             ]
@@ -235,10 +243,11 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 9,
-                    name: "Sushi sets",
+                    name: "Bento",
                     photo: images.sushi,
-                    description: "Fresh salmon, sushi rice, fresh juicy avocado",
+                    description: "Saumon frais, riz sushi, avocat juteux frais",
                     calories: 100,
+                    reduction: -50,
                     price: 50
                 }
             ]
@@ -265,32 +274,36 @@ const Home = ({ navigation }) => {
                     menuId: 10,
                     name: "Kolo Mee",
                     photo: images.kolo_mee,
-                    description: "Noodles with char siu",
+                    description: "Nouilles au char siu",
                     calories: 200,
+                    reduction: -60,
                     price: 5
                 },
                 {
                     menuId: 11,
                     name: "Sarawak Laksa",
                     photo: images.sarawak_laksa,
-                    description: "Vermicelli noodles, cooked prawns",
+                    description: "Nouilles vermicelles, crevettes cuites",
                     calories: 300,
+                    reduction: -40,
                     price: 8
                 },
                 {
                     menuId: 12,
                     name: "Nasi Lemak",
                     photo: images.nasi_lemak,
-                    description: "A traditional Malay rice dish",
+                    description: "Un plat de riz traditionnel malais",
                     calories: 300,
+                    reduction: -15,
                     price: 8
                 },
                 {
                     menuId: 13,
-                    name: "Nasi Briyani with Mutton",
+                    name: "Nasi Briyani avec du mouton",
                     photo: images.nasi_briyani_mutton,
-                    description: "A traditional Indian rice dish with mutton",
+                    description: "Un plat de riz indien traditionnel avec du mouton",
                     calories: 300,
+                    reduction: -15,
                     price: 8
                 },
 
@@ -319,24 +332,27 @@ const Home = ({ navigation }) => {
                     menuId: 12,
                     name: "Teh C Peng",
                     photo: images.teh_c_peng,
-                    description: "Three Layer Teh C Peng",
+                    description: "Trois couches Teh C Peng",
                     calories: 100,
+                    reduction: -10,
                     price: 2
                 },
                 {
                     menuId: 13,
                     name: "ABC Ice Kacang",
                     photo: images.ice_kacang,
-                    description: "Shaved Ice with red beans",
+                    description: "Glace pilée aux haricots rouges",
                     calories: 100,
+                    reduction: -15,
                     price: 3
                 },
                 {
                     menuId: 14,
                     name: "Kek Lapis",
                     photo: images.kek_lapis,
-                    description: "Layer cakes",
+                    description: "Gâteaux en couches",
                     calories: 300,
+                    reduction: -25,
                     price: 20
                 }
             ]
@@ -392,9 +408,8 @@ const Home = ({ navigation }) => {
 
     function getCategoryNameById(id) {
         let category = categories.filter(a => a.id == id)
-
         if (category.length > 0)
-            return category[0].name
+            return (<Text>{category[0].name}<Text style={{color:COLORS.primary}}> ● </Text></Text>);
 
         return ""
     }
@@ -579,23 +594,9 @@ const Home = ({ navigation }) => {
                                         key={categoryId}
                                     >
                                         <Text style={{ ...FONTS.body3 }}>{getCategoryNameById(categoryId)}</Text>
-                                        <Text style={{ ...FONTS.h3, color: COLORS.darkgray }}> . </Text>
                                     </View>
                                 )
                             })
-                        }
-
-                        {/* Price */}
-                        {
-                            [1, 2, 3].map((priceRating) => (
-                                <Text
-                                    key={priceRating}
-                                    style={{
-                                        ...FONTS.body3,
-                                        color: (priceRating <= item.priceRating) ? COLORS.black : COLORS.darkgray
-                                    }}
-                                >$</Text>
-                            ))
                         }
                     </View>
                 </View>

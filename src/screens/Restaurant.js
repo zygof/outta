@@ -234,7 +234,7 @@ const Restaurant = ({ route, navigation }) => {
                                     paddingHorizontal: SIZES.padding * 2
                                 }}
                             >
-                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{item.name} - {item.price.toFixed(2)}</Text>
+                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{item.name} - {item.price.toFixed(2)} €</Text>
                                 <Text style={{ ...FONTS.body3 }}>{item.description}</Text>
                             </View>
 
@@ -256,7 +256,7 @@ const Restaurant = ({ route, navigation }) => {
 
                                 <Text style={{
                                     ...FONTS.body3, color: COLORS.darygray
-                                }}>{item.calories.toFixed(2)} cal</Text>
+                                }}>réduction : {item.reduction} %</Text>
                             </View>
                         </View>
                     ))
@@ -342,7 +342,7 @@ const Restaurant = ({ route, navigation }) => {
                         }}
                     >
                         <Text style={{ ...FONTS.h3 }}>{getBasketItemCount()} Article</Text>
-                        <Text style={{ ...FONTS.h3 }}>${sumOrder()}</Text>
+                        <Text style={{ ...FONTS.h3 }}>{sumOrder()} €</Text>
                     </View>
 
                     <View
@@ -363,12 +363,12 @@ const Restaurant = ({ route, navigation }) => {
                                     tintColor: COLORS.darkgray
                                 }}
                             />
-                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>Location</Text>
+                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>Localisation</Text>
                         </View>
 
                         <View style={{ flexDirection: 'row' }}>
                             <Image
-                                source={icons.master_card}
+                                source={icons.nearby}
                                 resizeMode="contain"
                                 style={{
                                     width: 20,

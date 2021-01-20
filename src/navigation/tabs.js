@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Text
 } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 import Svg, { Path } from 'react-native-svg';
@@ -22,7 +23,7 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
         return (
             <View style={{ flex: 1, alignItems: "center" }}>
                 <View style={{ flexDirection: 'row', position: 'absolute', top: 0 }}>
-                    <View style={{ flex: 1, backgroundColor: COLORS.white }}></View>
+                    <View style={{ flex: 1, backgroundColor: COLORS.primary }}></View>
                     <Svg
                         width={75}
                         height={61}
@@ -30,10 +31,10 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
                     >
                         <Path
                             d="M75.2 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
-                            fill={COLORS.white}
+                            fill={COLORS.primary}
                         />
                     </Svg>
-                    <View style={{ flex: 1, backgroundColor: COLORS.white }}></View>
+                    <View style={{ flex: 1, backgroundColor: COLORS.primary }}></View>
                 </View>
 
                 <TouchableOpacity
@@ -44,7 +45,7 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
                         width: 50,
                         height: 50,
                         borderRadius: 25,
-                        backgroundColor: COLORS.primary
+                        backgroundColor: COLORS.white
                     }}
                     onPress={onPress}
                 >
@@ -58,7 +59,7 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
                 style={{
                     flex: 1,
                     height: 60,
-                    backgroundColor: COLORS.white
+                    backgroundColor: COLORS.primary
                 }}
                 activeOpacity={1}
                 onPress={onPress}
@@ -80,7 +81,7 @@ const CustomTabBar = (props) => {
                         left: 0,
                         right: 0,
                         height: 30,
-                        backgroundColor: COLORS.white
+                        backgroundColor: COLORS.primary
                     }}
                 ></View>
                 <BottomTabBar
@@ -130,7 +131,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.white : COLORS.secondary
+                                tintColor: focused ? COLORS.primary : COLORS.white
                             }}
                         />
                     ),
@@ -153,7 +154,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.white : COLORS.secondary
+                                tintColor: focused ? COLORS.primary : COLORS.white
                             }}
                         />
                     ),
@@ -176,7 +177,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.white : COLORS.secondary
+                                tintColor: focused ? COLORS.primary : COLORS.white
                             }}
                         />
                     ),
@@ -199,7 +200,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.white : COLORS.secondary
+                                tintColor: focused ? COLORS.primary : COLORS.white
                             }}
                         />
                     ),

@@ -9,7 +9,7 @@ import MenuNavigation from "./src/navigation/MenuNavigation"
 import { AppLoading } from "expo"
 import * as Font from 'expo-font';
 //import { ThemeProvider } from 'react-native-elements';
-
+console.disableYellowBox = true;
 const getFonts = () => Font.loadAsync({
   'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
   'Roboto-Black': require('./assets/fonts/Roboto-Black.ttf'),
