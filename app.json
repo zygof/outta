@@ -1,9 +1,9 @@
 {
-  "name": "outta-final",
-  "displayName": "outta-final",
+  "name": "outta",
+  "displayName": "outta",
   "expo": {
-    "name": "outta-final",
-    "slug": "outta-final",
+    "name": "outta",
+    "slug": "outta",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
