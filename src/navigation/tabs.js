@@ -8,7 +8,12 @@ import Svg, { Path } from "react-native-svg";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Foundation, MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { MapRestaurants, ListReduction, ListRestaurant } from "../screens";
+import {
+  MapRestaurants,
+  ListReduction,
+  ListRestaurant,
+  Profile,
+} from "../screens";
 
 import { COLORS, icons } from "../constants";
 
@@ -153,8 +158,8 @@ const Tabs = () => {
       />
 
       <Tab.Screen
-        name="User"
-        component={ListReduction}
+        name="Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
