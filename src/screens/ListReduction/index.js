@@ -69,8 +69,7 @@ export default function ListReduction(props) {
     return (
       <View
         style={{
-          
-          //justifyContent: 'center',
+          maxHeight: SIZES.width * 1.67,
         }}
       >
         {isLoading ? (

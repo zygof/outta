@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { addHandler, subtractHandler } from "../redux/counter/actions";
+import { addHandler, subtractHandler } from "../../redux/counter/actions";
 
 const ReduxPage = props => {
   console.log('props', props);

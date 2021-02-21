@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/es/integration/react";
-import ReduxPage from "./src/screens/ReduxPage";
 import Store from "./src/redux";
 import MenuNavigation from "./src/navigation/MenuNavigation";
 import { AppLoading } from "expo";

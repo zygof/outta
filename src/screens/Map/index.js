@@ -4,7 +4,7 @@ import { View, Text, Card, Button } from "react-native-ui-lib";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { AppSearchBar } from "../../components/SearchBar";
-import { Foundation } from "@expo/vector-icons";
+import { Foundation, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { COLORS, FONTS, icons, SIZES, GOOGLE_API_KEY } from "../../constants";
 
@@ -206,10 +206,64 @@ const MapRestaurants = ({ route, navigation }) => {
     );
   }
 
+  function renderButtons() {
+    return (
+      <View
+        style={{
+          position: "absolute",
+          bottom: SIZES.width * 0.5,
+          right: SIZES.padding * 2,
+          width: 60,
+          height: 130,
+          justifyContent: "space-between",
+        }}
+      >
+        {/* Zoom In */}
+        <TouchableOpacity
+          style={{
+            width: 60,
+            height: 60,
+            borderRadius: 30,
+            backgroundColor: COLORS.primary,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          onPress={() => zoomIn()}
+        >
+          <MaterialCommunityIcons
+            name="plus"
+            size={30}
+            color={COLORS.white}
+          ></MaterialCommunityIcons>
+        </TouchableOpacity>
+
+        {/* Zoom Out */}
+        <TouchableOpacity
+          style={{
+            width: 60,
+            height: 60,
+            borderRadius: 30,
+            backgroundColor: COLORS.primary,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          onPress={() => zoomOut()}
+        >
+          <MaterialCommunityIcons
+            name="minus"
+            size={30}
+            color={COLORS.white}
+          ></MaterialCommunityIcons>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <View style={{ flex: 1 }}>
       {renderMap()}
       {renderDestinationHeader()}
+      {renderButtons()}
     </View>
   );
 };

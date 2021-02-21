@@ -68,11 +68,9 @@ export default function ListRestaurant(props) {
   const renderListRestaurant = () => {
     return (
       <View
-        style={
-          {
-            //justifyContent: 'center',
-          }
-        }
+        style={{
+          maxHeight: SIZES.width * 1.67,
+        }}
       >
         {isLoading ? (
           <ActivityIndicator />

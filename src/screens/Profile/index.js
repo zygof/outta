@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Image, StyleSheet, SafeAreaView } from "react-native";
-import { Colors, View, Text, Avatar } from "react-native-ui-lib";
+import {
+  Image,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
+import { Colors, View, Text, Avatar, Button } from "react-native-ui-lib";
 import { images, FONTS, SIZES, COLORS, icons } from "../../constants";
 import RNTextInput from "@freakycoder/react-native-text-input";
-import { GooglePlayButton } from "@freakycoder/react-native-button";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const user = {
   prenom: "Nicolas",
   nom: "MARRY",
   telephone: "0692400066",
   adresseEmail: "n.marry90@gmail.com",
+  location: "89 Quai des Chartrons, 33300 Bordeaux",
   password: "123456789",
   avatar: images.avatar_4,
   screen: "SCREENS.PROFIL",
@@ -19,8 +25,8 @@ const Profile = () => {
   const [value, onChangeText] = React.useState("Useless Placeholder");
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
-      <View marginB-10 marginT-50 centerH>
-        <Avatar source={user.avatar} />
+      <View marginB-30 marginT-30 centerH>
+        <Avatar source={user.avatar} size={80} />
       </View>
 
       <RNTextInput
@@ -65,20 +71,33 @@ const Profile = () => {
         style={{ borderRadius: 0, width: "100%", marginBottom: 15 }}
         onChangeText={(text) => console.log("Text: ", text)}
       />
-      <RNTextInput
-        disableButton
-        placeholder="Adresse"
-        placeholderTextColor={COLORS.lightGray1}
-        textInputStyle={{ color: COLORS.primary }}
-        style={{ borderRadius: 0, width: "100%", marginBottom: 50 }}
-        onChangeText={(text) => console.log("Text: ", text)}
-      />
-
-      <GooglePlayButton
-        text="Enregistrer"
-        textColor={COLORS.white}
-        rippleColor={COLORS.primary}
-        backgroundColor={COLORS.primary}
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginBottom: 50,
+          marginTop: 10,
+        }}
+      >
+        <MaterialCommunityIcons
+          name="map-marker"
+          color={COLORS.primary}
+          size={30}
+        />
+        <Text marginL-5 text70L color={COLORS.primary}>
+          {user.location}
+        </Text>
+      </TouchableOpacity>
+      <Button
+        text60M
+        label="Enregistrer"
+        color="white"
+        style={{
+          height: 50,
+          borderRadius: 5,
+          backgroundColor: COLORS.primary,
+          width: "90%",
+        }}
       />
     </SafeAreaView>
   );
