@@ -1,4 +1,5 @@
 import { Dimensions } from "react-native";
+import {Assets, Typography, Spacings} from 'react-native-ui-lib'; // eslint-disable-line
 const { width, height } = Dimensions.get("window");
 
 export const COLORS = {
@@ -63,6 +64,6 @@ export const FONTS = {
     body5: { fontFamily: "Roboto-Regular", fontSize: SIZES.body5, lineHeight: 22 },
 };
 
-const appTheme = { COLORS, SIZES, FONTS };
+const appTheme = { COLORS, SIZES, FONTS, Typography, Spacings };
 
 export default appTheme;

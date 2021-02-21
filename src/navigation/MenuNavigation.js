@@ -3,7 +3,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { Restaurant, OrderDelivery } from "../screens";
+import { Restaurant, MapRestaurants } from "../screens";
 import Tabs from "./tabs";
 
 const Stack = createStackNavigator();
@@ -15,11 +15,10 @@ const MenuNavigation = (props) => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={"Home"}
+        initialRouteName={"MapRestaurants"}
       >
-        <Stack.Screen name="Home" component={Tabs} />
+        <Stack.Screen name="ListReduction" component={Tabs} />
         <Stack.Screen name="Restaurant" component={Restaurant} />
-        <Stack.Screen name="OrderDelivery" component={OrderDelivery} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Image, View, Text, StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
+import { Colors, Card, View, Button, Text } from "react-native-ui-lib";
 import {
   ImageHeaderScrollView,
   TriggeringView,
 } from "react-native-image-header-scroll-view";
 
-import { images, COLORS, FONTS, SIZES } from "../../constants";
+import { images, FONTS, SIZES, icons } from "../../constants";
 import { restaurantDATA } from "../../data/restaurantDATA";
 
 const getRestaurantById = (id) => {
@@ -24,59 +25,67 @@ const Restaurant = (props) => {
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
+    <View flex>
       <ImageHeaderScrollView
-        maxHeight={120}
-        minHeight={120}
+        maxHeight={130}
+        minHeight={80}
         fadeOutForeground
         headerImage={images.noodle_shop}
         overScrollMode="never"
-        overlayColor={COLORS.transparent}
-        overview={
-          <View>
-            <Text>opé</Text>
-          </View>
-        }
+        overlayColor={Colors.primaryColor}
         maxOverlayOpacity={0.9}
         foregroundParallaxRatio={1}
       >
-        <View
-          style={{
-            height: 1000,
-          }}
-        >
-          <TriggeringView>
-            <View
-              style={{
-                padding: SIZES.padding,
-              }}
-            >
-              <Text
-                style={{ fontSize: SIZES.font * 2, fontFamily: "Roboto-Bold" }}
-              >
-                {restaurant.franchise.nom} - {restaurant.adresse}
+        <TriggeringView style={{ height: 1000 }}>
+          <View padding-15>
+            <Text text50M marginB-15>
+              {restaurant.franchise.nom} - {restaurant.adresse}
+            </Text>
+            <Text marginB-15>
+              Petit-déjeuner et brunch - Américain - Desserts - Adapté aux
+              allergies alimentaires
+            </Text>
+            <View row centerV marginB-15>
+              <Image
+                source={icons.star}
+                style={{
+                  height: 14,
+                  width: 14,
+                  tintColor: Colors.primaryColor,
+                  marginRight: 5,
+                }}
+              />
+              <Text text85M color={Colors.primaryColor}>
+                {restaurant.ratings} Excellent ({restaurant.reviews}+)
               </Text>
+            </View>
+            <View row centerV>
               <Image
                 source={images.stopwatch}
                 resizeMode="contain"
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 14,
+                  height: 14,
                 }}
               />
+              <Text marginL-5 text75>
+                20- 30 min
+              </Text>
             </View>
-            <View
-              style={{
-                borderBottomColor: COLORS.lightGray1,
-                borderBottomWidth: 0.2,
-              }}
-            />
-          </TriggeringView>
-        </View>
+          </View>
+          <View
+            style={{
+              borderBottomColor: Colors.primaryColor,
+              borderBottomWidth: 0.2,
+            }}
+          />
+          <View padding-15>
+            <Text text65M>Informations de l'étabilssements</Text>
+            <Card height={100} center padding-card marginT-s4 marginB-s4 onPress={() =>console.log('map press')}>
+              <Text body>This is an example card </Text>
+            </Card>
+          </View>
+        </TriggeringView>
       </ImageHeaderScrollView>
     </View>
   );

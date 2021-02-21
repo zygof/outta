@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import styles from "./ReductionStyles";
 import { SCREENS } from "../../services/constants";
 import { icons, SIZES, COLORS, FONTS } from "../../constants";
+import { View, Text, Card, Button } from "react-native-ui-lib";
 
 import { restaurantDATA } from "../../data/restaurantDATA";
 
@@ -25,13 +26,11 @@ export const ReductionComponent = (props) => {
   };
 
   return (
-    <TouchableOpacity
-      style={{
-        marginBottom: SIZES.padding * 2,
-        padding: SIZES.padding,
-        borderRadius: SIZES.radius * 0.5,
-        ...styles.shadow,
-      }}
+    <Card
+      marginB-12
+      padding-10
+      paddingB-15
+      borderRadius={0}
       onPress={() =>
         navigation.navigate(SCREENS.RESTAURANT, {
           restaurantId: reduction.restaurant.id,
@@ -40,11 +39,7 @@ export const ReductionComponent = (props) => {
       }
     >
       {/* Image */}
-      <View
-        style={{
-          marginBottom: SIZES.padding,
-        }}
-      >
+      <View marginB-10>
         <Image
           source={reduction.article.image}
           resizeMode="cover"
@@ -69,7 +64,7 @@ export const ReductionComponent = (props) => {
             ...styles.shadow,
           }}
         >
-          <Text style={{ ...FONTS.h4, color: COLORS.white }}>
+          <Text text65M color={COLORS.white}>
             -{reduction.pourcentageReduction} %
           </Text>
         </View>
@@ -94,8 +89,9 @@ export const ReductionComponent = (props) => {
           }}
         >
           <Text
+            text80M
+            color={COLORS.danger}
             style={{
-              ...FONTS.h6,
               textDecorationLine: "line-through",
               textDecorationStyle: "solid",
               marginRight: 5,
@@ -104,13 +100,7 @@ export const ReductionComponent = (props) => {
           >
             {reduction.article.prix}€
           </Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: SIZES.h3,
-              color: COLORS.white,
-            }}
-          >
+          <Text text65M color={COLORS.white}>
             {reduction.prixReduction}€
           </Text>
         </View>
@@ -129,12 +119,7 @@ export const ReductionComponent = (props) => {
             ...styles.shadow,
           }}
         >
-          <Text
-            style={{
-              ...FONTS.h5,
-              color: COLORS.white,
-            }}
-          >
+          <Text text70M color={COLORS.white}>
             {reduction.jourRestant}{" "}
             {reduction.jourRestant > 1 ? "jours restants" : "jour restant"}
           </Text>
@@ -157,17 +142,16 @@ export const ReductionComponent = (props) => {
             ...styles.shadow,
           }}
         >
-          <Text style={{ ...FONTS.h5, color: COLORS.black }}>20 - 30 min</Text>
+          <Text text70H >20 - 30 min</Text>
         </View>
       </View>
 
       {/* Restaurant Info */}
-      <Text style={{ ...FONTS.h4 }}>{reduction.name}</Text>
+      <Text text70M>{reduction.name}</Text>
 
-      <View
+      <View row
         style={{
           marginTop: SIZES.padding * 0.2,
-          flexDirection: "row",
           alignItems: "center",
         }}
       >
@@ -181,15 +165,15 @@ export const ReductionComponent = (props) => {
             marginRight: 5,
           }}
         />
-        <Text style={{ ...FONTS.h6, color: COLORS.primary }}>
+        <Text text85M color={COLORS.primary}>
           {getRestaurantById(reduction.restaurant.id).ratings} Excellent (
           {getRestaurantById(reduction.restaurant.id).reviews}+)
         </Text>
-        <Text style={{ fontFamily: "Roboto-Regular", fontSize: SIZES.h6 }}>
+        <Text text85M>
           {" "}
           -{" "}
         </Text>
-        <Text style={{ fontFamily: "Roboto-Regular", fontSize: SIZES.h6 }}>
+        <Text text85M>
           {reduction.restaurant.franchise.categorie}
         </Text>
         {/* Categories */}
@@ -201,11 +185,11 @@ export const ReductionComponent = (props) => {
         ></View>
       </View>
       <View>
-        <Text style={{ fontFamily: "Roboto-Regular", fontSize: SIZES.h6 }}>
+        <Text text85M>
           Sodexo - Swile
         </Text>
       </View>
-    </TouchableOpacity>
+    </Card>
   );
 };
 

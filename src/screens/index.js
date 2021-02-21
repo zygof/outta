@@ -1,9 +1,9 @@
-import Home from './Home'
+import ListReduction from './ListReduction'
 import Restaurant from './Restaurant'
-import OrderDelivery from './Map'
+import MapRestaurants from './Map'
 
 export {
-    Home,
+    ListReduction,
     Restaurant,
-    OrderDelivery
+    MapRestaurants
 }

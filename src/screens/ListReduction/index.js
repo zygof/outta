@@ -5,24 +5,17 @@ import {
   Image,
   FlatList,
   StyleSheet,
-  View,
   ActivityIndicator,
 } from "react-native";
-import SearchBar from "react-native-dynamic-search-bar";
+import { View, Button, Text } from "react-native-ui-lib";
+import { AppSearchBar } from "../../components/SearchBar";
 //import Modal from "react-native-modal";
 import { icons, SIZES, COLORS, FONTS } from "../../constants";
 import { reductionDATA } from "../../data/reductionDATA";
+import initialCurrentLocation from "../../data/locationDATA";
 import { ReductionComponent } from "../../components/Reduction";
 
-const initialCurrentLocation = {
-  streetName: "Zygof",
-  gps: {
-    longitude: -0.5734212589261247,
-    latitude: 44.84356383042417,
-  },
-};
-
-export default function Home(props) {
+export default function ListReduction(props) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [reductions, setReductions] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -66,28 +59,8 @@ export default function Home(props) {
 
   const renderHeader = () => {
     return (
-      <View style={{ padding: SIZES.padding }}>
-        <View
-          style={{ flexDirection: "row", paddingRight: SIZES.padding * 1.5 }}
-        >
-          <SearchBar
-            placeholder="Rechercher..."
-            onChangeText={(text) => console.log(text)}
-          />
-          <TouchableOpacity
-            style={{ justifyContent: "center", padding: SIZES.padding }}
-            /*onPress={toggleModal}*/
-          >
-            <Image
-              source={icons.filters}
-              style={{
-                width: SIZES.padding * 3,
-                height: SIZES.padding * 3,
-              }}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
+      <View>
+        <AppSearchBar />
       </View>
     );
   };
@@ -96,7 +69,7 @@ export default function Home(props) {
     return (
       <View
         style={{
-          flex: 1,
+          
           //justifyContent: 'center',
         }}
       >
@@ -130,7 +103,7 @@ export default function Home(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.lightGray4,
+    backgroundColor: COLORS.lightGray,
   },
   shadow: {
     shadowColor: "#000",
