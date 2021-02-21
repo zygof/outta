@@ -1,7 +1,14 @@
+import { images } from "../constants";
+
 export const restaurantDATA = [
   {
     id: 1,
-    franchise: { id: 1, nom: "Burger king", categorie: "FAST FOOD" },
+    franchise: {
+      id: 1,
+      name: "Burger king",
+      categorie: "Fast Food",
+      mainPhoto: images.japanese_restaurant,
+    },
     adresse: "Belcier",
     codePostal: 33800,
     rue: "Belcier",
@@ -11,7 +18,12 @@ export const restaurantDATA = [
   },
   {
     id: 2,
-    franchise: { id: 2, nom: "Mc Donald", categorie: "FAST FOOD" },
+    franchise: {
+      id: 2,
+      name: "Mc Donald",
+      categorie: "Fast Food",
+      mainPhoto: images.japanese_restaurant,
+    },
     adresse: "Belcier",
     codePostal: 33800,
     rue: "Chartrons",
@@ -21,7 +33,12 @@ export const restaurantDATA = [
   },
   {
     id: 3,
-    franchise: { id: 3, nom: "Quick", categorie: "FAST FOOD" },
+    franchise: {
+      id: 3,
+      name: "Quick",
+      categorie: "Fast Food",
+      mainPhoto: images.japanese_restaurant,
+    },
     adresse: "Belcier",
     codePostal: 33800,
     rue: "Pessac",
@@ -31,7 +48,12 @@ export const restaurantDATA = [
   },
   {
     id: 4,
-    franchise: { id: 4, nom: "Planet sushi", categorie: "Japonnais" },
+    franchise: {
+      id: 4,
+      name: "Planet sushi",
+      categorie: "Japonnais",
+      mainPhoto: images.japanese_restaurant,
+    },
     adresse: "Belcier",
     codePostal: 33800,
     rue: "Martial",
@@ -41,7 +63,12 @@ export const restaurantDATA = [
   },
   {
     id: 5,
-    franchise: { id: 5, nom: "Pitaya", categorie: "Thaï" },
+    franchise: {
+      id: 5,
+      name: "Pitaya",
+      categorie: "Thaï",
+      mainPhoto: images.japanese_restaurant,
+    },
     adresse: "Belcier",
     rue: "Begle",
     codePostal: 33800,

@@ -5,8 +5,9 @@ import {
   ImageHeaderScrollView,
   TriggeringView,
 } from "react-native-image-header-scroll-view";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { images, FONTS, SIZES, icons } from "../../constants";
+import { images, FONTS, SIZES, COLORS, icons } from "../../constants";
 import { restaurantDATA } from "../../data/restaurantDATA";
 
 const getRestaurantById = (id) => {
@@ -39,37 +40,30 @@ const Restaurant = (props) => {
         <TriggeringView style={{ height: 1000 }}>
           <View padding-15>
             <Text text50M marginB-15>
-              {restaurant.franchise.nom} - {restaurant.adresse}
+              {restaurant.franchise.name} - {restaurant.adresse}
             </Text>
             <Text marginB-15>
               Petit-déjeuner et brunch - Américain - Desserts - Adapté aux
               allergies alimentaires
             </Text>
             <View row centerV marginB-15>
-              <Image
-                source={icons.star}
-                style={{
-                  height: 14,
-                  width: 14,
-                  tintColor: Colors.primaryColor,
-                  marginRight: 5,
-                }}
+              <MaterialCommunityIcons
+                name="star"
+                size={20}
+                color={COLORS.primary}
               />
-              <Text text85M color={Colors.primaryColor}>
+              <Text text70M color={Colors.primaryColor}>
                 {restaurant.ratings} Excellent ({restaurant.reviews}+)
               </Text>
             </View>
-            <View row centerV>
-              <Image
-                source={images.stopwatch}
-                resizeMode="contain"
-                style={{
-                  width: 14,
-                  height: 14,
-                }}
+            <View row centerV marginB-15>
+              <MaterialCommunityIcons
+                name="ticket"
+                size={20}
+                color={COLORS.success}
               />
-              <Text marginL-5 text75>
-                20- 30 min
+              <Text text70M marginL-2 color={COLORS.success}>
+                10 réductions en cours
               </Text>
             </View>
           </View>
@@ -81,9 +75,47 @@ const Restaurant = (props) => {
           />
           <View padding-15>
             <Text text65M>Informations de l'étabilssements</Text>
-            <Card height={100} center padding-card marginT-s4 marginB-s4 onPress={() =>console.log('map press')}>
-              <Text body>This is an example card </Text>
+            <Card
+              height={100}
+              center
+              padding-card
+              marginT-s4
+              marginB-s4
+              onPress={() => console.log("map press")}
+            >
+              <Text body>Redirection vers MAP </Text>
             </Card>
+            <View row centerV marginB-15>
+              <MaterialCommunityIcons
+                name="map"
+                size={20}
+                color={COLORS.primary}
+              />
+              <Text marginL-5 text70>
+                Adresse de l'étabilssements
+              </Text>
+            </View>
+
+            <View row centerV marginB-15>
+              <MaterialCommunityIcons
+                name="timer"
+                size={20}
+                color={COLORS.primary}
+              />
+
+              <Text marginL-5 text75>
+                20- 30 min
+              </Text>
+            </View>
+          </View>
+          <View
+            style={{
+              borderBottomColor: Colors.primaryColor,
+              borderBottomWidth: 0.6,
+            }}
+          />
+          <View padding-15>
+            <Text text65M>Liste des réductions disponibles</Text>
           </View>
         </TriggeringView>
       </ImageHeaderScrollView>

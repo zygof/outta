@@ -1,9 +1,6 @@
-import ListReduction from './ListReduction'
-import Restaurant from './Restaurant'
-import MapRestaurants from './Map'
+import ListReduction from "./ListReduction";
+import ListRestaurant from "./ListRestaurant";
+import Restaurant from "./Restaurant";
+import MapRestaurants from "./Map";
 
-export {
-    ListReduction,
-    Restaurant,
-    MapRestaurants
-}
+export { ListReduction, ListRestaurant, Restaurant, MapRestaurants };

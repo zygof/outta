@@ -8,7 +8,7 @@ import Svg, { Path } from "react-native-svg";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Foundation, MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { ListReduction, MapRestaurants } from "../screens";
+import { MapRestaurants, ListReduction, ListRestaurant } from "../screens";
 
 import { COLORS, icons } from "../constants";
 
@@ -17,7 +17,7 @@ const backColor = COLORS.lightGray;
 
 const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
   var isSelected = accessibilityState.selected;
-    
+
   if (isSelected) {
     return (
       <View style={{ flex: 1, alignItems: "center" }}>
@@ -137,8 +137,8 @@ const Tabs = () => {
       />
 
       <Tab.Screen
-        name="Like"
-        component={ListReduction}
+        name="ListRestaurant"
+        component={ListRestaurant}
         options={{
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
