@@ -93,50 +93,45 @@ export const MapRestaurants = (props) => {
       <Marker coordinate={toLocation}>
         <View
           style={{
-            height: 40,
-            width: 40,
+            height: 30,
+            width: 30,
             borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: COLORS.white,
+            backgroundColor: COLORS.primary,
           }}
         >
           <View
             style={{
-              height: 30,
-              width: 30,
+              height: 24,
+              width: 24,
               borderRadius: 15,
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: COLORS.primary,
+              backgroundColor: COLORS.white,
             }}
           >
-            <Image
-              source={icons.pin}
-              style={{
-                width: 25,
-                height: 25,
-                tintColor: COLORS.white,
-              }}
-            />
+            <MaterialCommunityIcons
+          name="map-marker"
+          size={24}
+          color={COLORS.primary}
+        />
           </View>
         </View>
       </Marker>
     );
 
-    const carIcon = () => (
+    const currentLocationIcon = () => (
       <Marker
         coordinate={fromLocation}
         anchor={{ x: 0.5, y: 0.5 }}
         flat={true}
         rotation={angle}
       >
-        <Image
-          source={icons.car}
-          style={{
-            width: 20,
-            height: 20,
-          }}
+        <MaterialCommunityIcons
+          name="navigation"
+          size={30}
+          color={COLORS.primary}
         />
       </Marker>
     );
@@ -187,7 +182,7 @@ export const MapRestaurants = (props) => {
             }}
           />
           {destinationMarker()}
-          {carIcon()}
+          {currentLocationIcon()}
         </MapView>
       </View>
     );
