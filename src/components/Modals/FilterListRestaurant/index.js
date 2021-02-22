@@ -9,9 +9,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SearchBar from "react-native-dynamic-search-bar";
 import { COLORS, FONTS, icons, SIZES } from "../../../constants";
 
-export const FilterListReduction = (props) => {
+export const FilterListRestaurant = (props) => {
   const { isModalVisible } = props;
-  console.log("FilterListReduction", isModalVisible);
+  console.log("FilterListRestaurant", isModalVisible);
   return (
     <Modal
       isVisible={isModalVisible}
@@ -67,4 +67,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FilterListReduction);
+)(FilterListRestaurant);

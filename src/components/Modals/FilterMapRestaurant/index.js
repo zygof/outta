@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
-import { View, Button, Text } from "react-native-ui-lib";
+import { View, Button, Text, Card } from "react-native-ui-lib";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -9,9 +9,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SearchBar from "react-native-dynamic-search-bar";
 import { COLORS, FONTS, icons, SIZES } from "../../../constants";
 
-export const FilterListReduction = (props) => {
+export const FilterMapRestaurant = (props) => {
   const { isModalVisible } = props;
-  console.log("FilterListReduction", isModalVisible);
+  console.log("FilterMapRestaurant", isModalVisible);
+
+  const toggleModal = () => {
+    console.log("press");
+  };
+
   return (
     <Modal
       isVisible={isModalVisible}
@@ -59,12 +64,11 @@ export const FilterListReduction = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FilterListReduction);
+)(FilterMapRestaurant);

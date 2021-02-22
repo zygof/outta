@@ -8,14 +8,15 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { View, Button, Text } from "react-native-ui-lib";
-import { AppSearchBar } from "../../components/SearchBar";
+import AppSearchBar from "../../components/SearchBar";
 //import Modal from "react-native-modal";
 import { icons, SIZES, COLORS, FONTS } from "../../constants";
 import { restaurantDATA } from "../../data/restaurantDATA";
 import initialCurrentLocation from "../../data/locationDATA";
 import { RestaurantComponent } from "../../components/Restaurant";
+import { ListReduction } from "../ListReduction";
 
-export default function ListRestaurant(props) {
+const ListRestaurant = (props) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -32,37 +33,8 @@ export default function ListRestaurant(props) {
     })().finally(() => setLoading(false));
   }, []);
 
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
-  function renderFilters() {
-    return (
-      <View style={{ flex: 1 }}>
-        <Modal
-          isVisible={isModalVisible}
-          coverScreen={false}
-          onSwipeComplete={() => toggleModal}
-          onSwipeMove={(pourcentage) => {
-            pourcentage < 0.5002669595572035 ? toggleModal : null;
-          }}
-          swipeDirection="down"
-        >
-          <View style={{ flex: 1 }}>
-            <Text>Hello!</Text>
-            <Button title="Hide modal" onPress={this.toggleModal} />
-          </View>
-        </Modal>
-      </View>
-    );
-  }
-
   const renderHeader = () => {
-    return (
-      <View>
-        <AppSearchBar />
-      </View>
-    );
+    return <AppSearchBar {...props} />;
   };
 
   const renderListRestaurant = () => {
@@ -97,7 +69,7 @@ export default function ListRestaurant(props) {
       {renderListRestaurant()}
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -115,3 +87,5 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
 });
+
+export default ListRestaurant;

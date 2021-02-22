@@ -3,8 +3,10 @@ import { Image, TouchableOpacity, SafeAreaView } from "react-native";
 import { View, Text, Card, Button } from "react-native-ui-lib";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import { AppSearchBar } from "../../components/SearchBar";
+import AppSearchBar from "../../components/SearchBar";
 import { Foundation, MaterialCommunityIcons } from "@expo/vector-icons";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
 import { COLORS, FONTS, icons, SIZES, GOOGLE_API_KEY } from "../../constants";
 
@@ -14,7 +16,7 @@ import {
   destinationLocation,
 } from "../../data/locationDATA";
 
-const MapRestaurants = ({ route, navigation }) => {
+export const MapRestaurants = (props) => {
   const mapView = React.useRef();
 
   const [restaurant, setRestaurant] = React.useState(restaurantDATA[0]);
@@ -201,7 +203,7 @@ const MapRestaurants = ({ route, navigation }) => {
           right: 0,
         }}
       >
-        <AppSearchBar />
+        <AppSearchBar {...props} />
       </View>
     );
   }
@@ -268,4 +270,12 @@ const MapRestaurants = ({ route, navigation }) => {
   );
 };
 
-export default MapRestaurants;
+const mapStateToProps = (state) => ({
+  toggleModal: state.toggleModal,
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapRestaurants);
+
+//export default MapRestaurants;

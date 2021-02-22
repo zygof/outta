@@ -2,16 +2,41 @@ import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { View, Button, Text } from "react-native-ui-lib";
 import { Foundation } from "@expo/vector-icons";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import SearchBar from "react-native-dynamic-search-bar";
-import FilterListReduction from "../Modals";
-import { COLORS, FONTS, icons, SIZES } from "../../constants";
+import FilterMapRestaurant from "../../components/Modals/FilterMapRestaurant";
+import FilterListReduction from "../../components/Modals/FilterListReduction";
+import FilterListRestaurant from "../../components/Modals/FilterListRestaurant";
+import { COLORS, FONTS, SIZES } from "../../constants";
 
-export const AppSearchBar = () => {
-  const [isModalVisible, setModalVisible] = useState(false);
+const AppSearchBar = (props) => {
+  const { route } = props;
+  const [
+    isModalVisibleMapRestaurant,
+    setIsModalVisibleMapRestaurant,
+  ] = useState(false);
+  const [
+    isModalVisibleListRestaurant,
+    setIsModalVisibleListRestaurant,
+  ] = useState(false);
+  const [
+    isModalVisibleListReduction,
+    setIsModalVisibleListReduction,
+  ] = useState(false);
 
   const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-    console.log(isModalVisible);
+    switch (route.name) {
+      case "MapRestaurant":
+        setIsModalVisibleMapRestaurant(!isModalVisibleMapRestaurant);
+        break;
+      case "ListReduction":
+        setIsModalVisibleListReduction(!isModalVisibleListReduction);
+        break;
+      case "ListRestaurant":
+        setIsModalVisibleListRestaurant(!isModalVisibleListRestaurant);
+        break;
+    }
   };
 
   return (
@@ -23,11 +48,9 @@ export const AppSearchBar = () => {
         clearIconImageStyle={{ tintColor: COLORS.primary }}
         style={{ flex: 4 }}
       />
-      {/*<FilterListReduction isVisible={isModalVisible} />*/}
       <TouchableOpacity
         style={{
           borderRadius: 5,
-          backgroundColor: COLORS.primary,
           alignItems: "center",
           justifyContent: "center",
           marginLeft: 10,
@@ -35,8 +58,18 @@ export const AppSearchBar = () => {
         }}
         onPress={toggleModal}
       >
-        <Foundation name="filter" size={24} color={COLORS.white} />
+        <Foundation name="filter" size={30} color={COLORS.primary} />
       </TouchableOpacity>
+      <FilterMapRestaurant isModalVisible={isModalVisibleMapRestaurant} />
+      <FilterListReduction isModalVisible={isModalVisibleListReduction} />
+      <FilterListRestaurant isModalVisible={isModalVisibleListRestaurant} />
     </View>
   );
 };
+
+const mapStateToProps = (state) => ({
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(AppSearchBar);
+//export default AppSearchBar;

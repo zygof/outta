@@ -8,15 +8,14 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { View, Button, Text } from "react-native-ui-lib";
-import { AppSearchBar } from "../../components/SearchBar";
+import AppSearchBar from "../../components/SearchBar";
 //import Modal from "react-native-modal";
 import { icons, SIZES, COLORS, FONTS } from "../../constants";
 import { reductionDATA } from "../../data/reductionDATA";
 import initialCurrentLocation from "../../data/locationDATA";
 import { ReductionComponent } from "../../components/Reduction";
 
-export default function ListReduction(props) {
-  const [isModalVisible, setModalVisible] = useState(false);
+export const ListReduction = (props) => {
   const [reductions, setReductions] = useState([]);
   const [isLoading, setLoading] = useState(true);
   //const [dataBackup, setDataBackup] = useState([]);
@@ -32,35 +31,10 @@ export default function ListReduction(props) {
     })().finally(() => setLoading(false));
   }, []);
 
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
-  function renderFilters() {
-    return (
-      <View style={{ flex: 1 }}>
-        <Modal
-          isVisible={isModalVisible}
-          coverScreen={false}
-          onSwipeComplete={() => toggleModal}
-          onSwipeMove={(pourcentage) => {
-            pourcentage < 0.5002669595572035 ? toggleModal : null;
-          }}
-          swipeDirection="down"
-        >
-          <View style={{ flex: 1 }}>
-            <Text>Hello!</Text>
-            <Button title="Hide modal" onPress={this.toggleModal} />
-          </View>
-        </Modal>
-      </View>
-    );
-  }
-
   const renderHeader = () => {
     return (
       <View>
-        <AppSearchBar />
+        <AppSearchBar {...props} />
       </View>
     );
   };
@@ -97,7 +71,12 @@ export default function ListReduction(props) {
       {renderListReduction()}
     </SafeAreaView>
   );
-}
+};
+const mapStateToProps = (state) => ({
+  //toggleModal: state.toggleModal,
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 const styles = StyleSheet.create({
   container: {
@@ -115,3 +94,6 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
 });
+
+//export default connect(mapStateToProps, mapDispatchToProps)(ListReduction);
+export default ListReduction;
