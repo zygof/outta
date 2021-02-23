@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/es/integration/react";
 import Store from "./src/redux";
-import MenuNavigation from "./src/navigation/MenuNavigation";
+import MainNavigation from "./src/navigation/MainNavigation";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { configComponents, configFoundation } from "./src/config";
@@ -30,7 +30,7 @@ const App = (props) => {
     return (
       <Provider store={Store}>
         <PersistGate persistor={persistor}>
-          <MenuNavigation {...props} />
+          <MainNavigation {...props} />
         </PersistGate>
       </Provider>
     );
