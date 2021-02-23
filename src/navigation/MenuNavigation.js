@@ -12,7 +12,7 @@ import {
   MapRestaurants,
   ListReduction,
   ListRestaurant,
-  Profile,
+  Compte,
   ListFranchise,
 } from "../screens";
 
@@ -175,8 +175,8 @@ const MenuNavigation = () => {
       />
 
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="Compte"
+        component={Compte}
         options={{
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons

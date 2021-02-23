@@ -21,7 +21,7 @@ const user = {
   screen: "SCREENS.PROFIL",
 };
 
-const Profile = () => {
+const Profil = () => {
   const [value, onChangeText] = React.useState("Useless Placeholder");
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
@@ -103,4 +103,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Profil;

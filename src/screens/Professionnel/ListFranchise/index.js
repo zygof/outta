@@ -68,7 +68,7 @@ const ListFranchise = (props) => {
                   flex: 1,
                 }}
               >
-                Créer une franchise
+                Ajouter une franchise
               </Text>
               <MaterialCommunityIcons
                 name="close"
@@ -79,37 +79,39 @@ const ListFranchise = (props) => {
             </View>
 
             <View flex padding-15>
-              <Text text80L>Je suis dans le modal</Text>
+              <Text text80L>Je suis dans le modal "Ajouer franchise"</Text>
             </View>
           </SafeAreaView>
         </TouchableWithoutFeedback>
       </Modal>
 
-      {franchises.map((franchise, i) => (
-        <ListItem
-          key={i}
-          topDivider
-          containerStyle={{
-            backgroundColor: COLORS.white,
-          }}
-          onPress={() =>
-            navigation.navigate("Franchise", {
-              franchise: franchise,
-            })
-          }
-        >
-          <ListItem.Content style={{ marginLeft: 10 }}>
-            <ListItem.Title style={{ fontWeight: "500" }}>
-              {franchise.nom}
-            </ListItem.Title>
-          </ListItem.Content>
-          <MaterialCommunityIcons
-            name="chevron-right"
-            size={30}
-            color={COLORS.primary}
-          />
-        </ListItem>
-      ))}
+      <ScrollView style={{ height: "100%" }}>
+        {franchises.map((franchise, i) => (
+          <ListItem
+            key={i}
+            topDivider={i != 0 ? true : false}
+            containerStyle={{
+              backgroundColor: COLORS.white,
+            }}
+            onPress={() =>
+              navigation.navigate("Franchise", {
+                franchise: franchise,
+              })
+            }
+          >
+            <ListItem.Content style={{ marginLeft: 10 }}>
+              <ListItem.Title style={{ fontWeight: "500" }}>
+                {franchise.nom}
+              </ListItem.Title>
+            </ListItem.Content>
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={30}
+              color={COLORS.primary}
+            />
+          </ListItem>
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
