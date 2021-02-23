@@ -42,16 +42,14 @@ export const ListReduction = (props) => {
   const renderListReduction = () => {
     return (
       <View
-        style={{
-          maxHeight: SIZES.width * 1.67,
-        }}
+
       >
         {isLoading ? (
           <ActivityIndicator />
         ) : (
           <FlatList
-            style={{ paddingBottom: 1 }}
             data={reductions}
+            contentContainerStyle={{paddingBottom:SIZES.width * 0.4}}
             renderItem={(reduction) => (
               <ReductionComponent
                 {...props}

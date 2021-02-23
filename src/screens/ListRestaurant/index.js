@@ -48,7 +48,7 @@ const ListRestaurant = (props) => {
           <ActivityIndicator />
         ) : (
           <FlatList
-            style={{ paddingBottom: 1 }}
+            contentContainerStyle={{ paddingBottom: SIZES.width * 0.1 }}
             data={restaurants}
             renderItem={(restaurant) => (
               <RestaurantComponent
