@@ -39,16 +39,12 @@ const ListRestaurant = (props) => {
 
   const renderListRestaurant = () => {
     return (
-      <View
-        style={{
-          maxHeight: SIZES.width * 1.67,
-        }}
-      >
+      <View>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
           <FlatList
-            contentContainerStyle={{ paddingBottom: SIZES.width * 0.1 }}
+            contentContainerStyle={{ paddingBottom: SIZES.width * 0.4 }}
             data={restaurants}
             renderItem={(restaurant) => (
               <RestaurantComponent
