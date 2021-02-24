@@ -10,7 +10,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { View, Text, Card } from "react-native-ui-lib";
 import { ListItem, Icon, Avatar } from "react-native-elements";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Fontisto, MaterialCommunityIcons } from "@expo/vector-icons";
 /**
  * ? Local Imports
  */
@@ -64,36 +64,19 @@ const Franchise = (props) => {
             center
             padding-card
             onPress={() =>
-              navigation.navigate("Statistique", { franchise: franchise })
+              navigation.navigate("ReductionFranchise", {
+                franchise: franchise,
+              })
             }
           >
             <MaterialCommunityIcons
-              name="chart-line"
+              name="food-fork-drink"
               size={50}
               color={COLORS.primary}
               style={{ padding: 8 }}
             />
-            <Text text70M>Statistiques</Text>
+            <Text text70M>Reductions</Text>
           </Card>
-          <Card
-            flex
-            margin-5
-            center
-            padding-card
-            onPress={() =>
-              navigation.navigate("Article", { franchise: franchise })
-            }
-          >
-            <MaterialCommunityIcons
-              name="food-apple"
-              size={50}
-              color={COLORS.primary}
-              style={{ padding: 8 }}
-            />
-            <Text text70M>Articles</Text>
-          </Card>
-        </View>
-        <View row>
           <Card
             flex
             margin-5
@@ -105,13 +88,32 @@ const Franchise = (props) => {
               })
             }
           >
-            <MaterialCommunityIcons
-              name="food-fork-drink"
+            <Fontisto
+              name="shopping-store"
               size={50}
               color={COLORS.primary}
               style={{ padding: 8 }}
             />
             <Text text70M>Restaurants</Text>
+          </Card>
+        </View>
+        <View row>
+          <Card
+            flex
+            margin-5
+            center
+            padding-card
+            onPress={() =>
+              navigation.navigate("Statistique", { franchise: franchise })
+            }
+          >
+            <MaterialCommunityIcons
+              name="chart-line"
+              size={50}
+              color={COLORS.primary}
+              style={{ padding: 8 }}
+            />
+            <Text text70M>Statistiques</Text>
           </Card>
           <Card
             flex
@@ -131,6 +133,27 @@ const Franchise = (props) => {
               style={{ padding: 8 }}
             />
             <Text text70M>Réglages</Text>
+          </Card>
+        </View>
+        <View row>
+          <Card
+            flex
+            margin-5
+            center
+            padding-card
+            onPress={() =>
+              navigation.navigate("BadgeFranchise", {
+                franchise: franchise,
+              })
+            }
+          >
+            <MaterialCommunityIcons
+              name="star-circle"
+              size={50}
+              color={COLORS.primary}
+              style={{ padding: 8 }}
+            />
+            <Text text70M>Mes badges</Text>
           </Card>
         </View>
       </View>

@@ -6,9 +6,11 @@ import {
   TriggeringView,
 } from "react-native-image-header-scroll-view";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Carousel, { Pagination } from "react-native-snap-carousel";
 
 import { images, FONTS, SIZES, COLORS, icons } from "../../constants";
 import { restaurantDATA } from "../../data/restaurantDATA";
+import { ENTRIES1, ENTRIES2 } from "../../data/entries";
 
 const getRestaurantById = (id) => {
   return restaurantDATA.filter((r) => r.id === id)[0];
@@ -18,6 +20,7 @@ const Restaurant = (props) => {
   const { route } = props;
   const { restaurantId, currentLocation } = route.params;
   const [restaurant, setRestaurant] = useState(getRestaurantById(restaurantId));
+  const [entries, setEntries] = useState(ENTRIES1);
 
   useEffect(() => {
     (async function getRestaurant() {
@@ -58,7 +61,7 @@ const Restaurant = (props) => {
             </View>
             <View row centerV marginB-15>
               <MaterialCommunityIcons
-                name="ticket"
+                name="food-fork-drink"
                 size={20}
                 color={COLORS.success}
               />

@@ -11,20 +11,29 @@ import RNTextInput from "@freakycoder/react-native-text-input";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const user = {
-  prenom: "Nicolas",
-  nom: "MARRY",
-  telephone: "0692400066",
-  adresseEmail: "n.marry90@gmail.com",
+  prenom: "Prénom",
+  nom: "NOM",
+  telephone: "0202020202",
+  adresseEmail: "example@example.com",
   location: "89 Quai des Chartrons, 33300 Bordeaux",
   password: "123456789",
   avatar: images.avatar_4,
   screen: "SCREENS.PROFIL",
 };
 
-const Profil = () => {
+const Profil = (props) => {
+  const { navigation } = props;
   const [value, onChangeText] = React.useState("Useless Placeholder");
   return (
     <SafeAreaView style={{ alignItems: "center" }}>
+      <View style={{position:"absolute", top:50, left: 15}}>
+        <MaterialCommunityIcons
+          name="chevron-left"
+          onPress={() => navigation.goBack()}
+          size={30}
+          color={COLORS.primary}
+        />
+      </View>
       <View marginB-30 marginT-30 centerH>
         <Avatar source={user.avatar} size={80} />
       </View>

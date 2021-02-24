@@ -30,7 +30,7 @@ export const RestaurantComponent = (props) => {
           resizeMode="cover"
           style={{
             width: "40%",
-            height: 180,
+            height: 150,
             borderRadius: SIZES.radius * 0.2,
           }}
         />
@@ -48,7 +48,7 @@ export const RestaurantComponent = (props) => {
             {restaurant.franchise.categorie}
           </Text>
           <View row centerV marginB-2>
-          <MaterialCommunityIcons
+            <MaterialCommunityIcons
               name="star"
               size={20}
               color={COLORS.primary}
@@ -58,8 +58,8 @@ export const RestaurantComponent = (props) => {
             </Text>
           </View>
           <View row centerV marginB-2>
-          <MaterialCommunityIcons
-              name="ticket"
+            <MaterialCommunityIcons
+              name="food-fork-drink"
               size={20}
               color={COLORS.success}
             />
@@ -67,7 +67,7 @@ export const RestaurantComponent = (props) => {
               10 réductions en cours
             </Text>
           </View>
-          <View row centerV style={{position:"absolute", top:0, right:0}}>
+          <View row centerV style={{ position: "absolute", top: 0, right: 0 }}>
             <MaterialCommunityIcons
               name="timer"
               size={20}
@@ -83,8 +83,6 @@ export const RestaurantComponent = (props) => {
               marginLeft: 10,
             }}
           ></View>
-          
-
         </View>
       </View>
     </Card>

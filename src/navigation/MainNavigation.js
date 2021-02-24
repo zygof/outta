@@ -8,10 +8,11 @@ import {
   MapRestaurants,
   Franchise,
   Statistique,
-  Article,
+  ReductionFranchise,
   RestaurantFranchise,
   ReglageFranchise,
-  Profil
+  BadgeFranchise,
+  Profil,
 } from "../screens";
 import MenuNavigation from "./MenuNavigation";
 
@@ -24,13 +25,14 @@ const MainNavigation = (props) => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={"MapRestaurants"}
+        initialRouteName={"MenuNavigation"}
       >
         <Stack.Screen name="MenuNavigation" component={MenuNavigation} />
         <Stack.Screen name="Franchise" component={Franchise} />
         <Stack.Screen name="Statistique" component={Statistique} />
-        <Stack.Screen name="Article" component={Article} />
+        <Stack.Screen name="ReductionFranchise" component={ReductionFranchise} />
         <Stack.Screen name="ReglageFranchise" component={ReglageFranchise} />
+        <Stack.Screen name="BadgeFranchise" component={BadgeFranchise} />
         <Stack.Screen name="Profil" component={Profil} />
         <Stack.Screen
           name="RestaurantFranchise"

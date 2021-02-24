@@ -47,11 +47,13 @@ const ListRestaurant = (props) => {
             contentContainerStyle={{ paddingBottom: SIZES.width * 0.4 }}
             data={restaurants}
             renderItem={(restaurant) => (
-              <RestaurantComponent
-                {...props}
-                restaurantItem={restaurant}
-                currentLocation={currentLocation}
-              />
+              <View>
+                <RestaurantComponent
+                  {...props}
+                  restaurantItem={restaurant}
+                  currentLocation={currentLocation}
+                />
+              </View>
             )}
           />
         )}

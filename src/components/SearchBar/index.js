@@ -60,9 +60,9 @@ const AppSearchBar = (props) => {
       >
         <Foundation name="filter" size={30} color={COLORS.primary} />
       </TouchableOpacity>
-      <FilterMapRestaurant isModalVisible={isModalVisibleMapRestaurant} />
-      <FilterListReduction isModalVisible={isModalVisibleListReduction} />
-      <FilterListRestaurant isModalVisible={isModalVisibleListRestaurant} />
+      <FilterMapRestaurant isModalVisible={false} />
+      <FilterListReduction isModalVisible={false} />
+      <FilterListRestaurant isModalVisible={false} />
     </View>
   );
 };

@@ -7,9 +7,10 @@ import Profil from "./Profil";
 import ListFranchise from "./Professionnel/ListFranchise";
 import Franchise from "./Professionnel/Franchise";
 import Statistique from "./Professionnel/Statistique";
-import Article from "./Professionnel/Article";
+import ReductionFranchise from "./Professionnel/ReductionFranchise";
 import RestaurantFranchise from "./Professionnel/RestaurantFranchise";
 import ReglageFranchise from "./Professionnel/ReglageFranchise";
+import BadgeFranchise from "./Professionnel/BadgeFranchise";
 
 export {
   ListReduction,
@@ -21,7 +22,8 @@ export {
   ListFranchise,
   Franchise,
   Statistique,
-  Article,
+  ReductionFranchise,
   RestaurantFranchise,
   ReglageFranchise,
+  BadgeFranchise,
 };

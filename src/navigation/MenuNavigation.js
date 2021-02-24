@@ -6,7 +6,7 @@ import {
 } from "@react-navigation/bottom-tabs";
 import Svg, { Path } from "react-native-svg";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Fontisto, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import {
   MapRestaurants,
@@ -96,6 +96,7 @@ const CustomTabBar = (props) => {
 const MenuNavigation = () => {
   return (
     <Tab.Navigator
+    initialRouteName="MapRestaurant"
       tabBarOptions={{
         showLabel: false,
         style: {
@@ -110,6 +111,39 @@ const MenuNavigation = () => {
       }}
       tabBar={(props) => <CustomTabBar props={props} />}
     >
+
+
+      <Tab.Screen
+        name="ListReduction"
+        component={ListReduction}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name="food-fork-drink"
+              resizeMode="contain"
+              size={30}
+              color={focused ? COLORS.white : COLORS.primary}
+            />
+          ),
+          tabBarButton: (props) => <TabBarCustomButton {...props} />,
+        }}
+      />
+
+      <Tab.Screen
+        name="ListRestaurant"
+        component={ListRestaurant}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Fontisto
+              name="shopping-store"
+              resizeMode="contain"
+              size={24}
+              color={focused ? COLORS.white : COLORS.primary}
+            />
+          ),
+          tabBarButton: (props) => <TabBarCustomButton {...props} />,
+        }}
+      />
       <Tab.Screen
         name="MapRestaurant"
         component={MapRestaurants}
@@ -125,39 +159,6 @@ const MenuNavigation = () => {
           tabBarButton: (props) => <TabBarCustomButton {...props} />,
         }}
       />
-
-      <Tab.Screen
-        name="ListReduction"
-        component={ListReduction}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <MaterialCommunityIcons
-              name="ticket"
-              resizeMode="contain"
-              size={30}
-              color={focused ? COLORS.white : COLORS.primary}
-            />
-          ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
-        }}
-      />
-
-      <Tab.Screen
-        name="ListRestaurant"
-        component={ListRestaurant}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <MaterialCommunityIcons
-              name="food-fork-drink"
-              resizeMode="contain"
-              size={30}
-              color={focused ? COLORS.white : COLORS.primary}
-            />
-          ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
-        }}
-      />
-
       <Tab.Screen
         name="ListFranchise"
         component={ListFranchise}

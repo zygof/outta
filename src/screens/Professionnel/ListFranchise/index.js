@@ -33,7 +33,7 @@ const ListFranchise = (props) => {
     (async function getListFranchise() {
       //setfranchises(await franchiseMethod.getByUID("n.marry90@gmail.com"));
       setFranchises(franchiseDATA);
-    })().finally(() => setLoading(false));
+    })();
   }, []);
 
   return (
@@ -79,13 +79,13 @@ const ListFranchise = (props) => {
             </View>
 
             <View flex padding-15>
-              <Text text80L>Je suis dans le modal "Ajouer franchise"</Text>
+              <Text text80L>Je suis dans le modal "Ajouter franchise"</Text>
             </View>
           </SafeAreaView>
         </TouchableWithoutFeedback>
       </Modal>
 
-      <ScrollView style={{ height: "100%" }}>
+      <View style={{ height: "100%" }}>
         {franchises.map((franchise, i) => (
           <ListItem
             key={i}
@@ -111,7 +111,7 @@ const ListFranchise = (props) => {
             />
           </ListItem>
         ))}
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

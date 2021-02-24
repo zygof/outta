@@ -110,7 +110,7 @@ export const ReductionComponent = (props) => {
             position: "absolute",
             top: 0,
             height: 30,
-            width: SIZES.width * 0.4,
+            width: SIZES.width * 0.45,
             backgroundColor: colorJourRestant(reduction.jourRestant),
             borderTopLeftRadius: SIZES.radius * 0.2,
             borderBottomRightRadius: SIZES.radius * 0.5,
@@ -121,7 +121,7 @@ export const ReductionComponent = (props) => {
         >
           <Text text70M color={COLORS.white}>
             {reduction.jourRestant}{" "}
-            {reduction.jourRestant > 1 ? "jours restants" : "jour restant"}
+            {reduction.jourRestant > 1 ? "heures restantes" : "heure restante"}
           </Text>
         </View>
 
@@ -186,7 +186,7 @@ export const ReductionComponent = (props) => {
       </View>
       <View>
         <Text text85M>
-          Sodexo - Swile
+          Riz - Avocat - Saumon - Sésame
         </Text>
       </View>
     </Card>

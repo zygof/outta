@@ -24,7 +24,7 @@ import {
 
 //import { franchiseMethod } from "../../redux/franchise/actions";
 
-const Article = (props) => {
+const BadgeFranchise = (props) => {
   const { route, navigation } = props;
   const [franchise, setFranchise] = useState({});
 
@@ -57,7 +57,7 @@ const Article = (props) => {
         </View>
       </View>
       <View padding-15>
-        <Text text70M>Articles</Text>
+        <Text text70M>Badges</Text>
       </View>
     </SafeAreaView>
   );
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
 });
-export default Article;
+export default BadgeFranchise;

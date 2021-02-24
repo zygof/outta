@@ -2,11 +2,11 @@ import { images } from "../constants";
 
 export const reductionDATA = [
   {
-    name: "Bitcoin",
+    name: "Poke poulet",
     pourcentageReduction: 50,
     prixReduction: 4.99,
     dateExpiration: "28/11/2020",
-    jourRestant: 28,
+    jourRestant: 8,
     article: {
       libelle: "Coca",
       categorie: "boisson",
@@ -21,7 +21,7 @@ export const reductionDATA = [
     },
   },
   {
-    name: "Ethereum",
+    name: "Hamburger",
     pourcentageReduction: 50,
     prixReduction: 4.99,
     dateExpiration: "28/11/2020",
@@ -40,11 +40,11 @@ export const reductionDATA = [
     },
   },
   {
-    name: "Litecoin",
+    name: "Sushi",
     pourcentageReduction: 50,
     prixReduction: 9.25,
     dateExpiration: "28/11/2020",
-    jourRestant: 18,
+    jourRestant: 7,
     article: {
       libelle: "Pepsi",
       categorie: "boisson",
@@ -59,7 +59,7 @@ export const reductionDATA = [
     },
   },
   {
-    name: "Ripple",
+    name: "Steack 1KG",
     pourcentageReduction: 50,
     prixReduction: 4.99,
     dateExpiration: "28/11/2020",
@@ -78,7 +78,7 @@ export const reductionDATA = [
     },
   },
   {
-    name: "Dash",
+    name: "Pâte fraîche",
     pourcentageReduction: 50,
     prixReduction: 4.99,
     dateExpiration: "28/11/2020",
@@ -97,7 +97,7 @@ export const reductionDATA = [
     },
   },
   {
-    name: "Iota",
+    name: "Cheese Naan",
     pourcentageReduction: 50,
     prixReduction: 4.99,
     dateExpiration: "28/11/2020",
@@ -116,7 +116,7 @@ export const reductionDATA = [
     },
   },
   {
-    name: "Eos",
+    name: "Sandwich américain",
     pourcentageReduction: 50,
     prixReduction: 4.99,
     dateExpiration: "28/11/2020",
@@ -135,7 +135,7 @@ export const reductionDATA = [
     },
   },
   {
-    name: "Neo",
+    name: "Bouchon chinois",
     pourcentageReduction: 50,
     prixReduction: 4.99,
     dateExpiration: "28/11/2020",

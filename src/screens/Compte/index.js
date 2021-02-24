@@ -12,10 +12,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ListItem } from "react-native-elements";
 
 const user = {
-  prenom: "Nicolas",
-  nom: "MARRY",
-  telephone: "0692400066",
-  adresseEmail: "n.marry90@gmail.com",
+  prenom: "Prénom",
+  nom: "NOM",
+  telephone: "0202020202",
+  adresseEmail: "example@example.com",
   location: "89 Quai des Chartrons, 33300 Bordeaux",
   password: "123456789",
   avatar: images.avatar_4,
@@ -47,6 +47,31 @@ const Compte = (props) => {
       <View>
         <View>
           <ListItem
+            containerStyle={{
+              backgroundColor: COLORS.white,
+            }}
+            onPress={() => navigation.navigate("Compte")}
+          >
+            <ListItem.Content style={{ marginLeft: 10 }}>
+              <View row center>
+                <MaterialCommunityIcons
+                  name="ticket-confirmation"
+                  size={30}
+                  color={COLORS.primary}
+                />
+                <Text text70M marginL-10>
+                  Mes commandes
+                </Text>
+              </View>
+            </ListItem.Content>
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={30}
+              color={COLORS.primary}
+            />
+          </ListItem>
+          <ListItem
+            topDivider
             containerStyle={{
               backgroundColor: COLORS.white,
             }}
