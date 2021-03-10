@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, TextInput } from "react-native";
 import { Colors, Card, View, Button, Text } from "react-native-ui-lib";
 import {
   ImageHeaderScrollView,
   TriggeringView,
 } from "react-native-image-header-scroll-view";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Carousel, { Pagination } from "react-native-snap-carousel";
 
 import { images, FONTS, SIZES, COLORS, icons } from "../../constants";
 import { restaurantDATA } from "../../data/restaurantDATA";
 import { ENTRIES1, ENTRIES2 } from "../../data/entries";
+import CarouselCards from "../../components/Carousel";
 
 const getRestaurantById = (id) => {
   return restaurantDATA.filter((r) => r.id === id)[0];
@@ -40,11 +40,14 @@ const Restaurant = (props) => {
         maxOverlayOpacity={0.9}
         foregroundParallaxRatio={1}
       >
-        <TriggeringView style={{ height: 1000 }}>
+        <TriggeringView>
           <View padding-15>
             <Text text50M marginB-15>
               {restaurant.franchise.name} - {restaurant.adresse}
             </Text>
+            <View flex>
+
+            </View>
             <Text marginB-15>
               Petit-déjeuner et brunch - Américain - Desserts - Adapté aux
               allergies alimentaires
@@ -73,11 +76,11 @@ const Restaurant = (props) => {
           <View
             style={{
               borderBottomColor: Colors.primaryColor,
-              borderBottomWidth: 0.2,
+              borderBottomWidth: 0.6,
             }}
           />
           <View padding-15>
-            <Text text65M>Informations de l'étabilssements</Text>
+            <Text text65M>Informations de l'étabilssement</Text>
             <Card
               height={100}
               center
@@ -115,6 +118,19 @@ const Restaurant = (props) => {
             style={{
               borderBottomColor: Colors.primaryColor,
               borderBottomWidth: 0.6,
+            }}
+          />
+          <View padding-15>
+            <Text text65M style={{ paddingBottom: 15 }}>
+              Photos de l'étabilssement
+            </Text>
+            <CarouselCards />
+          </View>
+
+          <View
+            style={{
+              borderBottomColor: Colors.primaryColor,
+              borderBottomWidth: 0.8,
             }}
           />
           <View padding-15>

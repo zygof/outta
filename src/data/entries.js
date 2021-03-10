@@ -1,7 +1,7 @@
 export const ENTRIES1 = [
     {
-        title: 'Beautiful and dramatic Antelope Canyon',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+        title: 'Antelope Canyon',
+        subtitle: 'Lorem ipsum dolor sit amet',
         illustration: 'https://i.imgur.com/UYiroysl.jpg'
     },
     {
@@ -16,11 +16,11 @@ export const ENTRIES1 = [
     },
     {
         title: 'Acrocorinth, Greece',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+        subtitle: 'Lorem ipsum dolor sit amet',
         illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
     },
     {
-        title: 'The lone tree, majestic landscape of New Zealand',
+        title: 'New Zealand',
         subtitle: 'Lorem ipsum dolor sit amet',
         illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
     },

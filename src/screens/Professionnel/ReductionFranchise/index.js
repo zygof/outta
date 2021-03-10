@@ -57,7 +57,7 @@ const ReductionFranchise = (props) => {
         </View>
       </View>
       <View padding-15>
-        <Text text70M>Mes réductions</Text>
+        <Text text70M>Réductions</Text>
       </View>
     </SafeAreaView>
   );
