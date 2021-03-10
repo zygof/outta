@@ -104,7 +104,15 @@ const Restaurant = (props) => {
               </Text>
             </View>
             <Button backgroundColor={COLORS.primary} borderRadius={5}>
+              <View row center>
+              <MaterialCommunityIcons
+                name="phone"
+                size={20}
+                color={COLORS.white}
+                style={{marginRight:5}}
+              />
               <Text white text70M>Réserver au {restaurant.phone}</Text>
+              </View>
             </Button>
           </View>
           <View
