@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, StyleSheet, TextInput } from "react-native";
+import { Image, StyleSheet, TextInput, FlatList, ActivityIndicator } from "react-native";
 import { Colors, Card, View, Button, Text } from "react-native-ui-lib";
 import {
   ImageHeaderScrollView,
@@ -11,6 +11,8 @@ import { images, FONTS, SIZES, COLORS, icons } from "../../constants";
 import { restaurantDATA } from "../../data/restaurantDATA";
 import { ENTRIES1, ENTRIES2 } from "../../data/entries";
 import CarouselCards from "../../components/Carousel";
+import { reductionDATA } from "../../data/reductionDATA";
+import { ReductionComponent } from "../../components/Reduction";
 
 const getRestaurantById = (id) => {
   return restaurantDATA.filter((r) => r.id === id)[0];
@@ -20,13 +22,42 @@ const Restaurant = (props) => {
   const { route } = props;
   const { restaurantId, currentLocation } = route.params;
   const [restaurant, setRestaurant] = useState(getRestaurantById(restaurantId));
+  const [reductions, setReductions] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const [entries, setEntries] = useState(ENTRIES1);
 
   useEffect(() => {
     (async function getRestaurant() {
       //let restaurant = await restaurantMethod.getById(restaurantId);
     })();
+    (async function getListReduction() {
+      //let listReduction = await reductionMethod.getAll();
+      let listReduction = reductionDATA;
+      setReductions(listReduction);
+    })().finally(() => setLoading(false));
   }, []);
+
+  const renderListReduction = () => {
+    return (
+      <View>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <FlatList
+            data={reductions}
+            contentContainerStyle={{paddingBottom:SIZES.width * 0.4}}
+            renderItem={(reduction) => (
+              <ReductionComponent
+                {...props}
+                reductionItem={reduction}
+                currentLocation={"currentLocation"}
+              />
+            )}
+          />
+        )}
+      </View>
+    );
+  };
 
   return (
     <View flex>
@@ -72,6 +103,9 @@ const Restaurant = (props) => {
                 10 réductions en cours
               </Text>
             </View>
+            <Button backgroundColor={COLORS.primary} borderRadius={5}>
+              <Text white text70M>Réserver au {restaurant.phone}</Text>
+            </Button>
           </View>
           <View
             style={{
@@ -136,6 +170,7 @@ const Restaurant = (props) => {
           <View padding-15>
             <Text text65M>Liste des réductions disponibles</Text>
           </View>
+          {renderListReduction()}
         </TriggeringView>
       </ImageHeaderScrollView>
     </View>

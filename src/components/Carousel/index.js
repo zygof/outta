@@ -21,19 +21,24 @@ const CarouselCards = () => {
     carouselRef.current.snapToNext();
   };
 
+  const goBack = () => {
+    carouselRef.current.snapToBack();
+  };
+
   return (
-    <View center>
+    <View center marginB-20>
       <Carousel
         ref={carouselRef}
         sliderWidth={screenWidth}
         sliderHeight={screenWidth}
-        itemWidth={screenWidth - 60}
+        itemWidth={screenWidth - 90}
         data={entries}
         renderItem={CarouselCardItem}
         hasParallaxImages={true}
         onSnapToItem={(index) => setIndex(index) }
       />
       <Pagination
+      containerStyle={{ position:"absolute", bottom:- 45}}
         dotsLength={entries.length}
         activeDotIndex={index}
         carouselRef={isCarousel}

@@ -19,7 +19,7 @@ const CarouselCardItem = ({ item, index }, parallaxProps) => {
         {...parallaxProps}
       />
       <Text text70M style={styles.text}>
-        {item.title}
+        {item.context}
       </Text>
     </Card>
   );
@@ -27,8 +27,8 @@ const CarouselCardItem = ({ item, index }, parallaxProps) => {
 
 const styles = StyleSheet.create({
   item: {
-    width: screenWidth - 60,
-    height: screenWidth - 60,
+    width: screenWidth - 90,
+    height: screenWidth - 90,
   },
   text: {
     position: "absolute",
