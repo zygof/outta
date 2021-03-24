@@ -6,10 +6,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Colors, View, Text, Avatar, Button } from "react-native-ui-lib";
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import { images, FONTS, SIZES, COLORS, icons } from "../../constants";
 import RNTextInput from "@freakycoder/react-native-text-input";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ListItem } from "react-native-elements";
+import {logout} from '../../redux/user/actions';
 
 const user = {
   prenom: "Prénom",
@@ -23,7 +26,7 @@ const user = {
 };
 
 const Compte = (props) => {
-  const { navigation } = props;
+  const { navigation, logout } = props;
   const [value, onChangeText] = React.useState("Useless Placeholder");
   return (
     <SafeAreaView>
@@ -172,10 +175,27 @@ const Compte = (props) => {
               color={COLORS.primary}
             />
           </ListItem>
+          <View center>
+            <Text
+              text70M
+              margin-30
+              color={COLORS.primary}
+              onPress={() => logout ()}
+            >
+              Déconnecter
+            </Text>
+          </View>
         </View>
       </View>
     </SafeAreaView>
   );
 };
 
-export default Compte;
+const mapStateToProps = state => ({
+  userReducer: state.userReducer,
+});
+const mapDispatchToProps = dispatch =>
+  bindActionCreators ({logout: () => dispatch (logout ())}, dispatch);
+
+export default connect (mapStateToProps, mapDispatchToProps) (Compte);
+

@@ -1,5 +1,6 @@
 import LoginScreen from "./Login";
-import SignUpScreen from "./SignUpScreen";
-import SplashScreen from "./SplashScreen";
+import RegisterScreen from "./Register";
+import RegisterEmailScreen from "./Register/RegisterEmail";
+import SplashScreen from "./Splash";
 
-export { LoginScreen, SignUpScreen, SplashScreen };
+export { LoginScreen, RegisterScreen, RegisterEmailScreen, SplashScreen };

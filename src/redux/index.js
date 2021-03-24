@@ -1,24 +1,22 @@
-
 import { AsyncStorage} from "react-native";
-import { createStore, applyMiddleware } from "redux";
+import {createStore, applyMiddleware} from 'redux';
+import {persistCombineReducers} from 'redux-persist';
 import { composeWithDevTools } from "redux-devtools-extension";
-import { persistCombineReducers } from "redux-persist";
 
 import thunk from "redux-thunk";
-import counter from './counter/reducer';
+import userReducer from './user/reducer';
 
 const reducers = {
-    counter
+  userReducer
 };
 
 export default createStore(
-    persistCombineReducers(
-      {
-        key: "root",
-        storage: AsyncStorage,
-      },
-      reducers
-    ),
-    composeWithDevTools(applyMiddleware(thunk))
-  );
-  
+  persistCombineReducers(
+    {
+      key: "root",
+      storage: AsyncStorage,
+    },
+    reducers
+  ),
+  composeWithDevTools(applyMiddleware(thunk))
+);

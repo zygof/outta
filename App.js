@@ -8,7 +8,7 @@ import MainNavigation from "./src/navigation/MainNavigation";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { configComponents, configFoundation } from "./src/config";
-//import { ThemeProvider } from 'react-native-elements';
+
 console.disableYellowBox = true;
 const getFonts = () =>
   Font.loadAsync({
@@ -30,7 +30,7 @@ const App = (props) => {
     return (
       <Provider store={Store}>
         <PersistGate persistor={persistor}>
-          <MainNavigation {...props} />
+          <MainNavigation />
         </PersistGate>
       </Provider>
     );

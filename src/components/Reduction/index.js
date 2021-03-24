@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import styles from "./ReductionStyles";
-import { SCREENS } from "../../services/constants";
+import { SCREENS } from "../../constants";
 import { icons, SIZES, COLORS, FONTS } from "../../constants";
 import { View, Text, Card, Button } from "react-native-ui-lib";
 

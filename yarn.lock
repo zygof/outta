@@ -2149,6 +2149,13 @@
     native-url "^0.2.6"
     schema-utils "^2.6.5"
 
+"@react-native-community/async-storage@~1.12.0":
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.12.1.tgz#25f821b4f6b13abe005ad67e47c6f1cee9f27b24"
+  integrity sha512-70WGaH3PKYASi4BThuEEKMkyAgE9k7VytBqmgPRx3MzJx9/MkspwqJGmn3QLCgHLIFUgF1pit2mWICbRJ3T3lg==
+  dependencies:
+    deep-assign "^3.0.0"
+
 "@react-native-community/blur@^3.6.0":
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/blur/-/blur-3.6.0.tgz#31c9e0f2770519c9b5c4f99418f192246f0d4db8"
@@ -12267,6 +12274,11 @@ react-native-snap-carousel@^3.9.1:
   dependencies:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"
+
+react-native-social-buttons@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-social-buttons/-/react-native-social-buttons-1.2.0.tgz#70500b3506f3fe565bf500af59485dfdcc7ac450"
+  integrity sha512-/yLVsCflrBdVBjHhKXmPCrHCyX2FMEZcpO2EMlMDvSBopu8WRJBxaXLXkiDeJZC6EMRmwRM1fn9uEnmkMXshMg==
 
 react-native-spinkit@^1.5.1:
   version "1.5.1"

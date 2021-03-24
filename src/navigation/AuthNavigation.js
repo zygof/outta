@@ -1,38 +1,57 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {SCREENS} from '../constants';
 
-import { LoginScreen, SignUpScreen, SplashScreen } from "../screens/Auth";
+import {
+  LoginScreen,
+  RegisterScreen,
+  RegisterEmailScreen,
+  SplashScreen,
+} from '../screens/Auth';
 
-const StackAuth = createStackNavigator();
+const StackAuth = createStackNavigator ();
 
-const AuthNavigation = (props) => {
+const AuthNavigation = props => {
   return (
     <StackAuth.Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={"LoginScreen"}
+      initialRouteName={SCREENS.SPLACH}
     >
       <StackAuth.Screen
-        options={{ headerShown: false }}
-        name={"LoginScreen"}
+        options={{headerShown: false}}
+        name={SCREENS.SPLACH}
+        component={SplashScreen}
+      />
+
+      <StackAuth.Screen
+        options={{headerShown: false}}
+        name={SCREENS.LOGIN}
         component={LoginScreen}
       />
 
       <StackAuth.Screen
-        options={{ headerShown: false }}
-        name={"SignUpScreen"}
-        component={SignUpScreen}
+        options={{headerShown: false}}
+        name={SCREENS.REGISTER}
+        component={RegisterScreen}
       />
 
       <StackAuth.Screen
-        options={{ headerShown: false }}
-        name={"SplashScreen"}
-        component={SplashScreen}
+        options={{headerShown: false}}
+        name={SCREENS.REGISTER_EMAIL}
+        component={RegisterEmailScreen}
       />
     </StackAuth.Navigator>
   );
 };
 
-export default AuthNavigation;
+const mapStateToProps = state => ({
+  userRecucer: state.userReducer,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators ({}, dispatch);
+
+export default connect (mapStateToProps, mapDispatchToProps) (AuthNavigation);

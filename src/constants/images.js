@@ -1,4 +1,5 @@
 
+const logo = require("../../assets/logo.png");
 const avatar_1 = require("../../assets/images/avatar-1.jpg");
 const avatar_2 = require("../../assets/images/avatar-2.jpg");
 const avatar_3 = require("../../assets/images/avatar-3.jpg");
@@ -31,6 +32,7 @@ const tomato_pasta = require("../../assets/images/tomato-pasta.jpg");
 const stopwatch = require("../../assets/images/stopwatch.webp")
 
 export default {
+    logo,
     stopwatch,
     avatar_1,
     avatar_2,
