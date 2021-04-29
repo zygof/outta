@@ -1,12 +1,11 @@
 import userActions from './constants';
+import {UserModel} from '../../models';
 
 const initialState = {
-  user: {
-    email: '',
-    password: ''
-  },
+  user: UserModel,
   userToken: null,
-  isLoggedIn: false
+  isLoggedIn: false,
+  errors: null,
 };
 
 export default function userReducer (state = initialState, action) {
@@ -17,19 +16,17 @@ export default function userReducer (state = initialState, action) {
         user: action.payload.user,
         userToken: action.payload.userToken,
         isLoggedIn: action.payload.isLoggedIn,
-        formSubmitted: false, // after update user formsubmition reset
+        errors: action.payload.errors,
       };
     case userActions.ADD_USER:
       return {
         ...state,
         user: action.payload.user,
-        formSubmitted: false, // after update user formsubmition reset
       };
     case userActions.UPDATE_USER:
       return {
         ...state,
         user: action.payload.user,
-        formSubmitted: false, // after update user formsubmition reset
       };
     case userActions.UPDATE_PROFILE_PICTURE:
       return {
@@ -42,7 +39,6 @@ export default function userReducer (state = initialState, action) {
     case userActions.FORM_SUBMITION_STATUS:
       return {
         ...state,
-        formSubmitted: action.payload.status,
       };
     default:
       return state;

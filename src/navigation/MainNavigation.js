@@ -32,8 +32,8 @@ const MainNavigation = props => {
     }) ();
   }, []);
 
-  const checkUserTokenStore = () => {
-    storeManager.getItem ('userToken').then (value => {
+  const checkUserTokenStore = async () => {
+    await storeManager.getItem ('userToken').then (value => {
       setUserTokenStore (value);
     });
   };

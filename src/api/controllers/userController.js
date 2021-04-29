@@ -1,7 +1,7 @@
 import {axiosManager} from '../../services';
 import {apiCredentials} from '../apiCredentials';
 
-const endpoint = 'users/';
+const endpoint = apiCredentials.url + '/users/';
 const userController = {
   getUser: (email, access_token) => {
     const config = {
@@ -9,7 +9,7 @@ const userController = {
         Authorization: `Bearer ${access_token}`,
       },
     };
-    return axiosManager.get (apiCredentials.url, endpoint + email, config);
+    return axiosManager.get (endpoint + email, config);
   },
   createUser: (data, access_token) => {
     const config = {
@@ -17,7 +17,7 @@ const userController = {
         Authorization: `Bearer ${access_token}`,
       },
     };
-    return axiosManager.post (apiCredentials.url, endpoint, data, config);
+    return axiosManager.post (endpoint, data, config);
   },
 };
 

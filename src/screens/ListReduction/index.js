@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -6,30 +6,36 @@ import {
   FlatList,
   StyleSheet,
   ActivityIndicator,
-} from "react-native";
-import { View, Button, Text } from "react-native-ui-lib";
-import AppSearchBar from "../../components/SearchBar";
+} from 'react-native';
+import {View, Button, Text} from 'react-native-ui-lib';
+import AppSearchBar from '../../components/SearchBar';
 //import Modal from "react-native-modal";
-import { icons, SIZES, COLORS, FONTS } from "../../constants";
-import { reductionDATA } from "../../data/reductionDATA";
-import initialCurrentLocation from "../../data/locationDATA";
-import { ReductionComponent } from "../../components/Reduction";
+import {icons, SIZES, COLORS, FONTS} from '../../constants';
+import initialCurrentLocation from '../../data/locationDATA';
+import {ReductionComponent} from '../../components/Reduction';
+import {getAllDiscounts} from '../../redux/discount/actions';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-export const ListReduction = (props) => {
-  const [reductions, setReductions] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-  //const [dataBackup, setDataBackup] = useState([]);
-  const [currentLocation, setCurrentLocation] = React.useState({});
+export const ListReduction = props => {
+  const {discountReducer, userReducer, getAllDiscounts} = props;
+  const [discounts, setDiscounts] = useState ([]);
+  const [isLoading, setLoading] = useState (true);
+  const [currentLocation, setCurrentLocation] = React.useState ({});
 
-  useEffect(() => {
-    (async function getListReduction() {
-      //let listReduction = await reductionMethod.getAll();
-      let listReduction = reductionDATA;
-      setReductions(listReduction);
-      //setDataBackup(listReduction);
-      setCurrentLocation(initialCurrentLocation);
-    })().finally(() => setLoading(false));
+  useEffect (() => {
+    (async function getListReduction () {
+      await getDiscounts ();
+      setCurrentLocation (initialCurrentLocation);
+    }) ().finally (() => {
+      setLoading (false);
+      setDiscounts (discountReducer.discounts);
+    });
   }, []);
+
+  const getDiscounts = async () => {
+    await getAllDiscounts ([], userReducer.userToken);
+  };
 
   const renderHeader = () => {
     return (
@@ -41,48 +47,40 @@ export const ListReduction = (props) => {
 
   const renderListReduction = () => {
     return (
-      <View
-
-      >
-        {isLoading ? (
-          <ActivityIndicator />
-        ) : (
-          <FlatList
-            data={reductions}
-            contentContainerStyle={{paddingBottom:SIZES.width * 0.4}}
-            renderItem={(reduction) => (
-              <ReductionComponent
-                {...props}
-                reductionItem={reduction}
-                currentLocation={currentLocation}
-              />
-            )}
-          />
-        )}
+      <View>
+        {isLoading
+          ? <ActivityIndicator />
+          : <FlatList
+              onMomentumScrollBegin={() => getDiscounts ()}
+              data={discounts}
+              contentContainerStyle={{paddingBottom: SIZES.width * 0.4}}
+              renderItem={discount => (
+                <ReductionComponent
+                  {...props}
+                  discountItem={discount}
+                  currentLocation={currentLocation}
+                />
+              )}
+            />}
       </View>
     );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      {renderHeader()}
-      {renderListReduction()}
+      {renderHeader ()}
+      {renderListReduction ()}
     </SafeAreaView>
   );
 };
-const mapStateToProps = (state) => ({
-  //toggleModal: state.toggleModal,
-});
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
-
-const styles = StyleSheet.create({
+const styles = StyleSheet.create ({
   container: {
     flex: 1,
     backgroundColor: COLORS.lightGray,
   },
   shadow: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 3,
@@ -93,5 +91,18 @@ const styles = StyleSheet.create({
   },
 });
 
-//export default connect(mapStateToProps, mapDispatchToProps)(ListReduction);
-export default ListReduction;
+const mapStateToProps = state => ({
+  userReducer: state.userReducer,
+  discountReducer: state.discountReducer,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators (
+    {
+      getAllDiscounts: (filters, userToken) =>
+        dispatch (getAllDiscounts (filters, userToken)),
+    },
+    dispatch
+  );
+
+export default connect (mapStateToProps, mapDispatchToProps) (ListReduction);

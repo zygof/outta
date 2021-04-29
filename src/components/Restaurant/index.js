@@ -1,15 +1,13 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, Image } from "react-native";
-import styles from "./RestaurantStyles";
-import { SCREENS } from "../../constants";
-import { icons, SIZES, COLORS, FONTS } from "../../constants";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { View, Text, Card, Button } from "react-native-ui-lib";
+import React from 'react';
+import {StyleSheet, TouchableOpacity, Image} from 'react-native';
+import styles from './RestaurantStyles';
+import {SCREENS} from '../../constants';
+import {icons, SIZES, COLORS, FONTS} from '../../constants';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
+import {View, Text, Card, Button} from 'react-native-ui-lib';
 
-import { restaurantDATA } from "../../data/restaurantDATA";
-
-export const RestaurantComponent = (props) => {
-  const { restaurantItem, navigation, currentLocation } = props;
+export const RestaurantComponent = props => {
+  const {restaurantItem, navigation, currentLocation} = props;
   let restaurant = restaurantItem.item;
   return (
     <Card
@@ -18,18 +16,17 @@ export const RestaurantComponent = (props) => {
       paddingB-15
       borderRadius={5}
       onPress={() =>
-        navigation.navigate(SCREENS.RESTAURANT, {
-          restaurantId: restaurant.id,
+        navigation.navigate (SCREENS.RESTAURANT, {
+          restaurantId: restaurant._id,
           currentLocation,
-        })
-      }
+        })}
     >
       <View row>
         <Image
-          source={restaurant.franchise.mainPhoto}
+          source={{uri: restaurant.franchise.logo}}
           resizeMode="cover"
           style={{
-            width: "40%",
+            width: '40%',
             height: 150,
             borderRadius: SIZES.radius * 0.2,
           }}
@@ -38,14 +35,14 @@ export const RestaurantComponent = (props) => {
           flex
           justifyContent="center"
           style={{
-            alignItems: "center",
+            alignItems: 'center',
           }}
         >
           <Text text50M marginB-2>
             {restaurant.franchise.name}
           </Text>
           <Text text70R marginB-2>
-            {restaurant.franchise.categorie}
+            {restaurant.franchise.category.name}
           </Text>
           <View row centerV marginB-2>
             <MaterialCommunityIcons
@@ -54,7 +51,7 @@ export const RestaurantComponent = (props) => {
               color={COLORS.primary}
             />
             <Text text80M color={COLORS.primary}>
-              {restaurant.ratings} Excellent ({restaurant.reviews}+)
+              {restaurant.rating.label}
             </Text>
           </View>
           <View row centerV marginB-2>
@@ -67,7 +64,7 @@ export const RestaurantComponent = (props) => {
               10 réductions en cours
             </Text>
           </View>
-          <View row centerV style={{ position: "absolute", top: 0, right: 0 }}>
+          <View row centerV style={{position: 'absolute', top: 0, right: 0}}>
             <MaterialCommunityIcons
               name="timer"
               size={20}
@@ -79,17 +76,17 @@ export const RestaurantComponent = (props) => {
           </View>
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               marginLeft: 10,
             }}
-          ></View>
+          />
         </View>
       </View>
     </Card>
   );
 };
 
-const stylesHere = StyleSheet.create({
+const stylesHere = StyleSheet.create ({
   profileImgContainer: {
     marginRight: 8,
     height: 60,

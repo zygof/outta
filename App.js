@@ -15,6 +15,12 @@ const getFonts = () =>
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
     "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+    "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.otf"),
+    "Montserrat-Black": require("./assets/fonts/Montserrat-Black.otf"),
+    "Montserrat-Medium": require("./assets/fonts/Montserrat-Medium.otf"),
+    "Montserrat-SemiBold": require("./assets/fonts/Montserrat-SemiBold.otf"),
+    "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.otf"),
+    "Montserrat-Thin": require("./assets/fonts/Montserrat-Thin.otf"),
   });
 
 const config = () => {

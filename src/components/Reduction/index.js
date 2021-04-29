@@ -1,28 +1,38 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, Image } from "react-native";
-import styles from "./ReductionStyles";
-import { SCREENS } from "../../constants";
-import { icons, SIZES, COLORS, FONTS } from "../../constants";
-import { View, Text, Card, Button } from "react-native-ui-lib";
+import React from 'react';
+import {StyleSheet, TouchableOpacity, Image} from 'react-native';
+import styles from './ReductionStyles';
+import {SCREENS} from '../../constants';
+import {icons, SIZES, COLORS, FONTS} from '../../constants';
+import {View, Text, Card, Button} from 'react-native-ui-lib';
 
-import { restaurantDATA } from "../../data/restaurantDATA";
+export const ReductionComponent = props => {
+  const {discountItem, navigation, currentLocation} = props;
+  let discount = discountItem.item;
 
-export const ReductionComponent = (props) => {
-  const { reductionItem, navigation, currentLocation } = props;
-  let reduction = reductionItem.item;
-  const getRestaurantById = (id) => {
-    return restaurantDATA.filter((r) => r.id === id)[0];
+  const colorJourRestant = () => {
+    const dayDuration = discount.timeRemaining.dayDuration;
+    switch (true) {
+      case dayDuration <= 0:
+        return COLORS.secondary;
+      case dayDuration <= 3:
+        return COLORS.danger;
+      case dayDuration <= 7:
+        return COLORS.warning;
+      case dayDuration > 7:
+        return COLORS.success;
+      default:
+        ('');
+    }
   };
 
-  const colorJourRestant = (jourRestant) => {
-    if (jourRestant <= 3) {
-      return COLORS.danger;
-    } else if (jourRestant <= 7) {
-      return COLORS.warning;
-    } else if (jourRestant > 7) {
-      return COLORS.success;
-    }
-    return "";
+  const ingredientLabel = () => {
+    let ingredientLabel = '';
+    discount.food.ingredients.map (
+      ingredient =>
+        (ingredientLabel +=
+          (ingredientLabel != '' ? ' - ' : '') + ingredient.name)
+    );
+    return ingredientLabel;
   };
 
   return (
@@ -31,20 +41,20 @@ export const ReductionComponent = (props) => {
       padding-10
       paddingB-15
       borderRadius={0}
-      onPress={() =>
+      /*onPress={() =>
         navigation.navigate(SCREENS.RESTAURANT, {
-          restaurantId: reduction.restaurant.id,
+          restaurantId: discount.restaurant.id,
           currentLocation,
         })
-      }
+      }*/
     >
       {/* Image */}
       <View marginB-10>
         <Image
-          source={reduction.article.image}
+          source={{uri: discount.food.images[0].uri}}
           resizeMode="cover"
           style={{
-            width: "100%",
+            width: '100%',
             height: 180,
             borderRadius: SIZES.radius * 0.2,
           }}
@@ -52,39 +62,39 @@ export const ReductionComponent = (props) => {
 
         <View
           style={{
-            position: "absolute",
+            position: 'absolute',
             bottom: 0,
             height: 35,
             width: SIZES.width * 0.2,
             backgroundColor: COLORS.primary,
             borderTopRightRadius: SIZES.radius * 0.5,
             borderBottomLeftRadius: SIZES.radius * 0.2,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
             ...styles.shadow,
           }}
         >
           <Text text65M color={COLORS.white}>
-            -{reduction.pourcentageReduction} %
+            -{discount.discountPct} %
           </Text>
         </View>
 
         <View
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             right: 0,
             height: 35,
             flex: 1,
-            flexDirection: "row",
+            flexDirection: 'row',
             width: SIZES.width * 0.37,
             backgroundColor: COLORS.primary,
             borderTopRightRadius: SIZES.radius * 0.2,
             borderBottomLeftRadius: SIZES.radius * 0.5,
             borderColor: COLORS.primary,
             borderWidth: 2,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
             ...styles.shadow,
           }}
         >
@@ -92,42 +102,44 @@ export const ReductionComponent = (props) => {
             text80M
             color={COLORS.danger}
             style={{
-              textDecorationLine: "line-through",
-              textDecorationStyle: "solid",
+              textDecorationLine: 'line-through',
+              textDecorationStyle: 'solid',
               marginRight: 5,
               color: COLORS.danger,
             }}
           >
-            {reduction.article.prix}€
+            {discount.food.price.value}€
           </Text>
           <Text text65M color={COLORS.white}>
-            {reduction.prixReduction}€
+            {discount.priceWithDiscount}€
           </Text>
         </View>
 
         <View
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             height: 30,
             width: SIZES.width * 0.45,
-            backgroundColor: colorJourRestant(reduction.jourRestant),
+            backgroundColor: colorJourRestant (),
             borderTopLeftRadius: SIZES.radius * 0.2,
             borderBottomRightRadius: SIZES.radius * 0.5,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
             ...styles.shadow,
           }}
         >
           <Text text70M color={COLORS.white}>
-            {reduction.jourRestant}{" "}
-            {reduction.jourRestant > 1 ? "heures restantes" : "heure restante"}
+            {discount.timeRemaining.dayDuration}{' '}
+            {discount.timeRemaining.dayDuration > 1
+              ? 'heures restantes'
+              : 'heure restante'}
           </Text>
         </View>
 
         <View
           style={{
-            position: "absolute",
+            position: 'absolute',
             bottom: 0,
             right: 0,
             height: 35,
@@ -137,22 +149,23 @@ export const ReductionComponent = (props) => {
             borderTopLeftRadius: SIZES.radius * 0.5,
             borderColor: COLORS.primary,
             borderWidth: 2,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
             ...styles.shadow,
           }}
         >
-          <Text text70H >20 - 30 min</Text>
+          <Text text70H>20 - 30 min</Text>
         </View>
       </View>
 
       {/* Restaurant Info */}
-      <Text text70M>{reduction.name}</Text>
+      <Text text70M>{discount.food.name}</Text>
 
-      <View row
+      <View
+        row
         style={{
           marginTop: SIZES.padding * 0.2,
-          alignItems: "center",
+          alignItems: 'center',
         }}
       >
         {/* Rating */}
@@ -166,34 +179,33 @@ export const ReductionComponent = (props) => {
           }}
         />
         <Text text85M color={COLORS.primary}>
-          {getRestaurantById(reduction.restaurant.id).ratings} Excellent (
-          {getRestaurantById(reduction.restaurant.id).reviews}+)
+          {discount.food.franchise.rating.label}
         </Text>
         <Text text85M>
-          {" "}
-          -{" "}
+          {' '}
+          -{' '}
         </Text>
         <Text text85M>
-          {reduction.restaurant.franchise.categorie}
+          {discount.food.franchise.category.name}
         </Text>
         {/* Categories */}
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
             marginLeft: 10,
           }}
-        ></View>
+        />
       </View>
       <View>
         <Text text85M>
-          Riz - Avocat - Saumon - Sésame
+          {ingredientLabel ()}
         </Text>
       </View>
     </Card>
   );
 };
 
-const stylesHere = StyleSheet.create({
+const stylesHere = StyleSheet.create ({
   profileImgContainer: {
     marginRight: 8,
     height: 60,

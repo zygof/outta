@@ -1,28 +1,26 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Dimensions, TouchableOpacity } from "react-native";
-import { View, Text, Button } from "react-native-ui-lib";
-import Carousel, { Pagination } from "react-native-snap-carousel";
-import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from "./item";
-import { ENTRIES1 } from "../../data/entries";
-import { images, FONTS, SIZES, COLORS, icons } from "../../constants";
-const { width: screenWidth } = Dimensions.get("window");
+import React, {useEffect, useState, useRef} from 'react';
+import {Dimensions, TouchableOpacity} from 'react-native';
+import {View, Text, Button} from 'react-native-ui-lib';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import CarouselCardItem, {SLIDER_WIDTH, ITEM_WIDTH} from './item';
+import {ENTRIES1} from '../../data/entries';
+import {images, FONTS, SIZES, COLORS, icons} from '../../constants';
+const {width: screenWidth} = Dimensions.get ('window');
 
-const CarouselCards = () => {
-  const [index, setIndex] = useState(0);
-  const isCarousel = useRef(null);
-  const [entries, setEntries] = useState([]);
-  const carouselRef = useRef(null);
+const CarouselCards = props => {
+  const {images} = props;
+  const [index, setIndex] = useState (0);
+  const isCarousel = useRef (null);
+  const carouselRef = useRef (null);
 
-  useEffect(() => {
-    setEntries(ENTRIES1);
-  }, []);
+  useEffect (() => {}, []);
 
   const goForward = () => {
-    carouselRef.current.snapToNext();
+    carouselRef.current.snapToNext ();
   };
 
   const goBack = () => {
-    carouselRef.current.snapToBack();
+    carouselRef.current.snapToBack ();
   };
 
   return (
@@ -32,14 +30,14 @@ const CarouselCards = () => {
         sliderWidth={screenWidth}
         sliderHeight={screenWidth}
         itemWidth={screenWidth - 90}
-        data={entries}
+        data={images}
         renderItem={CarouselCardItem}
         hasParallaxImages={true}
-        onSnapToItem={(index) => setIndex(index) }
+        onSnapToItem={index => setIndex (index)}
       />
       <Pagination
-      containerStyle={{ position:"absolute", bottom:- 45}}
-        dotsLength={entries.length}
+        containerStyle={{position: 'absolute', bottom: -45}}
+        dotsLength={images.length}
         activeDotIndex={index}
         carouselRef={isCarousel}
         dotStyle={{
